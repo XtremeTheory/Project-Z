@@ -14,7 +14,7 @@ if($rowcount != 0) {
     $uname = $info['fname'] . " " . $info['lname'];
     $ustatus = $info['usertype']; ?>
     <tr>
-      <td><?php echo $details['datetime']; ?></td>
+      <td><?php echo $details['dateandtime']; ?></td>
       <td><?php echo $ustatus; ?></td>
       <td><?php echo $uname; ?></td>
       <td><?php echo $details['activity']; ?></td>

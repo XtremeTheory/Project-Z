@@ -45,7 +45,7 @@ $(document).off('click', '#but-addStore').on('click', '#but-addStore', function 
     $.ajax({
       type: "POST",
       cache: false,
-      url: 'php/store-submit.php',
+      url: 'php/add-store.php',
       data: {sname: sname, address: address, zipcode: zipcode},
       success: function(data) {
         console.log("Submitted data.");

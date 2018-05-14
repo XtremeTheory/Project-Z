@@ -5,4 +5,7 @@
 
   //Website Definitions
   $currentoffer = "Get $10.00 off on groceries. Use code '10off'";
+
+  //Change Log Codes
+  $log1 = " deleted from database.";
 ?>

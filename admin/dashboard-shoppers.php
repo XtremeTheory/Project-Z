@@ -7,44 +7,41 @@
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="PIXINVENT">
-  <title>Dashboard sales - Modern Admin - Clean Bootstrap 4 Dashboard HTML Template + Bitcoin
+  <title>Crypto Dashboard - Modern Admin - Clean Bootstrap 4 Dashboard HTML Template + Bitcoin
     Dashboard
   </title>
-  <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-  <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+  <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
+  <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
   rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/vendors.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
   <!-- END MODERN CSS-->
   <!-- BEGIN Page Level CSS-->
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css">
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/charts/morris.css">
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/fonts/simple-line-icons/style.css">
-  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/cryptocoins/cryptocoins.css">
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <!-- fixed-top-->
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark bg-primary navbar-shadow navbar-brand-center">
+  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center" data-nav="brand-center">
     <div class="navbar-wrapper">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
             <a class="navbar-brand" href="index.html">
-              <img class="brand-logo" alt="modern admin logo" src="../../../app-assets/images/logo/logo.png">
+              <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
               <h3 class="brand-text">Modern Admin</h3>
             </a>
           </li>
@@ -64,7 +61,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                   <h6 class="dropdown-menu-header text-uppercase mb-1"><i class="la la-newspaper-o"></i> News</h6>
                   <div id="mega-menu-carousel-example">
                     <div>
-                      <img class="rounded img-fluid mb-1" src="../../../app-assets/images/slider/slider-2.png"
+                      <img class="rounded img-fluid mb-1" src="app-assets/images/slider/slider-2.png"
                       alt="First slide"><a class="news-title mb-0" href="#">Poster Frame PSD</a>
                       <p class="news-content">
                         <span class="font-small-2">January 26, 2018</span>
@@ -198,7 +195,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                   <span class="user-name text-bold-700">John Doe</span>
                 </span>
                 <span class="avatar avatar-online">
-                  <img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
+                  <img src="app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
                 <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
@@ -303,7 +300,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                     <div class="media">
                       <div class="media-left">
                         <span class="avatar avatar-sm avatar-online rounded-circle">
-                          <img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
+                          <img src="app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
                       </div>
                       <div class="media-body">
                         <h6 class="media-heading">Margaret Govan</h6>
@@ -318,7 +315,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                     <div class="media">
                       <div class="media-left">
                         <span class="avatar avatar-sm avatar-busy rounded-circle">
-                          <img src="../../../app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span>
+                          <img src="app-assets/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span>
                       </div>
                       <div class="media-body">
                         <h6 class="media-heading">Bret Lezama</h6>
@@ -333,7 +330,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                     <div class="media">
                       <div class="media-left">
                         <span class="avatar avatar-sm avatar-online rounded-circle">
-                          <img src="../../../app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span>
+                          <img src="app-assets/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span>
                       </div>
                       <div class="media-body">
                         <h6 class="media-heading">Carie Berra</h6>
@@ -348,7 +345,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                     <div class="media">
                       <div class="media-left">
                         <span class="avatar avatar-sm avatar-away rounded-circle">
-                          <img src="../../../app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span>
+                          <img src="app-assets/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span>
                       </div>
                       <div class="media-body">
                         <h6 class="media-heading">Eric Alsobrook</h6>
@@ -377,9 +374,9 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
           <ul class="menu-content">
             <li><a class="menu-item" href="dashboard-ecommerce.html" data-i18n="nav.dash.ecommerce">eCommerce</a>
             </li>
-            <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Crypto</a>
+            <li class="active"><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Crypto</a>
             </li>
-            <li class="active"><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
+            <li><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Sales</a>
             </li>
           </ul>
         </li>
@@ -387,23 +384,23 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">Vertical</a>
               <ul class="menu-content">
-                <li><a class="menu-item" href="../vertical-menu-template" data-i18n="nav.templates.vert.classic_menu">Classic Menu</a>
+                <li><a class="menu-item" href="vertical-menu-template" data-i18n="nav.templates.vert.classic_menu">Classic Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-modern-menu-template">Modern Menu</a>
+                <li><a class="menu-item" href="vertical-modern-menu-template">Modern Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-compact-menu-template" data-i18n="nav.templates.vert.compact_menu">Compact Menu</a>
+                <li><a class="menu-item" href="vertical-compact-menu-template" data-i18n="nav.templates.vert.compact_menu">Compact Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-content-menu-template" data-i18n="nav.templates.vert.content_menu">Content Menu</a>
+                <li><a class="menu-item" href="vertical-content-menu-template" data-i18n="nav.templates.vert.content_menu">Content Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-overlay-menu-template" data-i18n="nav.templates.vert.overlay_menu">Overlay Menu</a>
+                <li><a class="menu-item" href="vertical-overlay-menu-template" data-i18n="nav.templates.vert.overlay_menu">Overlay Menu</a>
                 </li>
               </ul>
             </li>
             <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main">Horizontal</a>
               <ul class="menu-content">
-                <li><a class="menu-item" href="../horizontal-menu-template" data-i18n="nav.templates.horz.classic">Classic</a>
+                <li><a class="menu-item" href="horizontal-menu-template" data-i18n="nav.templates.horz.classic">Classic</a>
                 </li>
-                <li><a class="menu-item" href="../horizontal-menu-template-nav" data-i18n="nav.templates.horz.top_icon">Full Width</a>
+                <li><a class="menu-item" href="horizontal-menu-template-nav" data-i18n="nav.templates.horz.top_icon">Full Width</a>
                 </li>
               </ul>
             </li>
@@ -504,15 +501,15 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.vertical_nav.vertical_navigation_types.main">Navigation Types</a>
               <ul class="menu-content">
-                <li><a class="menu-item" href="../vertical-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_menu">Vertical Menu</a>
+                <li><a class="menu-item" href="vertical-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_menu">Vertical Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-modern-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_modern-menu">Vertical Modern Menu</a>
+                <li><a class="menu-item" href="vertical-modern-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_modern-menu">Vertical Modern Menu</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-overlay-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_overlay">Vertical Overlay</a>
+                <li><a class="menu-item" href="vertical-overlay-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_overlay">Vertical Overlay</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-compact-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_compact">Vertical Compact</a>
+                <li><a class="menu-item" href="vertical-compact-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_compact">Vertical Compact</a>
                 </li>
-                <li><a class="menu-item" href="../vertical-content-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_content">Vertical Content</a>
+                <li><a class="menu-item" href="vertical-content-menu-template" data-i18n="nav.vertical_nav.vertical_navigation_types.vertical_content">Vertical Content</a>
                 </li>
               </ul>
             </li>
@@ -548,9 +545,9 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.horz_nav.horizontal_navigation_types.main">Navigation Types</a>
               <ul class="menu-content">
-                <li><a class="menu-item" href="../horizontal-menu-template" data-i18n="nav.horz_nav.horizontal_navigation_types.horizontal_left_icon_navigation">Left Icon Navigation</a>
+                <li><a class="menu-item" href="horizontal-menu-template" data-i18n="nav.horz_nav.horizontal_navigation_types.horizontal_left_icon_navigation">Left Icon Navigation</a>
                 </li>
-                <li><a class="menu-item" href="../horizontal-menu-template-nav" data-i18n="nav.horz_nav.horizontal_navigation_types.horizontal_top_icon_navigation">Top Icon Navigation</a>
+                <li><a class="menu-item" href="horizontal-menu-template-nav" data-i18n="nav.horz_nav.horizontal_navigation_types.horizontal_top_icon_navigation">Top Icon Navigation</a>
                 </li>
               </ul>
             </li>
@@ -637,59 +634,59 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
         </li>
         <li class=" nav-item"><a href="#"><i class="la la-puzzle-piece"></i><span class="menu-title" data-i18n="nav.starter_kit.main">Starter kit</span></a>
           <ul class="menu-content">
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-1-column.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-1-column.html"
               data-i18n="nav.starter_kit.1_column">1 column</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-2-columns.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-2-columns.html"
               data-i18n="nav.starter_kit.2_columns">2 columns</a>
             </li>
             <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.main">Content Det. Sidebar</a>
               <ul class="menu-content">
-                <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-left-sidebar.html"
+                <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-left-sidebar.html"
                   data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_left_sidebar">Detached left sidebar</a>
                 </li>
-                <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-left-sticky-sidebar.html"
+                <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-left-sticky-sidebar.html"
                   data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_sticky_left_sidebar">Detached sticky left sidebar</a>
                 </li>
-                <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-right-sidebar.html"
+                <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-right-sidebar.html"
                   data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_right_sidebar">Detached right sidebar</a>
                 </li>
-                <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-right-sticky-sidebar.html"
+                <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-content-detached-right-sticky-sidebar.html"
                   data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_sticky_right_sidebar">Detached sticky right sidebar</a>
                 </li>
               </ul>
             </li>
             <li class="navigation-divider"></li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar.html"
               data-i18n="nav.starter_kit.fixed_navbar">Fixed navbar</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navigation.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navigation.html"
               data-i18n="nav.starter_kit.fixed_navigation">Fixed navigation</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar-navigation.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar-navigation.html"
               data-i18n="nav.starter_kit.fixed_navbar_navigation">Fixed navbar &amp; navigation</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar-footer.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-fixed-navbar-footer.html"
               data-i18n="nav.starter_kit.fixed_navbar_footer">Fixed navbar &amp; footer</a>
             </li>
             <li class="navigation-divider"></li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-fixed.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-fixed.html"
               data-i18n="nav.starter_kit.fixed_layout">Fixed layout</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-boxed.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-boxed.html"
               data-i18n="nav.starter_kit.boxed_layout">Boxed layout</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-static.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-static.html"
               data-i18n="nav.starter_kit.static_layout">Static layout</a>
             </li>
             <li class="navigation-divider"></li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-light.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-light.html"
               data-i18n="nav.starter_kit.light_layout">Light layout</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-dark.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-dark.html"
               data-i18n="nav.starter_kit.dark_layout">Dark layout</a>
             </li>
-            <li><a class="menu-item" href="../../../starter-kit/ltr/vertical-overlay-menu-template/layout-semi-dark.html"
+            <li><a class="menu-item" href="starter-kit/ltr/vertical-overlay-menu-template/layout-semi-dark.html"
               data-i18n="nav.starter_kit.semi_dark_layout">Semi dark layout</a>
             </li>
           </ul>
@@ -1434,412 +1431,823 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
       <div class="content-header row">
       </div>
       <div class="content-body">
-        <!-- Revenue, Hit Rate & Deals -->
-        <div class="row">
-          <div class="col-xl-6 col-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Revenue</h4>
-                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-content collapse show">
-                <div class="card-body pt-0">
-                  <div class="row mb-1">
-                    <div class="col-6 col-md-4">
-                      <h5>Current week</h5>
-                      <h2 class="danger">$82,124</h2>
-                    </div>
-                    <div class="col-6 col-md-4">
-                      <h5>Previous week</h5>
-                      <h2 class="text-muted">$52,502</h2>
-                    </div>
-                  </div>
-                  <div class="chartjs">
-                    <canvas id="thisYearRevenue" width="400" style="position: absolute;"></canvas>
-                    <canvas id="lastYearRevenue" width="400"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-12">
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <div class="card pull-up">
-                  <div class="card-header bg-hexagons">
-                    <h4 class="card-title">Hit Rate
-                      <span class="danger">-12%</span>
-                    </h4>
-                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                      <ul class="list-inline mb-0">
-                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="card-content collapse show bg-hexagons">
-                    <div class="card-body pt-0">
-                      <div class="chartjs">
-                        <canvas id="hit-rate-doughnut" height="275"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-12">
-                <div class="card pull-up">
-                  <div class="card-content collapse show bg-gradient-directional-danger ">
-                    <div class="card-body bg-hexagons-danger">
-                      <h4 class="card-title white">Deals
-                        <span class="white">-55%</span>
-                        <span class="float-right">
-                          <span class="white">152</span>
-                          <span class="red lighten-4">/200</span>
-                        </span>
-                      </h4>
-                      <div class="chartjs">
-                        <canvas id="deals-doughnut" height="275"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 col-12">
-                <div class="card pull-up">
-                  <div class="card-content">
-                    <div class="card-body">
-                      <div class="media d-flex">
-                        <div class="media-body text-left">
-                          <h6 class="text-muted">Order Value </h6>
-                          <h3>$ 88,568</h3>
-                        </div>
-                        <div class="align-self-center">
-                          <i class="icon-trophy success font-large-2 float-right"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-12">
-                <div class="card pull-up">
-                  <div class="card-content">
-                    <div class="card-body">
-                      <div class="media d-flex">
-                        <div class="media-body text-left">
-                          <h6 class="text-muted">Calls</h6>
-                          <h3>3,568</h3>
-                        </div>
-                        <div class="align-self-center">
-                          <i class="icon-call-in danger font-large-2 float-right"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/ Revenue, Hit Rate & Deals -->
-        <!-- Emails Products & Avg Deals -->
-        <div class="row">
-          <div class="col-12 col-md-3">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Emails</h4>
-                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-content collapse show">
-                <div class="card-body pt-0">
-                  <p>Open rate
-                    <span class="float-right text-bold-600">89%</span>
-                  </p>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-1">
-                    <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 80%"
-                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="pt-1">Sent
-                    <span class="float-right">
-                      <span class="text-bold-600">310</span>/500</span>
-                  </p>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-1">
-                    <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 48%"
-                    aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-3">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Top Products</h4>
-                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a href="#">Show all</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-content collapse show">
-                <div class="card-body p-0">
-                  <div class="table-responsive">
-                    <table class="table mb-0">
-                      <tbody>
-                        <tr>
-                          <th scope="row" class="border-top-0">iPone X</th>
-                          <td class="border-top-0">2245</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">One Plus</th>
-                          <td>1850</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Samsung S7</th>
-                          <td>1550</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title text-center">Average Deal Size</h4>
-              </div>
-              <div class="card-content collapse show">
-                <div class="card-body pt-0">
-                  <div class="row">
-                    <div class="col-md-6 col-12 border-right-blue-grey border-right-lighten-5 text-center">
-                      <h6 class="danger text-bold-600">-30%</h6>
-                      <h4 class="font-large-2 text-bold-400">$12,536</h4>
-                      <p class="blue-grey lighten-2 mb-0">Per rep</p>
-                    </div>
-                    <div class="col-md-6 col-12 text-center">
-                      <h6 class="success text-bold-600">12%</h6>
-                      <h4 class="font-large-2 text-bold-400">$18,548</h4>
-                      <p class="blue-grey lighten-2 mb-0">Per team</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/ Emails Products & Avg Deals -->
-        <!-- Total earning & Recent Sales  -->
-        <div class="row">
-          <div class="col-12 col-md-4">
-            <div class="card">
+        <div id="crypto-stats-3" class="row">
+          <div class="col-xl-4 col-12">
+            <div class="card crypto-card-3 pull-up">
               <div class="card-content">
-                <div class="earning-chart position-relative">
-                  <div class="chart-title position-absolute mt-2 ml-2">
-                    <h1 class="display-4">$1,596</h1>
-                    <span class="text-muted">Total Earning</span>
+                <div class="card-body pb-0">
+                  <div class="row">
+                    <div class="col-2">
+                      <h1><i class="cc BTC warning font-large-2" title="BTC"></i></h1>
+                    </div>
+                    <div class="col-5 pl-2">
+                      <h4>BTC</h4>
+                      <h6 class="text-muted">Bitcoin</h6>
+                    </div>
+                    <div class="col-5 text-right">
+                      <h4>$9,980</h4>
+                      <h6 class="success darken-4">31% <i class="la la-arrow-up"></i></h6>
+                    </div>
                   </div>
-                  <canvas id="earning-chart" class="height-450"></canvas>
-                  <div class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3">
-                    <a href="#" class="btn round btn-danger mr-1 btn-glow">Statistics <i class="ft-bar-chart"></i></a>
-                    <span class="text-muted">for the <a href="#" class="danger darken-2">last year.</a></span>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <canvas id="btc-chartjs" class="height-75"></canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div id="recent-sales" class="col-12 col-md-8">
+          <div class="col-xl-4 col-12">
+            <div class="card crypto-card-3 pull-up">
+              <div class="card-content">
+                <div class="card-body pb-0">
+                  <div class="row">
+                    <div class="col-2">
+                      <h1><i class="cc ETH blue-grey lighten-1 font-large-2" title="ETH"></i></h1>
+                    </div>
+                    <div class="col-5 pl-2">
+                      <h4>ETH</h4>
+                      <h6 class="text-muted">Ethereum</h6>
+                    </div>
+                    <div class="col-5 text-right">
+                      <h4>$944</h4>
+                      <h6 class="success darken-4">12% <i class="la la-arrow-up"></i></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <canvas id="eth-chartjs" class="height-75"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-12">
+            <div class="card crypto-card-3 pull-up">
+              <div class="card-content">
+                <div class="card-body pb-0">
+                  <div class="row">
+                    <div class="col-2">
+                      <h1><i class="cc XRP info font-large-2" title="XRP"></i></h1>
+                    </div>
+                    <div class="col-5 pl-2">
+                      <h4>XRP</h4>
+                      <h6 class="text-muted">Balance</h6>
+                    </div>
+                    <div class="col-5 text-right">
+                      <h4>$1.2</h4>
+                      <h6 class="danger">20% <i class="la la-arrow-down"></i></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <canvas id="xrp-chartjs" class="height-75"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Candlestick Multi Level Control Chart -->
+        <!-- Slaes & Purchase Order -->
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <div id="accordionCrypto" role="tablist" aria-multiselectable="true">
+              <div class="card collapse-icon accordion-icon-rotate">
+                <div id="heading31" class="card-header bg-info p-1 bg-lighten-1">
+                  <a data-toggle="collapse" data-parent="#accordionCrypto" href="#accordionBTC" aria-expanded="true"
+                  aria-controls="accordionBTC" class="card-title lead white">BTC</a>
+                </div>
+                <div id="accordionBTC" role="tabpanel" aria-labelledby="heading31" class="card-collapse collapse show"
+                aria-expanded="true">
+                  <div class="card-content">
+                    <div class="card-body p-0">
+                      <div class="media-list list-group">
+                        <div class="list-group-item list-group-item-action media p-1">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">BTC/USD</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">11916.9</p>
+                              <p class="font-small-2 text-muted m-0 success">283.1 USD (+2.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">1029.1906 BTC</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1 bg-info bg-lighten-5">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">BTC/EUR</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">9213.3</p>
+                              <p class="font-small-2 text-muted m-0 success">56.1 EUR (+5.52%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">560.1906 BTC</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1 border-bottom-0">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">BTC/GBP</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">8015.1</p>
+                              <p class="font-small-2 text-muted m-0 danger">-183.1 USD (-1.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">320.1906 BTC</p>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="heading32" class="card-header bg-info p-1 bg-lighten-1 my-1">
+                  <a data-toggle="collapse" data-parent="#accordionCrypto" href="#accordionETH" aria-expanded="false"
+                  aria-controls="accordionETH" class="card-title lead white collapsed">ETH</a>
+                </div>
+                <div id="accordionETH" role="tabpanel" aria-labelledby="heading32" class="card-collapse collapse"
+                aria-expanded="false">
+                  <div class="card-content">
+                    <div class="card-body p-0">
+                      <div class="media-list list-group">
+                        <div class="list-group-item list-group-item-action media p-1">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">ETH/USD</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">11916.9</p>
+                              <p class="font-small-2 text-muted m-0 success">283.1 USD (+2.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">1029.1906 ETH</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">ETH/EUR</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">9213.3</p>
+                              <p class="font-small-2 text-muted m-0 success">56.1 EUR (+5.52%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">560.1906 ETH</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1 border-bottom-0">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">ETH/GBP</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">8015.1</p>
+                              <p class="font-small-2 text-muted m-0 danger">-183.1 USD (-1.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">320.1906 ETH</p>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="heading33" class="card-header bg-info p-1 bg-lighten-1">
+                  <a data-toggle="collapse" data-parent="#accordionCrypto" href="#accordionXRP" aria-expanded="false"
+                  aria-controls="accordionXRP" class="card-title lead white collapsed">XRP</a>
+                </div>
+                <div id="accordionXRP" role="tabpanel" aria-labelledby="heading33" class="card-collapse collapse"
+                aria-expanded="false">
+                  <div class="card-content">
+                    <div class="card-body p-0">
+                      <div class="media-list list-group">
+                        <div class="list-group-item list-group-item-action media p-1">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">XRP/USD</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">11916.9</p>
+                              <p class="font-small-2 text-muted m-0 success">283.1 USD (+2.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">1029.1906 XRP</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">XRP/EUR</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">9213.3</p>
+                              <p class="font-small-2 text-muted m-0 success">56.1 EUR (+5.52%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">560.1906 XRP</p>
+                            </span>
+                          </a>
+                        </div>
+                        <div class="list-group-item list-group-item-action media p-1 border-bottom-0">
+                          <a class="media-link" href="#">
+                            <span class="media-left">
+                              <p class="text-bold-600 m-0">XRP/GBP</p>
+                              <p class="font-small-2 text-muted m-0">24h Change</p>
+                              <p class="font-small-2 text-muted m-0">24h Volume</p>
+                            </span>
+                            <span class="media-body text-right">
+                              <p class="text-bold-600 m-0">8015.1</p>
+                              <p class="font-small-2 text-muted m-0 danger">-183.1 USD (-1.33%)</p>
+                              <p class="font-small-2 text-muted m-0 text-bold-600">320.1906 XRP</p>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Recent Sales</h4>
+                <h4 class="card-title">BTC/USD</h4>
                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                   <ul class="list-inline mb-0">
-                    <li><a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"
-                      href="invoice-summary.html" target="_blank">View all</a></li>
+                    <li class="text-center mr-4">
+                      <h6 class="text-muted">Last price</h6>
+                      <p class="text-bold-600 mb-0">$ 11916.9</p>
+                    </li>
+                    <li class="text-center mr-4">
+                      <h6 class="text-muted">Daily change</h6>
+                      <p class="text-bold-600 mb-0">$ 283.1</p>
+                    </li>
+                    <li class="text-center">
+                      <h6 class="text-muted">24h volume</h6>
+                      <p class="text-bold-600 mb-0"><i class="cc BTC-alt" title="BTC"></i> 1029.1906 BTC</p>
+                    </li>
                   </ul>
                 </div>
               </div>
-              <div class="card-content mt-1">
-                <div class="table-responsive">
-                  <table id="recent-orders" class="table table-hover table-xl mb-0">
+              <div class="card-content collapse show">
+                <div class="card-body pt-0">
+                  <div id="btc-candlestick-control" class="height-350 echart-container"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Trade History & Place Order -->
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Trade History</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn round btn-sm btn-outline-info active">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked> Market
+                    </label>
+                    <label class="btn round btn-sm btn-outline-info">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> Yours
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="table-responsive mt-1">
+                  <table class="table table-xs">
                     <thead>
                       <tr>
-                        <th class="border-top-0">Product</th>
-                        <th class="border-top-0">Customers</th>
-                        <th class="border-top-0">Categories</th>
-                        <th class="border-top-0">Popularity</th>
-                        <th class="border-top-0">Amount</th>
+                        <th>Price($)</th>
+                        <th>Amount</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="text-truncate">iPone X</td>
-                        <td class="text-truncate p-1">
-                          <ul class="list-unstyled users-list m-0">
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png"
-                              alt="Avatar">
-                            </li>
-                            <li class="avatar avatar-sm">
-                              <span class="badge badge-info">+8 more</span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-sm btn-outline-danger round">Mobile</button>
-                        </td>
-                        <td>
-                          <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
-                            aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="text-truncate">$ 1200.00</td>
+                        <td class="success">11900.12</td>
+                        <td><i class="cc BTC-alt"></i> 0.215</td>
+                        <td>11:23:25</td>
                       </tr>
                       <tr>
-                        <td class="text-truncate">iPad</td>
-                        <td class="text-truncate p-1">
-                          <ul class="list-unstyled users-list m-0">
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-7.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-8.png"
-                              alt="Avatar">
-                            </li>
-                            <li class="avatar avatar-sm">
-                              <span class="badge badge-info">+5 more</span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-sm btn-outline-success round">Tablet</button>
-                        </td>
-                        <td>
-                          <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 75%"
-                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="text-truncate">$ 1190.00</td>
+                        <td class="danger">11903.18</td>
+                        <td><i class="cc BTC-alt"></i> 1.545</td>
+                        <td>11:23:05</td>
                       </tr>
                       <tr>
-                        <td class="text-truncate">OnePlus</td>
-                        <td class="text-truncate p-1">
-                          <ul class="list-unstyled users-list m-0">
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-1.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-2.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-3.png"
-                              alt="Avatar">
-                            </li>
-                            <li class="avatar avatar-sm">
-                              <span class="badge badge-info">+3 more</span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-sm btn-outline-danger round">Mobile</button>
-                        </td>
-                        <td>
-                          <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 70%"
-                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="text-truncate">$ 999.00</td>
+                        <td class="success">11899.56</td>
+                        <td><i class="cc BTC-alt"></i> 0.541</td>
+                        <td>11:22:50</td>
                       </tr>
                       <tr>
-                        <td class="text-truncate">ZenPad</td>
-                        <td class="text-truncate p-1">
-                          <ul class="list-unstyled users-list m-0">
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-11.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-12.png"
-                              alt="Avatar">
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-sm btn-outline-success round">Tablet</button>
-                        </td>
-                        <td>
-                          <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 65%"
-                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </td>
-                        <td class="text-truncate">$ 1150.00</td>
+                        <td class="danger">11910.52</td>
+                        <td><i class="cc BTC-alt"></i> 0.321</td>
+                        <td>11:22:15</td>
                       </tr>
                       <tr>
-                        <td class="text-truncate">Pixel 2</td>
-                        <td class="text-truncate p-1">
-                          <ul class="list-unstyled users-list m-0">
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-6.png"
-                              alt="Avatar">
-                            </li>
-                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
-                            class="avatar avatar-sm pull-up">
-                              <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.png"
-                              alt="Avatar">
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-sm btn-outline-danger round">Mobile</button>
-                        </td>
-                        <td>
-                          <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 45%"
-                            aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                        <td class="danger">11901.15</td>
+                        <td><i class="cc BTC-alt"></i> 0.548</td>
+                        <td>11:21:25</td>
+                      </tr>
+                      <tr>
+                        <td class="success">11903.45</td>
+                        <td><i class="cc BTC-alt"></i> 0.587</td>
+                        <td>11:21:01</td>
+                      </tr>
+                      <tr>
+                        <td class="danger">11895.50</td>
+                        <td><i class="cc BTC-alt"></i> 5.125</td>
+                        <td>11:20:15</td>
+                      </tr>
+                      <tr>
+                        <td class="danger">11889.56</td>
+                        <td><i class="cc BTC-alt"></i> 0.894</td>
+                        <td>11:20:03</td>
+                      </tr>
+                      <tr>
+                        <td class="success">11885.69</td>
+                        <td><i class="cc BTC-alt"></i> 0.754</td>
+                        <td>11:19:55</td>
+                      </tr>
+                      <tr>
+                        <td class="danger">11891.12</td>
+                        <td><i class="cc BTC-alt"></i> 0.889</td>
+                        <td>11:19:15</td>
+                      </tr>
+                      <tr>
+                        <td class="danger">11889.88</td>
+                        <td><i class="cc BTC-alt"></i> 0.654</td>
+                        <td>11:18:18</td>
+                      </tr>
+                      <tr>
+                        <td class="success">11881.15</td>
+                        <td><i class="cc BTC-alt"></i> 1.254</td>
+                        <td>11:18:01</td>
+                      </tr>
+                      <tr>
+                        <td class="success">11875.75</td>
+                        <td><i class="cc BTC-alt"></i> 0.885</td>
+                        <td>11:17:25</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Place Order</h4>
+                <div class="heading-elements">
+                  <h6 class="danger">Fee: 0.2%</h6>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ul class="nav nav-tabs nav-underline no-hover-bg">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="base-limit" data-toggle="tab" aria-controls="limit"
+                      href="#limit" aria-expanded="true">Limit</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="base-market" data-toggle="tab" aria-controls="market" href="#market"
+                      aria-expanded="false">Market</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="base-stop-limit" data-toggle="tab" aria-controls="stop-limit"
+                      href="#stop-limit" aria-expanded="false">Stop Limit</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content px-1 pt-1">
+                    <div role="tabpanel" class="tab-pane active" id="limit" aria-expanded="true" aria-labelledby="base-limit">
+                      <div class="row">
+                        <div class="col-12 col-xl-6 border-right-blue-grey border-right-lighten-4 pr-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Buy BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">USD Balance: $ 5000.00</p>
+                            </div>
                           </div>
-                        </td>
-                        <td class="text-truncate">$ 1180.00</td>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-limit-buy-price">Price</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-limit-buy-price" class="form-control" placeholder="$ 11916.9"
+                                  name="btc-limit-buy-price">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-limit-buy-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-limit-buy-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-limit-buy-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-limit-buy-total">Total</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-limit-buy-total" class="form-control" placeholder="$ 318.1856"
+                                  name="btc-limit-buy-total">
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-success btn-block btn-glow"> Buy BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="col-12 col-xl-6 pl-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Sell BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">BTC Balance: 1.2654898</p>
+                            </div>
+                          </div>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-price">Price</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-limit-sell-price" class="form-control" placeholder="$ 11916.9"
+                                  name="btc-limit-sell-price">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-limit-sell-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-limit-sell-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-limit-sell-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-limit-sell-total">Total</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-limit-sell-total" class="form-control" placeholder="$ 318.1856"
+                                  name="btc-limit-sell-total">
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-danger btn-block btn-glow"> Sell BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="market" aria-labelledby="base-market">
+                      <div class="row">
+                        <div class="col-12 col-xl-6 border-right-blue-grey border-right-lighten-4 pr-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Buy BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">USD Balance: $ 5000.00</p>
+                            </div>
+                          </div>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-market-buy-price">Price</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-market-buy-price" class="form-control" placeholder="Market prise $"
+                                  name="btc-market-buy-price">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-market-buy-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-market-buy-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-market-buy-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-success btn-block btn-glow"> Buy BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="col-12 col-xl-6 pl-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Sell BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">BTC Balance: 1.2654898</p>
+                            </div>
+                          </div>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-price">Price</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-market-sell-price" class="form-control" placeholder="Market prise $"
+                                  name="btc-market-sell-price">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-market-sell-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-market-sell-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-market-sell-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-danger btn-block btn-glow"> Sell BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="stop-limit" aria-labelledby="base-stop-limit">
+                      <div class="row">
+                        <div class="col-12 col-xl-6 border-right-blue-grey border-right-lighten-4 pr-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Buy BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">USD Balance: $ 5000.00</p>
+                            </div>
+                          </div>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-buy">Stop</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-buy" class="form-control" placeholder="$ 11916.9"
+                                  name="btc-stop-buy">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-buy-limit">Limit</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-buy-limit" class="form-control" placeholder="$ 12000.0"
+                                  name="btc-stop-buy-limit">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-buy-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-buy-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-stop-buy-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-buy-total">Total</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-stop-buy-total" class="form-control" placeholder="$ 318.1856"
+                                  name="btc-stop-buy-total">
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-success btn-block btn-glow"> Buy BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="col-12 col-xl-6 pl-2 p-0">
+                          <div class="row my-2">
+                            <div class="col-4">
+                              <h5 class="text-bold-600 mb-0">Sell BTC</h5>
+                            </div>
+                            <div class="col-8 text-right">
+                              <p class="text-muted mb-0">BTC Balance: 1.2654898</p>
+                            </div>
+                          </div>
+                          <form class="form form-horizontal">
+                            <div class="form-body">
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-sell">Stop</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-sell" class="form-control" placeholder="$ 11916.9"
+                                  name="btc-stop-sell">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-sell-limit">Limit</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-sell-limit" class="form-control" placeholder="$ 12000.0"
+                                  name="btc-stop-sell-limit">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-sell-amount">Amount</label>
+                                <div class="col-md-9">
+                                  <input type="number" id="btc-stop-sell-amount" class="form-control" placeholder="0.026547 BTC"
+                                  name="btc-stop-sell-amount">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">25%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">50%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">75%</button>
+                                  <button type="button" class="btn round btn-outline-secondary btn-sm">100%</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3 col-form-label" for="btc-stop-sell-total">Total</label>
+                                <div class="col-md-9">
+                                  <input type="number" disabled id="btc-stop-sell-total" class="form-control" placeholder="$ 318.1856"
+                                  name="btc-stop-sell-total">
+                                </div>
+                              </div>
+                              <div class="form-actions pb-0">
+                                <button type="submit" class="btn round btn-danger btn-block btn-glow"> Sell BTC </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Trade History & Place Order -->
+        <!-- Sell Orders & Buy Order -->
+        <div class="row match-height">
+          <div class="col-12 col-xl-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Sell Order</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                  <p class="text-muted">Total BTC available: 6542.56585</p>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="table-responsive">
+                  <table class="table table-de mb-0">
+                    <thead>
+                      <tr>
+                        <th>Price per BTC</th>
+                        <th>BTC Ammount</th>
+                        <th>Total($)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="bg-success bg-lighten-5">
+                        <td>10583.4</td>
+                        <td><i class="cc BTC-alt"></i> 0.45000000</td>
+                        <td>$ 4762.53</td>
+                      </tr>
+                      <tr>
+                        <td>10583.5</td>
+                        <td><i class="cc BTC-alt"></i> 0.04000000</td>
+                        <td>$ 423.34</td>
+                      </tr>
+                      <tr>
+                        <td>10583.7</td>
+                        <td><i class="cc BTC-alt"></i> 0.25100000</td>
+                        <td>$ 2656.51</td>
+                      </tr>
+                      <tr>
+                        <td>10583.8</td>
+                        <td><i class="cc BTC-alt"></i> 0.35000000</td>
+                        <td>$ 3704.33</td>
+                      </tr>
+                      <tr>
+                        <td>10595.7</td>
+                        <td><i class="cc BTC-alt"></i> 0.30000000</td>
+                        <td>$ 3178.71</td>
+                      </tr>
+                      <tr class="bg-danger bg-lighten-5">
+                        <td>10599.5</td>
+                        <td><i class="cc BTC-alt"></i> 0.02000000</td>
+                        <td>$ 211.99</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Buy Order</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                  <p class="text-muted">Total USD available: 9065930.43</p>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="table-responsive">
+                  <table class="table table-de mb-0">
+                    <thead>
+                      <tr>
+                        <th>Price per BTC</th>
+                        <th>BTC Ammount</th>
+                        <th>Total($)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="bg-danger bg-lighten-5">
+                        <td>10599.5</td>
+                        <td><i class="cc BTC-alt"></i> 0.02000000</td>
+                        <td>$ 211.99</td>
+                      </tr>
+                      <tr>
+                        <td>10583.5</td>
+                        <td><i class="cc BTC-alt"></i> 0.04000000</td>
+                        <td>$ 423.34</td>
+                      </tr>
+                      <tr>
+                        <td>10583.8</td>
+                        <td><i class="cc BTC-alt"></i> 0.35000000</td>
+                        <td>$ 3704.33</td>
+                      </tr>
+                      <tr>
+                        <td>10595.7</td>
+                        <td><i class="cc BTC-alt"></i> 0.30000000</td>
+                        <td>$ 3178.71</td>
+                      </tr>
+                      <tr class="bg-danger bg-lighten-5">
+                        <td>10583.7</td>
+                        <td><i class="cc BTC-alt"></i> 0.25100000</td>
+                        <td>$ 2656.51</td>
+                      </tr>
+                      <tr>
+                        <td>10595.8</td>
+                        <td><i class="cc BTC-alt"></i> 0.29697926</td>
+                        <td>$ 3146.74</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1848,55 +2256,116 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
             </div>
           </div>
         </div>
-        <!--/ Total earning & Recent Sales  -->
-        <!-- Analytics map based session -->
+        <!--/ Sell Orders & Buy Order -->
+        <!-- Active Orders -->
         <div class="row">
           <div class="col-12">
-            <div class="card box-shadow-0">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Active Order</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                  <td>
+                    <button class="btn btn-sm round btn-danger btn-glow"><i class="la la-close font-medium-1"></i> Cancel all</button>
+                  </td>
+                </div>
+              </div>
               <div class="card-content">
-                <div class="row">
-                  <div class="col-md-9 col-12">
-                    <div id="world-map-markers" class="height-450"></div>
-                  </div>
-                  <div class="col-md-3 col-12">
-                    <div class="card-body text-center">
-                      <h4 class="card-title mb-0">Visitors Sessions</h4>
-                      <div class="row">
-                        <div class="col-12">
-                          <p class="pb-1">Sessions by Browser</p>
-                          <div id="sessions-browser-donut-chart" class="height-200"></div>
-                        </div>
-                        <div class="col-12">
-                          <div class="sales pr-2 pt-2">
-                            <div class="sales-today mb-2">
-                              <p class="m-0">Today's
-                                <span class="success float-right"><i class="ft-arrow-up success"></i> 6.89%</span>
-                              </p>
-                              <div class="progress progress-sm mt-1 mb-0">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="sales-yesterday">
-                              <p class="m-0">Yesterday's
-                                <span class="danger float-right"><i class="ft-arrow-down danger"></i> 4.18%</span>
-                              </p>
-                              <div class="progress progress-sm mt-1 mb-0">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 65%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="table-responsive">
+                  <table class="table table-de mb-0">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount BTC</th>
+                        <th>BTC Remaining</th>
+                        <th>Price</th>
+                        <th>USD</th>
+                        <th>Fee (%)</th>
+                        <th>Cancel</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2018-01-31 06:51:51</td>
+                        <td class="success">Buy</td>
+                        <td><i class="cc BTC-alt"></i> 0.58647</td>
+                        <td><i class="cc BTC-alt"></i> 0.58647</td>
+                        <td>11900.12</td>
+                        <td>$ 6979.78</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2018-01-31 06:50:50</td>
+                        <td class="danger">Sell</td>
+                        <td><i class="cc BTC-alt"></i> 1.38647</td>
+                        <td><i class="cc BTC-alt"></i> 0.38647</td>
+                        <td>11905.09</td>
+                        <td>$ 4600.97</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2018-01-31 06:49:51</td>
+                        <td class="success">Buy</td>
+                        <td><i class="cc BTC-alt"></i> 0.45879</td>
+                        <td><i class="cc BTC-alt"></i> 0.45879</td>
+                        <td>11901.85</td>
+                        <td>$ 5460.44</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2018-01-31 06:51:51</td>
+                        <td class="success">Buy</td>
+                        <td><i class="cc BTC-alt"></i> 0.89877</td>
+                        <td><i class="cc BTC-alt"></i> 0.89877</td>
+                        <td>11899.25</td>
+                        <td>$ 10694.6</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2018-01-31 06:51:51</td>
+                        <td class="danger">Sell</td>
+                        <td><i class="cc BTC-alt"></i> 0.45712</td>
+                        <td><i class="cc BTC-alt"></i> 0.45712</td>
+                        <td>11908.58</td>
+                        <td>$ 5443.65</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2018-01-31 06:51:51</td>
+                        <td class="success">Buy</td>
+                        <td><i class="cc BTC-alt"></i> 0.58647</td>
+                        <td><i class="cc BTC-alt"></i> 0.58647</td>
+                        <td>11900.12</td>
+                        <td>$ 6979.78</td>
+                        <td>0.2</td>
+                        <td>
+                          <button class="btn btn-sm round btn-outline-danger"> Cancel</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Analytics map based session -->
+        <!-- Active Orders -->
       </div>
     </div>
   </div>
@@ -1909,25 +2378,19 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
     </p>
   </footer>
   <!-- BEGIN VENDOR JS-->
-  <script src="../../../app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="../../../app-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script>
-  <script src="../../../app-assets/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
-  <script src="../../../app-assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
-  <script src="../../../app-assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js"
-  type="text/javascript"></script>
-  <script src="../../../app-assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"
-  type="text/javascript"></script>
-  <script src="../../../app-assets/data/jvector/visitor-data.js" type="text/javascript"></script>
+  <script src="app-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script>
+  <script src="app-assets/vendors/js/charts/echarts/echarts.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
-  <script src="../../../app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="../../../app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
+  <script src="app-assets/js/core/app.js" type="text/javascript"></script>
+  <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
-  <script src="../../../app-assets/js/scripts/pages/dashboard-sales.js" type="text/javascript"></script>
+  <script src="app-assets/js/scripts/pages/dashboard-crypto.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

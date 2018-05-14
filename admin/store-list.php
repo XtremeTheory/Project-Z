@@ -1,6 +1,7 @@
 <?php
 require 'php/db.php';
 require 'php/definitions.php';
+$uid = 1;
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -63,10 +64,10 @@ require 'php/definitions.php';
 </style>
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar"
-data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
+  <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -261,43 +262,60 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
     "ajax": "php/slist.php"
   } );
 
-  $(document).off('click', '.deleteStore').on('click', '.deleteStore', function () {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this info!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        var data = new FormData();
-        data.append('sid', $(this).attr('id'));
-        console.log(data);
-        $.ajax({
-          type: "POST",
-          contentType: false,
-          processData: false,
-          cache: false,
-          url: 'php/delete-store.php',
-          data: data,
-          success: function(data) {
-            if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
-            }
-
-            if(data == "complete") {
-              swal("Poof! Your the store has been deleted!", {
-                icon: "success",
-              });
-            }
+$(document).off('click', '.deleteStore').on('click', '.deleteStore', function () {
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this info!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      var data = new FormData();
+      data.append('uid', $('.get-uid').val());
+      data.append('changeID', "1");
+      data.append('sid', $(this).attr('id'));
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/log-change.php',
+        data: data,
+        success: function(data) {
+          if(data == "servfailure") {
+            window.location.href = "https://www.bodtracker.com/page-500.php";
           }
-        });
-      } else {
-        swal("The store information is safe!");
-      }
-    });
+          if(data == "complete") {
+            var data1 = new FormData();
+            data1.append('sid', $(this).attr('id'));
+            $.ajax({
+              type: "POST",
+              contentType: false,
+              processData: false,
+              cache: false,
+              url: 'php/delete-store.php',
+              data1: data1,
+              success: function(data1) {
+                if(data1 == "servfailure") {
+                  window.location.href = "https://www.bodtracker.com/page-500.php";
+                }
+                if(data1 == "complete") {
+                  $('.multi-ordering').DataTable().ajax.reload();
+                  swal("Poof! Your the store has been deleted!", {
+                    icon: "success",
+                  });
+                }
+              }
+            });
+          }
+        }
+      });
+    } else {
+      swal("The store information is safe!");
+    }
   });
+});
   </script>
   <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
