@@ -14,7 +14,11 @@ $changeDef = ${'log'.$changeID};
 $query = "SELECT * FROM store_data WHERE id = '$sid'";
 $result = $test_db->query($query);
 $storeinfo = $result->fetch_assoc();
-$activity = $storeinfo['sname'] . " - " . $storeinfo['address'] . " : " . $changeDef;
+$cid = $storeinfo['cid'];
+$query1 = "SELECT * FROM city_list WHERE id = '$cid'";
+$result1 = $test_db->query($query1);
+$cityinfo = $result1->fetch_assoc();
+$activity = $storeinfo['sname'] . " - " . $storeinfo['address'] . " : " . $cityinfo['zipcode'] . $changeDef;
 
 $query = "INSERT INTO change_log (dateandtime, uid, activity) VALUES('$dateandtime', '$uid', '$activity')";
 $result = $test_db->query($query);

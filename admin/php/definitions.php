@@ -8,4 +8,5 @@
 
   //Change Log Codes
   $log1 = " deleted from database.";
+  $log2 = " edited store information.";
 ?>

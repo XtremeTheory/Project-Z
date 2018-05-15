@@ -249,21 +249,95 @@ $uid = 1;
     "ajax": "php/slist.php"
   } );
 
-  $(document).off('click', '.pending').on('click', '.pending', function () {
-    $("p:first").addClass("intro");
+  $('input[type="text"]').on('focus', function() {
+    $(this).removeClass('is-invalid');
   });
 
-  $(document).off('click', '.approve').on('click', '.approve', function () {
-    $("p:first").addClass("intro");
+  $(".required").each(function() {
+    if ($.trim($(this).val()).length == 0) {
+      $(this).addClass("is-invalid");
+      isFormValid = false;
+      swal("Uh Oh!", "Looks like some things are missing...", "error");
+    } else {
+      $(this).removeClass("is-invalid");
+    }
   });
 
-  $(document).off('click', '.deny').on('click', '.deny', function () {
-    $("p:first").addClass("intro");
+  $(document).off('click', '#pending').on('click', '#pending', function () {
+    $(".approval").removeClass("disabled").removeClass("btn-float-lg");
+    $("#pending").addClass("disabled").addClass("btn-glow").addClass("btn-float").addClass("btn-float-lg");
   });
 
-  $(document).off('click', '.storeDetails').on('click', '.storeDetails', function () {
-
+  $(document).off('click', '#approve').on('click', '#approve', function () {
+    $(".approval").removeClass("disabled").removeClass("btn-float-lg");
+    $("#approve").addClass("disabled").addClass("btn-glow").addClass("btn-float").addClass("btn-float-lg");
   });
+
+  $(document).off('click', '#deny').on('click', '#deny', function () {
+    $(".approval").removeClass("disabled").removeClass("btn-float-lg");
+    $("#deny").addClass("disabled").addClass("btn-glow").addClass("btn-float").addClass("btn-float-lg");
+  });
+
+$(document).off('click', '#but-editStore').on('click', '#but-editStore', function () {
+  swal({
+    title: "Are you sure?",
+    text: "Please make sure all information is correct before proceeding.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      var data = new FormData();
+      data.append('uid', $('.get-uid').val());
+      data.append('changeID', "2");
+      data.append('sid', $(this).attr('id'));
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/log-change.php',
+        data: data,
+        success: function(data) {
+          if(data == "servfailure") {
+            window.location.href = "https://www.bodtracker.com/page-500.php";
+          }
+          if(data == "complete") {
+            var data1 = new FormData();
+            data1.append('sid', $(this).attr('id'));
+            data1.append('sname', $('#sname').val());
+            data1.append('address', $('#address').val());
+            data1.append('zipcode', $('#zipcode').val());
+            data1.append('approval', $('.disabled').attr('id'));
+            console.log(data1);
+            $.ajax({
+              type: "POST",
+              contentType: false,
+              processData: false,
+              cache: false,
+              url: 'php/edit-store.php',
+              data1: data1,
+              success: function(data1) {
+                if(data1 == "servfailure") {
+                  window.location.href = "https://www.bodtracker.com/page-500.php";
+                }
+                if(data1 == "complete") {
+                  $('#editStore').modal('hide');
+                  $('.multi-ordering').DataTable().ajax.reload();
+                  swal("Success! The store's information has been updated!", {
+                    icon: "success",
+                  });
+                }
+              }
+            });
+          }
+        }
+      });
+    } else {
+      swal("The store information is safe!");
+    }
+  });
+});
 
   $(document).off('click', '.editStore').on('click', '.editStore', function () {
     var data = new FormData();
@@ -273,7 +347,7 @@ $uid = 1;
       contentType: false,
       processData: false,
       cache: false,
-      url: 'php/edit-store.php',
+      url: 'php/layout-editstore.php',
       data: data,
       success: function(data) {
         $('.editStoreBody').html(data);
