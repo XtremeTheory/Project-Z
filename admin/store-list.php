@@ -182,25 +182,12 @@ $uid = 1;
               </div>
               <form>
                 <div class="modal-body">
-                  <div class="row skin skin-line">
-                    <div class="col-md-6 col-sm-12">
-                      <fieldset>
-                        <input type="radio" name="approval" class="approval">
-                        <label for="approval">Approved</label>
-                      </fieldset>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <fieldset>
-                        <input type="radio" name="approval" class="approval" checked>
-                        <label for="approval">Not Approved</label>
-                      </fieldset>
-                    </div>
-                  </div>
+                  <div class="editStoreBody"></div>
                 </div>
                 <div class="modal-footer">
-                  <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-                  value="close">
-                  <input type="submit" class="btn btn-outline-primary btn-lg" value="Login">
+                  <button type="button" class="btn btn-float btn-success btn-lg" id="but-editStore">Edit</button>
+                  <button type="button" id="but-loading" style="display:none;" class="btn btn-float btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
+                  <input type="reset" class="btn btn-float btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
               </form>
             </div>
@@ -261,6 +248,38 @@ $uid = 1;
     "serverSide": true,
     "ajax": "php/slist.php"
   } );
+
+  $(document).off('click', '.pending').on('click', '.pending', function () {
+    $("p:first").addClass("intro");
+  });
+
+  $(document).off('click', '.approve').on('click', '.approve', function () {
+    $("p:first").addClass("intro");
+  });
+
+  $(document).off('click', '.deny').on('click', '.deny', function () {
+    $("p:first").addClass("intro");
+  });
+
+  $(document).off('click', '.storeDetails').on('click', '.storeDetails', function () {
+
+  });
+
+  $(document).off('click', '.editStore').on('click', '.editStore', function () {
+    var data = new FormData();
+    data.append('sid', $(this).attr('id'));
+    $.ajax({
+      type: "POST",
+      contentType: false,
+      processData: false,
+      cache: false,
+      url: 'php/edit-store.php',
+      data: data,
+      success: function(data) {
+        $('.editStoreBody').html(data);
+      }
+    });
+  });
 
 $(document).off('click', '.deleteStore').on('click', '.deleteStore', function () {
   swal({

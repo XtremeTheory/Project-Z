@@ -21,7 +21,7 @@ $columns = array(
     }),
     array( 'db' => 'id', 'dt' => 4,
         'formatter' => function( $d, $row ) {
-            return '<button type="button" class="btn btn-info btn-sm" id="'.$d.'" data-toggle="modal" data-target="#storeDetails">Details</button> <button type="button" class="btn btn-warning btn-sm" id="'.$d.'" data-toggle="modal" data-target="#editStore">Edit</button> <button type="button" class="btn btn-danger btn-sm deleteStore" id="'.$d.'">Delete</button>';
+            return '<button type="button" class="btn btn-info btn-sm storeDetails" id="'.$d.'" data-toggle="modal" data-target="#storeDetails">Details</button> <button type="button" class="btn btn-warning btn-sm editStore" id="'.$d.'" data-toggle="modal" data-target="#editStore">Edit</button> <button type="button" class="btn btn-danger btn-sm deleteStore" id="'.$d.'">Delete</button>';
         }
     )
 );
