@@ -8,7 +8,7 @@ $columns = array(
     array( 'db' => 'lname', 'dt' => 3),
     array( 'db' => 'id', 'dt' => 4,
         'formatter' => function( $d, $row ) {
-            return '<a href="#?id=' . $d . '" class="badge badge-info">More Details</a> <a href="#?id=' . $d . '" class="badge badge-warning">Edit</a> <a href="#?id=' . $d . '" class="badge badge-danger">Delete</a>';
+            return '<button type="button" class="btn btn-info btn-sm userDetails" id="'.$d.'" data-toggle="modal" data-target="#userDetails">Details</button> <button type="button" class="btn btn-warning btn-sm editUser" id="'.$d.'" data-toggle="modal" data-target="#editUser">Edit</button> <button type="button" class="btn btn-danger btn-sm deleteUser" id="'.$d.'">Delete</button>';
         }
     )
 );

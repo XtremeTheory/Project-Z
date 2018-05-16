@@ -68,6 +68,7 @@ $uid = 1;
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
+  <input type="hidden" value="0" class="get-sid">
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -204,10 +205,10 @@ $uid = 1;
               </div>
               <form>
                 <div class="modal-body">
+                  <div class="storeDetailsBody"></div>
                 </div>
                 <div class="modal-footer">
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
-                  <input type="submit" class="btn btn-outline-primary btn-lg" value="Login">
                 </div>
               </form>
             </div>
@@ -233,6 +234,7 @@ $uid = 1;
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <script>
+  //Populates table on main store-list page from database
   $('.multi-ordering').dataTable( {
     columnDefs: [ {
         targets: [ 0 ],
@@ -248,21 +250,16 @@ $uid = 1;
     "serverSide": true,
     "ajax": "php/slist.php"
   } );
+  //END
 
-  $('input[type="text"]').on('focus', function() {
+  //ALL SUB PAGES - Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
+  $(document).off('focus', 'input').on('focus', 'input', function () {
     $(this).removeClass('is-invalid');
+    $(this).attr('autocomplete', 'off');
   });
+  //END
 
-  $(".required").each(function() {
-    if ($.trim($(this).val()).length == 0) {
-      $(this).addClass("is-invalid");
-      isFormValid = false;
-      swal("Uh Oh!", "Looks like some things are missing...", "error");
-    } else {
-      $(this).removeClass("is-invalid");
-    }
-  });
-
+  //ALL SUB PAGES - Removes theming from other buttons and applies to button clicked on
   $(document).off('click', '#pending').on('click', '#pending', function () {
     $(".approval").removeClass("disabled").removeClass("btn-float-lg");
     $("#pending").addClass("disabled").addClass("btn-glow").addClass("btn-float").addClass("btn-float-lg");
@@ -277,69 +274,98 @@ $uid = 1;
     $(".approval").removeClass("disabled").removeClass("btn-float-lg");
     $("#deny").addClass("disabled").addClass("btn-glow").addClass("btn-float").addClass("btn-float-lg");
   });
+  //END
 
+//EDIT STORE SUB PAGE - Edit confirmation button clicked, error checks are processed and data entered into database if successful.  Changes are logged in Change Log.
 $(document).off('click', '#but-editStore').on('click', '#but-editStore', function () {
-  swal({
-    title: "Are you sure?",
-    text: "Please make sure all information is correct before proceeding.",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      var data = new FormData();
-      data.append('uid', $('.get-uid').val());
-      data.append('changeID', "2");
-      data.append('sid', $(this).attr('id'));
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/log-change.php',
-        data: data,
-        success: function(data) {
-          if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/page-500.php";
-          }
-          if(data == "complete") {
-            var data1 = new FormData();
-            data1.append('sid', $(this).attr('id'));
-            data1.append('sname', $('#sname').val());
-            data1.append('address', $('#address').val());
-            data1.append('zipcode', $('#zipcode').val());
-            data1.append('approval', $('.disabled').attr('id'));
-            console.log(data1);
-            $.ajax({
-              type: "POST",
-              contentType: false,
-              processData: false,
-              cache: false,
-              url: 'php/edit-store.php',
-              data1: data1,
-              success: function(data1) {
-                if(data1 == "servfailure") {
-                  window.location.href = "https://www.bodtracker.com/page-500.php";
-                }
-                if(data1 == "complete") {
-                  $('#editStore').modal('hide');
-                  $('.multi-ordering').DataTable().ajax.reload();
-                  swal("Success! The store's information has been updated!", {
-                    icon: "success",
-                  });
-                }
-              }
-            });
-          }
-        }
-      });
+  var isFormValid = 1;
+  var changeLogged = 0;
+  //Checks each field is not empty.
+  $(".editstore").each(function() {
+    if ($.trim($(this).val()).length == 0) {
+      $(this).addClass("is-invalid");
+      isFormValid = 0;
+      swal("Uh Oh!", "Looks like some things are missing...", "error");
     } else {
-      swal("The store information is safe!");
+      $(this).removeClass("is-invalid");
     }
   });
-});
 
+  //Form is valid, continue progress.
+  if(isFormValid == 1) {
+    //Confirms with user that they want to make the changes.
+    swal({
+      title: "Are you sure?",
+      text: "Please make sure all information is correct before proceeding.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        //Logging change in Change Log
+        var data = new FormData();
+        data.append('uid', $('.get-uid').val());
+        data.append('changeID', "2");
+        data.append('sid', $('.get-sid').val());
+        $.ajax({
+          type: "POST",
+          contentType: false,
+          processData: false,
+          cache: false,
+          url: 'php/log-change.php',
+          data: data,
+          success: function(data) {
+            if(data == "servfailure") {
+              window.location.href = "https://www.bodtracker.com/page-500.php";
+            }
+            if(data == "complete") {
+              changeLogged = 1;
+            }
+          }
+        }).done(continueEdit);
+
+        function continueEdit() {
+        if(changeLogged == 1) {
+          var data = new FormData();
+          data.append('sid', $('.get-sid').val());
+          data.append('sname', $('.editstore#sname').val());
+          data.append('address', $('.editstore#address').val());
+          data.append('zipcode', $('.editstore#zipcode').val());
+          data.append('approval', $('.approval.disabled').attr('id'));
+          $.ajax({
+            type: "POST",
+            contentType: false,
+            processData: false,
+            cache: false,
+            url: 'php/edit-store.php',
+            data: data,
+            success: function(data) {
+              if(data == "servfailure") {
+                window.location.href = "https://www.bodtracker.com/page-500.php";
+              }
+              //Edit successful, hide the window, refresh the table on main page, show success message.
+              if(data == "complete") {
+                $('#editStore').modal('hide');
+                $('.multi-ordering').DataTable().ajax.reload();
+                swal("Success! The store's information has been updated!", {
+                  icon: "success",
+                });
+              }
+            }
+          });
+        }
+      }
+      } else {
+        swal("The store information did not change!");
+      }
+    });
+  }
+});
+//END
+
+//MAIN STORE LIST PAGE - Edit button clicked beside store requested.  Pulls up modal and populates fields from database.
   $(document).off('click', '.editStore').on('click', '.editStore', function () {
+    $('.get-sid').val($(this).attr('id'));
     var data = new FormData();
     data.append('sid', $(this).attr('id'));
     $.ajax({
@@ -354,8 +380,30 @@ $(document).off('click', '#but-editStore').on('click', '#but-editStore', functio
       }
     });
   });
+  //END
 
+  //MAIN STORE LIST PAGE - Details button clicked beside store requested.  Pulls up modal and populates information from database.
+    $(document).off('click', '.storeDetails').on('click', '.storeDetails', function () {
+      $('.get-sid').val($(this).attr('id'));
+      var data = new FormData();
+      data.append('sid', $(this).attr('id'));
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/layout-storedetails.php',
+        data: data,
+        success: function(data) {
+          $('.storeDetailsBody').html(data);
+        }
+      });
+    });
+    //END
+
+//MAIN STORE LIST PAGE - Delete button clicked beside store requested.  Pulls up confirmation that they want to delete the store. Logs into change log.
 $(document).off('click', '.deleteStore').on('click', '.deleteStore', function () {
+  $('.get-sid').val($(this).attr('id'));
   swal({
     title: "Are you sure?",
     text: "Once deleted, you will not be able to recover this info!",
@@ -367,7 +415,7 @@ $(document).off('click', '.deleteStore').on('click', '.deleteStore', function ()
       var data = new FormData();
       data.append('uid', $('.get-uid').val());
       data.append('changeID', "1");
-      data.append('sid', $(this).attr('id'));
+      data.append('sid', $('.get-sid').val());
       $.ajax({
         type: "POST",
         contentType: false,
@@ -380,35 +428,42 @@ $(document).off('click', '.deleteStore').on('click', '.deleteStore', function ()
             window.location.href = "https://www.bodtracker.com/page-500.php";
           }
           if(data == "complete") {
-            var data1 = new FormData();
-            data1.append('sid', $(this).attr('id'));
-            $.ajax({
-              type: "POST",
-              contentType: false,
-              processData: false,
-              cache: false,
-              url: 'php/delete-store.php',
-              data1: data1,
-              success: function(data1) {
-                if(data1 == "servfailure") {
-                  window.location.href = "https://www.bodtracker.com/page-500.php";
-                }
-                if(data1 == "complete") {
-                  $('.multi-ordering').DataTable().ajax.reload();
-                  swal("Poof! Your the store has been deleted!", {
-                    icon: "success",
-                  });
-                }
-              }
-            });
+            changeLogged = 1;
           }
         }
-      });
+      }).done(continueDelete);
+
+      function continueDelete() {
+      if(changeLogged == 1) {
+        var data = new FormData();
+        data.append('sid', $('.get-sid').val());
+        $.ajax({
+          type: "POST",
+          contentType: false,
+          processData: false,
+          cache: false,
+          url: 'php/delete-store.php',
+          data: data,
+          success: function(data) {
+            if(data == "servfailure") {
+              window.location.href = "https://www.bodtracker.com/page-500.php";
+            }
+            if(data == "complete") {
+              $('.multi-ordering').DataTable().ajax.reload();
+              swal("Poof! Your the store has been deleted!", {
+                icon: "success",
+              });
+            }
+          }
+        });
+      }
+    }
     } else {
       swal("The store information is safe!");
     }
   });
 });
+//END
   </script>
   <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>

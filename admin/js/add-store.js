@@ -38,7 +38,6 @@ $(document).off('click', '#but-addStore').on('click', '#but-addStore', function 
   });
 
   if(isFormValid) {
-    console.log("Form is valid.");
     var sname = $('#sname').val();
     var address = $('#address').val();
     var zipcode = $('#zipcode').val();
@@ -48,8 +47,9 @@ $(document).off('click', '#but-addStore').on('click', '#but-addStore', function 
       url: 'php/add-store.php',
       data: {sname: sname, address: address, zipcode: zipcode},
       success: function(data) {
-        console.log("Submitted data.");
-        console.log("Data returned: " + data);
+        if(data == "servfailure") {
+          window.location.href = "https://www.bodtracker.com/page-500.php";
+        }
         if(data == "correct") {
           swal("Success!", "Another store has been added to the database, sweet!", "success");
           $('#addStore').modal('hide');

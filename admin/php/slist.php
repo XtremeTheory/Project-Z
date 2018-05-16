@@ -3,11 +3,13 @@ $table = 'store_data';
 $primaryKey = 'id';
 $columns = array(
   array( 'db' => 'live', 'dt' => 0, 'formatter' => function( $d, $row ) {
-    if($d == 1) {
-      return '<div class="badge badge-success">TRUE</div>';
+    if($d == 0) {
+      return '<div class="badge badge-info">Pending</div>';
+    } elseif($d == 1) {
+      return '<div class="badge badge-success">Approved</div>';
     } else {
-      return '<div class="badge badge-danger">FALSE</div>';
-    }
+      return '<div class="badge badge-danger">Rejected</div>';
+      }
   }),
     array( 'db' => 'sname', 'dt' => 1),
     array( 'db' => 'address', 'dt' => 2),

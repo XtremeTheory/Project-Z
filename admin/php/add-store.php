@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require 'db.php';
 require 'functions.php';
 
@@ -20,5 +22,13 @@ $result = $test_db->query($query);
 
 if($result) {
 	echo "correct";
+  mysqli_close($test_db);
+  exit();
+} else {
+  $sqlError = mysqli_error($test_db);
+  logError("1","add-store.php",$uid,$sqlError);
+  echo "servfailure";
+  mysqli_close($test_db);
+  exit();
 }
 ?>
