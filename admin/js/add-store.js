@@ -51,6 +51,7 @@ $(document).off('click', '#but-addStore').on('click', '#but-addStore', function 
           window.location.href = "https://www.bodtracker.com/page-500.php";
         }
         if(data == "correct") {
+          $('.multi-ordering').DataTable().ajax.reload();
           swal("Success!", "Another store has been added to the database, sweet!", "success");
           $('#addStore').modal('hide');
         }
