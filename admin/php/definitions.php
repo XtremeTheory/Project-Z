@@ -8,7 +8,7 @@
 
   //Change Log Codes
   $log1 = " deleted from database.";
-  $log2 = " edited store information.";
+  $log2 = " has been edited.";
 
   //Error Log Codes
   $error0 = "Custom error message, read details.";

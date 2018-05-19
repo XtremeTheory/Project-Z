@@ -5,20 +5,41 @@ if (session_status() == PHP_SESSION_NONE) {
 require 'db.php';
 require 'functions.php';
 require 'definitions.php';
-$sid = test_input($_POST['sid']);
 $uid = test_input($_POST['uid']);
 $changeID = test_input($_POST['changeID']);
 date_default_timezone_set("America/New_York");
 $dateandtime = date("m-d-Y H:i:s");
 $changeDef = ${'log'.$changeID};
-$query = "SELECT * FROM store_data WHERE id = '$sid'";
-$result = $test_db->query($query);
-$storeinfo = $result->fetch_assoc();
-$cid = $storeinfo['cid'];
-$query1 = "SELECT * FROM city_list WHERE id = '$cid'";
-$result1 = $test_db->query($query1);
-$cityinfo = $result1->fetch_assoc();
-$activity = $storeinfo['sname'] . " " . $storeinfo['address'] . ", " . $cityinfo['zipcode'] . ": " . $changeDef;
+
+if(isset($_POST['sid'])) {
+  $sid = test_input($_POST['sid']);
+  $query = "SELECT * FROM store_data WHERE id = '$sid'";
+  $result = $test_db->query($query);
+  $storeinfo = $result->fetch_assoc();
+  $cid = $storeinfo['cid'];
+  $query1 = "SELECT * FROM city_list WHERE id = '$cid'";
+  $result1 = $test_db->query($query1);
+  $cityinfo = $result1->fetch_assoc();
+  $activity = $storeinfo['sname'] . " " . $storeinfo['address'] . ", " . $cityinfo['zipcode'] . ": " . $changeDef;
+}
+if(isset($_POST['cuid'])) {
+  $cuid = test_input($_POST['cuid']);
+  $query2 = "SELECT * FROM user_info WHERE id = '$uid'";
+  $result2 = $test_db->query($query1);
+  $userinfo = $result1->fetch_assoc();
+  $activity = $userinfo['fname'] . " " . $storeinfo['lname'] . " - ID # " . $userinfo['id'] . " " . $changeDef;
+}
+if(isset($_POST['pid'])) {
+  $pid = test_input($_POST['pid']);
+  $query = "SELECT * FROM product_list WHERE id = '$pid'";
+  $result = $test_db->query($query);
+  $productinfo = $result->fetch_assoc();
+  $bid = $productinfo['brand'];
+  $query1 = "SELECT * FROM brands WHERE id = '$bid'";
+  $result1 = $test_db->query($query1);
+  $brandinfo = $result1->fetch_assoc();
+  $activity = $brandinfo['bname'] . " " . $productinfo['pname'] . " - UPC: " . $productinfo['upc'] . " " . $changeDef;
+}
 
 $query = "INSERT INTO change_log (dateandtime, uid, activity) VALUES('$dateandtime', '$uid', '$activity')";
 $result = $test_db->query($query);

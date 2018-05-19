@@ -1,7 +1,7 @@
 <?php
 require 'php/db.php';
 require 'php/definitions.php';
-$cuid = $_SESSION['uid'];
+$uid = 1;
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -12,7 +12,7 @@ $cuid = $_SESSION['uid'];
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="DRM Web Design">
-  <title>User List - Project Z</title>
+  <title>Product List - Project Z</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
@@ -67,19 +67,19 @@ $cuid = $_SESSION['uid'];
 <body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
-  <input type="hidden" value="<?php echo $cuid; ?>" class="get-cuid">
-  <input type="hidden" value="0" class="get-uid">
+  <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
+  <input type="hidden" value="0" class="get-pid">
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
-          <h3 class="content-header-title mb-0">User List</h3>
+          <h3 class="content-header-title mb-0">Product List</h3>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                 </li>
-                <li class="breadcrumb-item active">User List
+                <li class="breadcrumb-item active">Product List
                 </li>
               </ol>
             </div>
@@ -104,15 +104,15 @@ $cuid = $_SESSION['uid'];
                 </div>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
-                    <p class="card-text">Every user is listed here.</p>
+                    <p class="card-text">Every product is listed here.</p>
                       <table class='table table-striped table-bordered multi-ordering'>
                         <thead>
                           <tr>
-                          <th>Registered Date</th>
-                          <th>User Role</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th> </th>
+                          <th>Brand</th>
+                          <th>Product Name</th>
+                          <th>UPC</th>
+                          <th>Department</th>
+                          <th>Actions</th>
                           </tr>
                         </thead>
                       </table>
@@ -122,21 +122,66 @@ $cuid = $_SESSION['uid'];
             </div>
           </div>
         </section>
-        <div class="modal fade text-left" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUser" aria-hidden="true">
+        <div class="modal fade text-left" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProduct" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h3 class="modal-title" id="editUser"> Edit User</h3>
+                <h3 class="modal-title" id="addProduct"> Add Product</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <form>
                 <div class="modal-body">
-                  <div class="editUserBody"></div>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="sname">Brand</label>
+                    <input type="text" class="form-control required" id="sname" placeholder="Brand">
+                  </fieldset>
+                  <br>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="address">Product Name</label>
+                    <input type="text" class="form-control required" id="address" placeholder="Product Name">
+                  </fieldset>
+                  <br>
+                  <div class="row">
+                    <div class="form-group col-sm-5">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control required" id="city" placeholder="City">
+                    </div>
+                    <div class="form-group col-sm-3">
+                      <label for="state">State</label>
+                      <input type="text" class="form-control required" id="state" placeholder="State">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="state">Zip Code</label>
+                      <input type="text" class="form-control required" id="zipcode" placeholder="Zip Code">
+                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-float btn-success btn-lg" id="but-editUser">Edit</button>
+                  <button type="button" class="btn btn-success btn-lg" id="but-addProduct">Add</button>
+                  <button type="button" id="but-loading" style="display:none;" class="btn btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
+                  <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade text-left" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProduct" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="editProduct"> Edit Product</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+                  <div class="editProductBody"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-float btn-success btn-lg" id="but-editProduct">Edit</button>
                   <button type="button" id="but-loading" style="display:none;" class="btn btn-float btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
                   <input type="reset" class="btn btn-float btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
@@ -144,18 +189,18 @@ $cuid = $_SESSION['uid'];
             </div>
           </div>
         </div>
-        <div class="modal fade text-left" id="userDetails" tabindex="-1" role="dialog" aria-labelledby="userDetails" aria-hidden="true">
+        <div class="modal fade text-left" id="productDetails" tabindex="-1" role="dialog" aria-labelledby="productDetails" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h3 class="modal-title" id="userDetails"> User Details</h3>
+                <h3 class="modal-title" id="productDetails"> Product Details</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <form>
                 <div class="modal-body">
-                  <div class="userDetailsBody"></div>
+                  <div class="productDetailsBody"></div>
                 </div>
                 <div class="modal-footer">
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
@@ -184,7 +229,7 @@ $cuid = $_SESSION['uid'];
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <script>
-  //Populates table on main user-list page from database
+  //Populates table on main Product-list page from database
   $('.multi-ordering').dataTable( {
     columnDefs: [ {
         targets: [ 0 ],
@@ -198,7 +243,7 @@ $cuid = $_SESSION['uid'];
     } ],
     "processing": true,
     "serverSide": true,
-    "ajax": "php/ulist.php"
+    "ajax": "php/plist.php"
   } );
   //END
 
@@ -226,12 +271,12 @@ $cuid = $_SESSION['uid'];
   });
   //END
 
-//EDIT USER SUB PAGE - Edit confirmation button clicked, error checks are processed and data entered into database if successful.  Changes are logged in Change Log.
-$(document).off('click', '#but-editUser').on('click', '#but-editUser', function () {
+//EDIT Product SUB PAGE - Edit confirmation button clicked, error checks are processed and data entered into database if successful.  Changes are logged in Change Log.
+$(document).off('click', '#but-editProduct').on('click', '#but-editProduct', function () {
   var isFormValid = 1;
   var changeLogged = 0;
   //Checks each field is not empty.
-  $(".edituser").each(function() {
+  $(".editProduct").each(function() {
     if ($.trim($(this).val()).length == 0) {
       $(this).addClass("is-invalid");
       isFormValid = 0;
@@ -243,7 +288,7 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
 
   //Form is valid, continue progress.
   if(isFormValid == 1) {
-    //Confirms with user that they want to make the changes.
+    //Confirms with Product that they want to make the changes.
     swal({
       title: "Are you sure?",
       text: "Please make sure all information is correct before proceeding.",
@@ -254,9 +299,9 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
       if (willDelete) {
         //Logging change in Change Log
         var data = new FormData();
-        data.append('cuid', $('.get-cuid').val());
-        data.append('changeID', "2");
         data.append('uid', $('.get-uid').val());
+        data.append('changeID', "2");
+        data.append('pid', $('.get-pid').val());
         $.ajax({
           type: "POST",
           contentType: false,
@@ -278,22 +323,15 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
         if(changeLogged == 1) {
           var data = new FormData();
           data.append('uid', $('.get-uid').val());
-          data.append('fname', $('.edituser#fname').val());
-          data.append('lname', $('.edituser#lname').val());
-          data.append('address', $('.edituser#address').val());
-          data.append('address2', $('.edituser#address2').val());
-          data.append('zipcode', $('.edituser#zipcode').val());
-          data.append('phonenum', $('.edituser#phonenum').val());
-          data.append('email', $('.edituser#email').val());
-          data.append('username', $('.edituser#username').val());
-          data.append('usertype', $('.edituser#usertype').val());
+          data.append('pid', $('.get-pid').val());
+          data.append('pname', $('.editProduct#pname').val());
           data.append('approval', $('.approval.disabled').attr('id'));
           $.ajax({
             type: "POST",
             contentType: false,
             processData: false,
             cache: false,
-            url: 'php/edit-user.php',
+            url: 'php/edit-product.php',
             data: data,
             success: function(data) {
               if(data == "servfailure") {
@@ -301,9 +339,9 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
               }
               //Edit successful, hide the window, refresh the table on main page, show success message.
               if(data == "complete") {
-                $('#editUser').modal('hide');
+                $('#editProduct').modal('hide');
                 $('.multi-ordering').DataTable().ajax.reload();
-                swal("Success! The user's information has been updated!", {
+                swal("Success! The product's information has been updated!", {
                   icon: "success",
                 });
               }
@@ -312,66 +350,66 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
         }
       }
       } else {
-        swal("The user's information did not change!");
+        swal("The product's information did not change!");
       }
     });
   }
 });
 //END
 
-//MAIN USER LIST PAGE - Edit button clicked beside user requested.  Pulls up modal and populates fields from database.
-  $(document).off('click', '.editUser').on('click', '.editUser', function () {
-    $('.get-uid').val($(this).attr('id'));
+//MAIN Product LIST PAGE - Edit button clicked beside Product requested.  Pulls up modal and populates fields from database.
+  $(document).off('click', '.editProduct').on('click', '.editProduct', function () {
+    $('.get-pid').val($(this).attr('id'));
     var data = new FormData();
-    data.append('uid', $(this).attr('id'));
+    data.append('pid', $(this).attr('id'));
     $.ajax({
       type: "POST",
       contentType: false,
       processData: false,
       cache: false,
-      url: 'php/layout-edituser.php',
+      url: 'php/layout-editProduct.php',
       data: data,
       success: function(data) {
-        $('.editUserBody').html(data);
+        $('.editProductBody').html(data);
       }
     });
   });
   //END
 
-  //MAIN USER LIST PAGE - Details button clicked beside user requested.  Pulls up modal and populates information from database.
-    $(document).off('click', '.userDetails').on('click', '.userDetails', function () {
-      $('.get-uid').val($(this).attr('id'));
+  //MAIN Product LIST PAGE - Details button clicked beside Product requested.  Pulls up modal and populates information from database.
+    $(document).off('click', '.productDetails').on('click', '.productDetails', function () {
+      $('.get-pid').val($(this).attr('id'));
       var data = new FormData();
-      data.append('uid', $(this).attr('id'));
+      data.append('pid', $(this).attr('id'));
       $.ajax({
         type: "POST",
         contentType: false,
         processData: false,
         cache: false,
-        url: 'php/layout-userdetails.php',
+        url: 'php/layout-productdetails.php',
         data: data,
         success: function(data) {
-          $('.userDetailsBody').html(data);
+          $('.productDetailsBody').html(data);
         }
       });
     });
     //END
 
-//MAIN USER LIST PAGE - Delete button clicked beside user requested.  Pulls up confirmation that they want to delete the user. Logs into change log.
-$(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
-  $('.get-uid').val($(this).attr('id'));
+//MAIN product LIST PAGE - Delete button clicked beside product requested.  Pulls up confirmation that they want to delete the product. Logs into change log.
+$(document).off('click', '.deleteProduct').on('click', '.deleteProduct', function () {
+  $('.get-pid').val($(this).attr('id'));
   swal({
     title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this user!",
+    text: "Once deleted, you will not be able to recover this product!",
     icon: "warning",
     buttons: true,
     dangerMode: true,
   }).then((willDelete) => {
     if (willDelete) {
       var data = new FormData();
-      data.append('cuid', $('.get-cuid').val());
-      data.append('changeID', "1");
       data.append('uid', $('.get-uid').val());
+      data.append('changeID', "1");
+      data.append('pid', $('.get-pid').val());
       $.ajax({
         type: "POST",
         contentType: false,
@@ -392,13 +430,13 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
       function continueDelete() {
       if(changeLogged == 1) {
         var data = new FormData();
-        data.append('uid', $('.get-uid').val());
+        data.append('pid', $('.get-pid').val());
         $.ajax({
           type: "POST",
           contentType: false,
           processData: false,
           cache: false,
-          url: 'php/delete-user.php',
+          url: 'php/delete-product.php',
           data: data,
           success: function(data) {
             if(data == "servfailure") {
@@ -406,7 +444,7 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
             }
             if(data == "complete") {
               $('.multi-ordering').DataTable().ajax.reload();
-              swal("Poof! the user has been deleted! No turning back now!", {
+              swal("Poof! the product has been deleted! No turning back now!", {
                 icon: "success",
               });
             }
@@ -415,7 +453,7 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
       }
     }
     } else {
-      swal("The user's information is safe! Phew...");
+      swal("The product's information is safe! Phew...");
     }
   });
 });
@@ -424,6 +462,7 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
   <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
+  <script src="js/add-product.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
