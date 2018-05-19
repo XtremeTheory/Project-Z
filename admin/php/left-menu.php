@@ -2,14 +2,12 @@
 data-scroll-to-active="true">
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-      <li class=" nav-item"><a href="index.php"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+      <li class=" nav-item"><a href="#"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
         <ul class="menu-content">
-          <li><a class="menu-item" href="dashboard-shoppers.php" data-i18n="nav.dash.ecommerce">Shoppers</a>
-          </li>
-          <li><a class="menu-item" href="dashboard-customers.php" data-i18n="nav.dash.customers">Customers</a>
-          </li>
-          <li><a class="menu-item" href="dashboard-sales.php" data-i18n="nav.dash.sales">Sales</a>
-          </li>
+          <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-customers.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-customers.php" data-i18n="nav.lists.customers">Customers</a></li>
+          <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-main.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-main.php" data-i18n="nav.lists.main">Main</a></li>
+          <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-sales.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-sales.php" data-i18n="nav.lists.sales">Sales</a></li>
+          <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-shoppers.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-shoppers.php" data-i18n="nav.lists.shoppers">Shoppers</a></li>
         </ul>
       </li>
       <li class=" navigation-header">

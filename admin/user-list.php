@@ -1,8 +1,11 @@
 <?php
-require 'php/db.php';
-require 'php/definitions.php';
-$cuid = $_SESSION['uid'];
-?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require 'php/functions.php';
+captureIP('user-list.php');
+verifyAdmin("2");
+$cuid = $_SESSION['cuid'];?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -266,7 +269,7 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
+              window.location.href = "https://www.bodtracker.com/error-500.php";
             }
             if(data == "complete") {
               changeLogged = 1;
@@ -297,7 +300,7 @@ $(document).off('click', '#but-editUser').on('click', '#but-editUser', function 
             data: data,
             success: function(data) {
               if(data == "servfailure") {
-                window.location.href = "https://www.bodtracker.com/page-500.php";
+                window.location.href = "https://www.bodtracker.com/error-500.php";
               }
               //Edit successful, hide the window, refresh the table on main page, show success message.
               if(data == "complete") {
@@ -381,7 +384,7 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
         data: data,
         success: function(data) {
           if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/page-500.php";
+            window.location.href = "https://www.bodtracker.com/error-500.php";
           }
           if(data == "complete") {
             changeLogged = 1;
@@ -402,7 +405,7 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
+              window.location.href = "https://www.bodtracker.com/error-500.php";
             }
             if(data == "complete") {
               $('.multi-ordering').DataTable().ajax.reload();

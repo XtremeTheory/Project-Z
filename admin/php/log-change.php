@@ -24,9 +24,9 @@ if(isset($_POST['sid'])) {
 }
 if(isset($_POST['cuid'])) {
   $cuid = test_input($_POST['cuid']);
-  $query2 = "SELECT * FROM user_info WHERE id = '$uid'";
-  $result2 = $test_db->query($query1);
-  $userinfo = $result1->fetch_assoc();
+  $query = "SELECT * FROM user_info WHERE id = '$uid'";
+  $result = $test_db->query($query);
+  $userinfo = $result->fetch_assoc();
   $activity = $userinfo['fname'] . " " . $storeinfo['lname'] . " - ID # " . $userinfo['id'] . " " . $changeDef;
 }
 if(isset($_POST['pid'])) {

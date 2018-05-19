@@ -169,14 +169,6 @@
               <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
             </div>
           </li>
-          <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-gb"></i> English</a>
-              <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a>
-              <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> Chinese</a>
-              <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> German</a>
-            </div>
-          </li>
           <li class="dropdown dropdown-notification nav-item">
             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
               <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">5</span>
@@ -252,7 +244,7 @@
             </ul>
           </li>
           <li class="dropdown dropdown-notification nav-item">
-            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail">             </i></a>
+            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail"></i></a>
             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
               <li class="dropdown-menu-header">
                 <h6 class="dropdown-header m-0">
@@ -325,9 +317,9 @@
               <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read all messages</a></li>
             </ul>
           </li>
+          <li class="dropdown dropdown-notification nav-item"><a class="nav-link" href="php/logout.php"><i class="ficon ft-log-out"></i></a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
-<!-- ////////////////////////////////////////////////////////////////////////////-->

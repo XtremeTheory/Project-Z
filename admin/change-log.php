@@ -1,7 +1,10 @@
 <?php
-require 'php/db.php';
-require 'php/definitions.php';
-?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require 'php/functions.php';
+captureIP('change-log.php');
+verifyAdmin("2"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>

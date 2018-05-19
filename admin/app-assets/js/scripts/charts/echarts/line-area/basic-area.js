@@ -17,7 +17,7 @@ $(window).on("load", function(){
 
     require.config({
         paths: {
-            echarts: '../../../app-assets/vendors/js/charts/echarts'
+            echarts: '/home/dilmil3/bodtracker.com/admin/app-assets/vendors/js/charts/echarts'
         }
     });
 

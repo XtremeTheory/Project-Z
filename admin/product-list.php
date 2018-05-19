@@ -1,8 +1,10 @@
 <?php
-require 'php/db.php';
-require 'php/definitions.php';
-$uid = 1;
-?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require 'php/functions.php';
+captureIP('product-list.php');
+verifyAdmin("2"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -64,7 +66,7 @@ $uid = 1;
 </style>
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
@@ -311,7 +313,7 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
+              window.location.href = "https://www.bodtracker.com/error-500.php";
             }
             if(data == "complete") {
               changeLogged = 1;
@@ -335,7 +337,7 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
             data: data,
             success: function(data) {
               if(data == "servfailure") {
-                window.location.href = "https://www.bodtracker.com/page-500.php";
+                window.location.href = "https://www.bodtracker.com/error-500.php";
               }
               //Edit successful, hide the window, refresh the table on main page, show success message.
               if(data == "complete") {
@@ -419,7 +421,7 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
         data: data,
         success: function(data) {
           if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/page-500.php";
+            window.location.href = "https://www.bodtracker.com/error-500.php";
           }
           if(data == "complete") {
             changeLogged = 1;
@@ -440,7 +442,7 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
+              window.location.href = "https://www.bodtracker.com/error-500.php";
             }
             if(data == "complete") {
               $('.multi-ordering').DataTable().ajax.reload();

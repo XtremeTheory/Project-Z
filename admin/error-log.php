@@ -1,8 +1,11 @@
 <?php
-require 'php/db.php';
-require 'php/definitions.php';
-$uid = $_SESSION['uid'];
-?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require 'php/functions.php';
+captureIP('error-log.php');
+verifyAdmin("2");
+$uid = $_SESSION['uid'];?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -280,7 +283,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
         data: data,
         success: function(data) {
           if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/page-500.php";
+            window.location.href = "https://www.bodtracker.com/error-500.php";
           }
           if(data == "complete") {
             changeLogged = 1;
@@ -301,7 +304,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/page-500.php";
+              window.location.href = "https://www.bodtracker.com/error-500.php";
             }
             if(data == "complete") {
               $('.multi-ordering').DataTable().ajax.reload();

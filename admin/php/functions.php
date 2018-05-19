@@ -1,17 +1,168 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require 'db.php';
+require 'definitions.php';
 require 'Mobile_Detect.php';
 global $detect;
+global $timestamp;
 $detect = new Mobile_Detect;
-function test_input($data) {
-	global $test_db;
-	$data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-	$data = mysqli_real_escape_string($test_db, $data);
-  return $data;
-}
+date_default_timezone_set("America/New_York");
+$timestamp = date("m-d-Y H:i:s");
 
+//Called by different functions to change status of user and direct them to correct page
+function logActivity($status,$uid) {
+	global $path;
+	global $test_db;
+	global $timestamp;
+
+  if($status == "passSent") {
+    $ipadd = getIP();
+    $ubrowser = getBrowser();
+    $uOS = getOS();
+    $activityID = 4;
+    $pageName = "recover-password.php";
+
+    $query = "INSERT INTO activity_log (activityID, ipadd, ubrowser, uOS, uid, timestamp, pagename)
+    VALUES('$activityID', '$ipadd', '$ubrowser', '$uOS', '$uid', '$timestamp', '$pageName')";
+    $result = $test_db->query($query);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","log-activity.php",$uid,$sqlError);
+      echo "servfailure";
+      mysqli_close($test_db);
+      exit();
+    }
+  }
+
+  if($status == "requestPass") {
+    $ipadd = getIP();
+    $ubrowser = getBrowser();
+    $uOS = getOS();
+    $activityID = 3;
+    $pageName = "recover-password.php";
+
+    $query = "INSERT INTO activity_log (activityID, ipadd, ubrowser, uOS, uid, timestamp, pagename)
+    VALUES('$activityID', '$ipadd', '$ubrowser', '$uOS', '$uid', '$timestamp', '$pageName')";
+    $result = $test_db->query($query);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","log-activity.php",$uid,$sqlError);
+      echo "servfailure";
+      mysqli_close($test_db);
+      exit();
+    }
+  }
+
+  if($status == "logOut") {
+    $ipadd = getIP();
+    $ubrowser = getBrowser();
+    $uOS = getOS();
+    $activityID = 2;
+    $pagename = "logout.php";
+
+    $query = "INSERT INTO activity_log (activityID, ipadd, ubrowser, uOS, uid, timestamp, pagename)
+    VALUES('$activityID', '$ipadd', '$ubrowser', '$uOS', '$uid', '$timestamp', '$pageName')";
+    $result = $test_db->query($query);
+
+    if(!$result) {
+      //Failed to connect to database.
+      $sqlError = mysqli_error($test_db);
+      logError("1","functions.php",$uid,$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
+
+    setcookie("uniqid", "", time() - 3600);
+    $_SESSION['successLogout'] = TRUE;
+  }
+
+	if($status == "sessExpired") {
+		if (strpos($uid, ".") !== false) {
+			//uid is an IP address, check if IP address is associated with a UID.
+			$checkip = "SELECT * FROM ip_sessions WHERE ipadd = '$uid'";
+			$result = $test_db->query($checkip);
+
+			if(!$result) {
+				//Failed to connect to database.
+				$sqlError = mysqli_error($test_db);
+		    logError("1","functions.php",$uid,$sqlError);
+		    header("Location:".$path."admin/error-500.php");
+		    mysqli_close($test_db);
+		    exit();
+			}
+
+			$rowcount = mysqli_num_rows($result);
+
+			if($rowcount == 0) {
+				//IP address somehow did not get logged.  Logged into error database.
+				$ipError = "Line # 32: IP not logged into database.";
+		    logError("2","functions.php",$uid,$ipError);
+		    header("Location:".$path."admin/error-500.php");
+		    mysqli_close($test_db);
+		    exit();
+			}
+
+			$ipinfo = $result->fetch_assoc();
+			$uid = $ipinfo['uid'];
+
+			if($uid == 0) {
+				//User does not have a registered account yet.
+				setcookie("uniqid", "", time() - 3600);
+				$_SESSION = array();
+				session_destroy();
+				mysqli_close($test_db);
+				header("Location:".$path."login.php?sessexpired=TRUE&location=" . urlencode($_SERVER['REQUEST_URI']));
+				exit();
+			}
+		}
+
+		if($uid == "UNKNOWN") {
+			//Unable to get the IP address of user
+			setcookie("uniqid", "", time() - 3600);
+			$_SESSION = array();
+			session_destroy();
+			mysqli_close($test_db);
+			header("Location:".$path."login.php?sessexpired=TRUE&location=" . urlencode($_SERVER['REQUEST_URI']));
+			exit();
+		}
+
+		$update_stamp = "UPDATE user_info SET timestamp = '$timestamp', signedin = '0' WHERE id = '$uid'";
+		$result = $test_db->query($update_stamp);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","functions.php",$uid,$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
+
+		setcookie("uniqid", "", time() - 3600);
+		$_SESSION = array();
+		session_destroy();
+		mysqli_close($test_db);
+		header("Location:".$path."login.php?sessexpired=TRUE&location=" . urlencode($_SERVER['REQUEST_URI']));
+		exit();
+	}
+
+	if($status == "lockScreen") {
+		mysqli_close($test_db);
+		exit();
+	}
+
+	if($status == "wrongType") {
+		mysqli_close($test_db);
+		exit();
+	}
+}
+//End of Status Changes
+
+//Gets IP of User
 function getIP() {
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
@@ -29,6 +180,113 @@ function getIP() {
     else
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
+}
+//End of get IP Address
+
+//Verifys user has Admin status
+function verifyAdmin() {
+	global $path;
+	global $test_db;
+	global $timestamp;
+
+	if(isset($_SESSION['uid']) && $_SESSION['uid'] != "") {
+		$uid = $_SESSION['uid'];
+		$checkuser = "SELECT * FROM user_info WHERE id = '$uid'";
+		$result = $test_db->query($checkuser);
+
+    if(!$result) {
+      //Failed to connect to database.
+      $sqlError = mysqli_error($test_db);
+      logError("1","log-activity.php","0",$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
+
+		$userinfo = $result->fetch_assoc();
+		$lastlogin = $userinfo['timestamp'];
+
+		if($userinfo['signedin'] == 2) {
+			logActivity("lockScreen",$uid);
+		}
+
+		if ($userinfo['usertype'] != "Admin") {
+			logActivity("wrongType",$uid);
+    }
+
+		$to_time = strtotime($timestamp);
+		$from_time = strtotime($lastlogin);
+		$numofmin = round(abs($to_time - $from_time) / 60,2);
+
+		if($numofmin >= 30) {
+			logActivity("sessExpired",$uid);
+		}
+
+		$update_stamp = "UPDATE user_info SET timestamp = '$timestamp', signedin = '1' WHERE id = '$uid'";
+		$result = $test_db->query($update_stamp);
+
+    if(!$result) {
+      //Failed to connect to database.
+      $sqlError = mysqli_error($test_db);
+      logError("1","log-activity.php","0",$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
+	} else {
+		if(isset($_COOKIE['uniqid']) && $_COOKIE['uniqid'] != "") {
+			$uid = $_COOKIE['uniqid'];
+			$_SESSION['uid'] = $uid;
+			$checkuser = "SELECT * FROM user_info WHERE id = '$uid'";
+			$result = $test_db->query($checkuser);
+
+			if(!$result) {
+				$sqlError = mysqli_error($test_db);
+		    logError("1","functions.php",$uid,$sqlError);
+		    header("Location:".$path."admin/error-500.php");
+		    mysqli_close($test_db);
+		    exit();
+			}
+
+			$userinfo = $result->fetch_assoc();
+			$lastlogin = $userinfo['timestamp'];
+			$to_time = strtotime($timestamp);
+			$from_time = strtotime($lastlogin);
+			$numofmin = round(abs($to_time - $from_time) / 60,2);
+			$update_stamp = "UPDATE user_info SET timestamp = '$timestamp', signedin = '1' WHERE id = '$uid'";
+			$result = $test_db->query($update_stamp);
+
+			if(!$result) {
+				$sqlError = mysqli_error($test_db);
+		    logError("1","functions.php",$uid,$sqlError);
+		    header("Location:".$path."admin/error-500.php");
+		    mysqli_close($test_db);
+		    exit();
+			}
+
+			if($numofmin >= 30) {
+				logActivity("sessExpired",$uid);
+			}
+		} else {
+			$ipadd = getIP();
+			logActivity("sessExpired",$ipadd);
+		}
+	}
+}
+
+function encryptIt( $q ) {
+	$cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+	$qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+	return( $qEncoded );
+	}
+
+function test_input($data) {
+	global $test_db;
+	$data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+	$data = mysqli_real_escape_string($test_db, $data);
+  return $data;
 }
 
 function getOS() {
@@ -94,10 +352,14 @@ function captureIP($pagename) {
 	global $test_db;
 	global $path;
 	global $detect;
+  global $timestamp;
 	$ipadd = getIP();
 	$uid = "0";
-	if(isset($_SESSION['uid'])){
+	if(isset($_SESSION['uid']) && $_SESSION['uid'] != "") {
 		$uid = $_SESSION['uid'];
+	} elseif (isset($_COOKIE['uniqid']) && $_COOKIE['uniqid'] != "") {
+		$uid = $_COOKIE['uniqid'];
+		$_SESSION['uid'] = $uid;
 	}
 	if(!isset($_COOKIE['DeviceID'])) {
 		$cookie_name = "DeviceID";
@@ -106,8 +368,6 @@ function captureIP($pagename) {
 	} else {
 		$devID = $_COOKIE['DeviceID'];
 	}
-	date_default_timezone_set("America/New_York");
-	$dateandtime = date("m-d-Y H:i:s");
 	$checkSession = "SELECT * FROM ip_sessions WHERE ipadd = '$ipadd'";
 	$sessionresult = $test_db->query($checkSession);
 	$session_rows = mysqli_num_rows($sessionresult);
@@ -118,8 +378,16 @@ function captureIP($pagename) {
 		$sessid = $sessionresult['id'];
 		$sesscount = $sessionresult['sess_count'];
 		$sesscount = $sesscount + 1;
-		$query = "UPDATE ip_sessions SET sess_count = '$sesscount', curpage = '$pagename', dateandtime = '$dateandtime', devid = '$devID' WHERE ipadd = '$ipadd'";
+		$query = "UPDATE ip_sessions SET sess_count = '$sesscount', curpage = '$pagename', dateandtime = '$timestamp', devid = '$devID' WHERE ipadd = '$ipadd'";
 		$result = $test_db->query($query);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","functions.php",$uid,$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
 	} else {
 		$ipquery = @unserialize(file_get_contents('http://ip-api.com/php/'.$ipadd));
 		if($ipquery && $ipquery['status'] == 'success') {
@@ -154,22 +422,32 @@ function captureIP($pagename) {
 		$inputSession = "INSERT INTO ip_sessions (ipadd, dateandtime, uos, ubrowser, devicetype, ulocation, uisp, sess_count, curpage, uid, devid)
 		VALUES ('$ipadd', '$dateandtime', '$user_os', '$user_browser', '$devicetype', '$user_location', '$user_isp', '$session_count', '$pagename', '$uid', '$devID')";
 		$result = $test_db->query($inputSession);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","functions.php",$uid,$sqlError);
+      header("Location:".$path."admin/error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
 	}
 }
 
 function logError($statuscode,$pagename,$uid,$errmessage) {
 	global $test_db;
 	global $path;
+  global $timestamp;
 	$ipadd = getIP();
 	$user_os = getOS();
 	$user_browser = getBrowser();
-	date_default_timezone_set("America/New_York");
-	$timestamp = date("m-d-Y H:i:s");
-	$input_activity = "INSERT INTO errorlog (errorcode, filename, dateandtime, uid, ipadd, errormessage, uOS, ubrowser)
+	$input_activity = "INSERT INTO error_log (errorcode, filename, dateandtime, uid, ipadd, errormessage, uOS, ubrowser)
 	VALUES ('$statuscode','$pagename','$timestamp','$uid','$ipadd','$errmessage','$user_os','$user_browser')";
 	$result = $test_db->query($input_activity);
 	if(!$result) {
-		echo "There is an issue with the server.  The issue has been directed directly to our host to be resolved. Error Code: 1-001";
+    $sqlError = mysqli_error($test_db);
+    echo $sqlError;
+    mysqli_close($test_db);
+    exit();
 	}
 }
 ?>
