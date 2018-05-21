@@ -16,10 +16,8 @@ captureIP('login.php'); ?>
   <title>Login - Project Z</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-  rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-  rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/icheck.css">
@@ -119,9 +117,6 @@ captureIP('login.php'); ?>
                   <div class="card-title text-center">
                     <img src="app-assets/images/logo/logo-dark.png" alt="branding logo">
                   </div>
-                  <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                    <span>We will send you a link to reset password.</span>
-                  </h6>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
@@ -160,7 +155,6 @@ captureIP('login.php'); ?>
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
   <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
@@ -222,58 +216,33 @@ captureIP('login.php'); ?>
 	              window.location.href = "https://www.bodtracker.com/error-500.php";
 	            }
 	            if(data == "complete") {
-	              loginValid = 1;
+	              window.location.href = "https://www.bodtracker.com/admin/dashboard-main.php";
 	            }
 							if(data == "wrongUser") {
-	              loginValid = 2;
+	              swal("Uh Oh!", "Looks like this username doesn't exist...", "error");
 	            }
 							if(data == "wrongPass") {
-	              loginValid = 3;
+	              swal("Uh Oh!", "Looks like a wrong password was typed...", "error");
+	            }
+              if(data == "changePass") {
+	              window.location.href = "https://www.bodtracker.com/admin/new-password.php";
+	            }
+              if(data == "accountLocked") {
+	              window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
 	            }
 	          }
-	        }).done(continueLogin);
-
-	        function continueLogin() {
-	        	if(loginValid == 1) {
-	          	var data = new FormData();
-	          	data.append('username', $('#username').val());
-              data.append('activityID', '1');
-              data.append('pageName', 'login.php');
-	          	$.ajax({
-	            	type: "POST",
-	            	contentType: false,
-	            	processData: false,
-	            	cache: false,
-	            	url: 'php/log-activity.php',
-	            	data: data,
-	            	success: function(data) {
-	              	if(data == "servfailure") {
-	                	window.location.href = "https://www.bodtracker.com/error-500.php";
-	              	}
-	              	//Edit successful, hide the window, refresh the table on main page, show success message.
-	              	if(data == "complete") {
-	                	//Continue to Dashboard
-                    window.location.href = "https://www.bodtracker.com/admin/dashboard-main.php";
-	              	}
-	            	}
-	          	});
-	        	}
-
-						if(loginValid == 2) {
-							swal("Uh Oh!", "Looks like this username doesn't exist...", "error");
-						}
-
-						if(loginValid == 3) {
-							swal("Uh Oh!", "Looks like a wrong password was typed...", "error");
-						}
-					}
+	        });
 				}
 			});
-
-      <?php if(isset($_SESSION['successLogout'])) {
-        $_SESSION = array();
-        session_destroy(); ?>
+      <?php if(isset($_SESSION['successLogout'])) { ?>
         swal("Done!", "You have been logged out successfully.", "success");
+      <?php unset($_SESSION['successLogout']); }
+      if(isset($_SESSION['wrongPage'])) { ?>
+        swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");
+      <?php unset($_SESSION['wrongPage']); }
+      if(isset($_GET['sessexpired'])) {
+        $_SESSION['uid'] = ""; ?>
+        swal("Uh Oh!", "You're session has expired.  Please login again.", "error");
       <?php } ?>
     </script>
   <!-- END PAGE LEVEL JS-->

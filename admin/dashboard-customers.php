@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require 'php/functions.php';
 captureIP('dashboard-customers.php');
-verifyAdmin("2"); ?>
+verifyAdmin("2","dashboard-customers.php"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>

@@ -52,7 +52,7 @@ html {
   .blank-page .content-wrapper .flexbox-container {
     display: flex;
     align-items: center;
-    height: 100vh; }
+    height: 80vh; }
 
 .app-content.center-layout {
   overflow: hidden; }

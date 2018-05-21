@@ -3,7 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 require 'php/functions.php';
-captureIP('recover-password.php'); ?>
+captureIP('recover-password.php');
+verifyAuth("1","new-password.php"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -13,7 +14,7 @@ captureIP('recover-password.php'); ?>
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="PIXINVENT">
-  <title>Recover Password - Project Z</title>
+  <title>Change Password - Project Z</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
@@ -69,39 +70,8 @@ captureIP('recover-password.php'); ?>
   </style>
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 1-column menu-expanded fixed-navbar blank-page" data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
+<body class="vertical-layout vertical-overlay-menu 1-column menu-expanded blank-page" data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
   <div class="bg"></div>
-  <!-- fixed-top-->
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center">
-    <div class="navbar-wrapper">
-      <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
-          <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-          <li class="nav-item">
-            <a class="navbar-brand" href="index.html">
-              <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
-              <h3 class="brand-text">Project Z</h3>
-            </a>
-          </li>
-          <li class="nav-item d-md-none">
-            <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a>
-          </li>
-        </ul>
-      </div>
-      <div class="navbar-container">
-        <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
-          <ul class="nav navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link mr-2 nav-link-label" href="index.php"><i class="ficon ft-home"></i></a>
-            </li>
-            <li class="dropdown nav-item">
-              <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-help-circle"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -116,25 +86,35 @@ captureIP('recover-password.php'); ?>
                     <img src="app-assets/images/logo/logo-dark.png" alt="branding logo">
                   </div>
                   <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                    <span>We will send you a link to reset password.</span>
+                    <span>Input your new password.</span>
                   </h6>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
                     <form class="form-horizontal">
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="email" class="form-control form-control-lg input-lg required" id="email" placeholder="Your Email Address">
+                        <input type="text" class="form-control form-control-lg input-lg required" id="dob" placeholder="Your Birthday">
                         <div class="form-control-position">
-                          <i class="ft-mail"></i>
+                          <i class="ft-calendar"></i>
                         </div>
                       </fieldset>
-                      <button type="button" id="requestPassword" class="btn btn-outline-info btn-lg btn-block"><i class="ft-unlock"></i> Recover Password</button>
+                      <fieldset class="form-group position-relative has-icon-left">
+                        <input type="password" class="form-control form-control-lg input-lg required" id="password" placeholder="New Password">
+                        <div class="form-control-position">
+                          <i class="ft-shield"></i>
+                        </div>
+                      </fieldset>
+                      <fieldset class="form-group position-relative has-icon-left">
+                        <input type="password" class="form-control form-control-lg input-lg required" id="cPassword" placeholder="Confirm New Password">
+                        <div class="form-control-position">
+                          <i class="ft-shield"></i>
+                        </div>
+                      </fieldset>
+                      <button type="button" id="changePassword" class="btn btn-outline-info btn-lg btn-block"><i class="ft-edit-3"></i> Change Password</button>
                     </form>
                   </div>
                 </div>
                 <div class="card-footer border-0">
-                  <p class="float-sm-left text-center"><a href="login.php" class="card-link">Login</a></p>
-                  <p class="float-sm-right text-center">New to Project Z ? <a href="register-simple.html" class="card-link">Create Account</a></p>
                 </div>
               </div>
             </div>
@@ -160,9 +140,27 @@ captureIP('recover-password.php'); ?>
   });
   //END
 
-  $(document).off('click', '#requestPassword').on('click', '#requestPassword', function () {
+  var x = 2;
+  $(document).off('click', '#changePassword').on('click', '#changePassword', function () {
     var isFormValid = 1;
-    var emailValid = 0;
+    var passValid = 0;
+    if(x <= 0) {
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/lock-account.php',
+        success: function(data) {
+          if(data == "servfailure") {
+            window.location.href = "https://www.bodtracker.com/admin/error-500.php";
+          }
+          if(data == "complete") {
+            window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
+          }
+        }
+      });
+    }
     //Checks each field is not empty.
     $(".required").each(function() {
       if ($.trim($(this).val()).length == 0) {
@@ -174,40 +172,78 @@ captureIP('recover-password.php'); ?>
       }
     });
 
+    if($('#password').val() != $('#cPassword').val()) {
+      $('#password').addClass("is-invalid");
+      $('#cPassword').addClass("is-invalid");
+      isFormValid = 0;
+      swal("Uh Oh!", "Looks like the passwords don't match...", "error");
+    }
+
     //Form is valid, continue progress.
     if(isFormValid == 1) {
       //Checks if email exists.
           var data = new FormData();
-          data.append('email', $('#email').val());
+          data.append('password', $('#password').val());
+          data.append('dob', $('#dob').val());
+          data.append('attempts', x);
           $.ajax({
             type: "POST",
             contentType: false,
             processData: false,
             cache: false,
-            url: 'php/request-password.php',
+            url: 'php/change-password.php',
             data: data,
             success: function(data) {
               console.log(data);
               if(data == "servfailure") {
-                window.location.href = "https://www.bodtracker.com/error-500.php";
+                window.location.href = "https://www.bodtracker.com/admin/error-500.php";
               }
               if(data == "complete") {
-                emailValid = 1;
+                passValid = 1;
               }
-              if(data == "wrongEmail") {
-                emailValid = 2;
+              if(data == "wrongDOB") {
+                passValid = 2;
+              }
+              if(data == "maxTimes") {
+                passValid = 3;
               }
             }
           }).done(continueRequest);
 
           function continueRequest() {
-            if(emailValid == 1) {
-              $('#email').val('');
-              swal("Sent!", "Check your email!", "success");
+            if(passValid == 1) {
+              swal("Success!","Your password has successfully been changed!.","success")
+              .then((value) => {
+                window.location.href = "https://www.bodtracker.com/admin/dashboard-main.php";
+              });
             }
 
-            if(emailValid == 2) {
-              swal("Uh Oh!", "Looks like this email doesn't exist...", "error");
+            if(passValid == 2) {
+              if(x == 1) {
+                daWord = "attempt";
+              } else {
+                daWord = "attempts";
+              }
+              swal("Uh Oh!", "Looks like the birthday is incorrect... " + x + " more " + daWord + ".", "error");
+              x--;
+            }
+
+            if(passValid == 3) {
+              $.ajax({
+                type: "POST",
+                contentType: false,
+                processData: false,
+                cache: false,
+                url: 'php/lock-account.php',
+                success: function(data) {
+                  if(data == "servfailure") {
+                    window.location.href = "https://www.bodtracker.com/admin/error-500.php";
+                  }
+                  if(data == "complete") {
+                    window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
+                  }
+                }
+              });
             }
           }
         }

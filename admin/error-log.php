@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require 'php/functions.php';
 captureIP('error-log.php');
-verifyAdmin("2");
+verifyAdmin("3","error-log.php");
 $uid = $_SESSION['uid'];?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">

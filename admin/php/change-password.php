@@ -11,24 +11,68 @@ require 'mail/SMTP.php';
 
 require 'functions.php';
 global $timestamp;
-$email = test_input($_POST['email']);
+$password = test_input($_POST['password']);
+$dob = test_input($_POST['dob']);
+$attempts = test_input($_POST['attempts']);
 
-$query = "SELECT * FROM user_info WHERE email = '$email'";
+if(isset($_SESSION['tempid']) && $_SESSION['tempid'] != "") {
+  $uid = $_SESSION['tempid'];
+} else {
+  $custError = "Temp User ID not set from verify-login.php";
+  logError("0","functions.php","0",$custError);
+  header("Location:".$path."admin/error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
+$query = "SELECT * FROM user_info WHERE id = '$uid'";
 $result = $test_db->query($query);
-$rowcount = mysqli_num_rows($result);
 
-if($rowcount != 1) {
-  echo "wrongEmail";
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","change-password.php",$uid,$sqlError);
+  echo "servfailure";
   mysqli_close($test_db);
   exit();
 }
 
 $userinfo = $result->fetch_assoc();
-$uid = $userinfo['id'];
+$estdob = $userinfo['birthdate'];
+$estattempts = $userinfo['acctAttempts'];
+
+if($dob != $estdob) {
+  echo "wrongDOB";
+  mysqli_close($test_db);
+  exit();
+}
+
+if($attempts <= 0) {
+  echo "maxTimes";
+  mysqli_close($test_db);
+  exit();
+}
+
+if($estattempts <= 0) {
+  echo "maxTimes";
+  mysqli_close($test_db);
+  exit();
+} else {
+  $query = "UPDATE user_info SET acctAttempts = '$attempts' WHERE id = '$uid'";
+  $result = $test_db->query($query);
+
+  if(!$result) {
+    $sqlError = mysqli_error($test_db);
+    logError("1","request-password.php",$uid,$sqlError);
+    echo "servfailure";
+    mysqli_close($test_db);
+    exit();
+  }
+}
+
 $fullname = $userinfo['fname'] . " " . $userinfo['lname'];
-$password = substr(sha1(mt_rand()),17,6);
+$email = $userinfo['email'];
 $newpass = encryptIt( $password );
-$query = "UPDATE user_info SET signedin = '3', passwd = '$newpass' WHERE id = '$uid'";
+$query = "UPDATE user_info SET signedin = '1', passwd = '$newpass', timestamp = '$timestamp' WHERE id = '$uid'";
 $result = $test_db->query($query);
 
 if(!$result) {
@@ -39,8 +83,8 @@ if(!$result) {
   exit();
 }
 
-logActivity("3",$uid,"recover-password.php");
-$subject = 'Project Z - Reset Password';
+logActivity("6",$uid,"new-password.php");
+$subject = 'Project Z - Password Changed';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     //Server settings
@@ -58,17 +102,20 @@ try {
     $mail->addAddress($email, $fullname);
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = $subject;
-    $mail->Body = str_replace(array('%fullname%', '%newpass%'),array($fullname, $password),file_get_contents('../template/password-email.html'));
+    $mail->Body = str_replace(array('%fullname%'),array($fullname),file_get_contents('../template/passreset-email.html'));
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    logActivity("4",$uid,"recover-password.php");
+    logActivity("7",$uid,"change-password.php");
+    $_SESSION['uid'] = $uid;
+    $_SESSION['tempid'] = "";
   	echo "complete";
+    logActivity("1",$uid,"new-password.php");
   	mysqli_close($test_db);
   	exit();
 } catch (Exception $e) {
   $errorMessage = $mail->ErrorInfo;
-  logError("3","request-password.php",$uid,$errorMessage);
+  logError("3","change-password.php",$uid,$errorMessage);
   header("Location: https://www.bodtracker.com/admin/error-500.php");
   mysqli_close($test_db);
   exit();

@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-require 'db.php';
 require 'functions.php';
 $username = test_input($_POST['username']);
 $password = test_input($_POST['password']);
@@ -20,6 +19,12 @@ if($rowcount != 1) {
 
 $userinfo = $result->fetch_assoc();
 
+if($userinfo['signedin'] == 4) {
+  echo "accountLocked";
+  mysqli_close($test_db);
+  exit();
+}
+
 if($userinfo['passwd'] != $encrypted) {
   echo "wrongPass";
   mysqli_close($test_db);
@@ -27,8 +32,18 @@ if($userinfo['passwd'] != $encrypted) {
 }
 
 $uid = $userinfo['id'];
+
+if($userinfo['signedin'] == 3) {
+  $_SESSION['tempid'] = $uid;
+  echo "changePass";
+  mysqli_close($test_db);
+  exit();
+}
+
+logActivity("1",$uid,"login.php");
 $query = "UPDATE user_info SET signedin = '1', timestamp = '$dateandtime' WHERE id = '$uid'";
 $result = $test_db->query($query);
+
 if($result) {
   $_SESSION['uid'] = $uid;
   echo "complete";

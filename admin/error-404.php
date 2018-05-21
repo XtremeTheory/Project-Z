@@ -1,3 +1,10 @@
+<?php
+require 'php/functions.php';
+$ipadd = getIP();
+$uOS = getOS();
+$ubrowser = getBrowser();
+
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -7,28 +14,24 @@
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="PIXINVENT">
-  <title>Error 404 - Modern Admin - Clean Bootstrap 4 Dashboard HTML Template + Bitcoin
-    Dashboard
-  </title>
-  <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-  <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-  rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-  rel="stylesheet">
+  <title>Error 404 - Project Z</title>
+  <link rel="apple-touch-icon" href="<?php echo $path;?>/admin/app-assets/images/ico/apple-icon-120.png">
+  <link rel="shortcut icon" type="image/x-icon" href="<?php echo $path;?>/admin/app-assets/images/ico/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/app-assets/css/vendors.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/app-assets/css/app.css">
   <!-- END MODERN CSS-->
   <!-- BEGIN Page Level CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/pages/error.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/app-assets/css/core/colors/palette-gradient.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/app-assets/css/pages/error.css">
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>/admin/assets/css/style.css">
   <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-overlay-menu 1-column  bg-cyan bg-lighten-2 menu-expanded fixed-navbar"
@@ -41,8 +44,8 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
             <a class="navbar-brand" href="index.html">
-              <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
-              <h3 class="brand-text">Modern Admin</h3>
+              <img class="brand-logo" alt="modern admin logo" src="<?php echo $path;?>/admin/app-assets/images/logo/logo.png">
+              <h3 class="brand-text">Project Z</h3>
             </a>
           </li>
           <li class="nav-item d-md-none">
@@ -53,16 +56,12 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
       <div class="navbar-container">
         <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
           <ul class="nav navbar-nav">
-            <li class="nav-item"><a class="nav-link mr-2 nav-link-label" href="index.html"><i class="ficon ft-arrow-left"></i></a></li>
-            <li class="dropdown nav-item">
-              <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-settings"></i></a>
-            </li>
+            <li class="nav-item"><a class="nav-link mr-2 nav-link-label" href="<?php echo $path;?>/index.php"><i class="ficon ft-home"></i></a></li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
-  <!-- ////////////////////////////////////////////////////////////////////////////-->
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -73,14 +72,13 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
             <div class="card-header no-border pb-1">
               <div class="card-body">
                 <h2 class="error-code text-center mb-2">404</h2>
-                <h3 class="text-uppercase text-center">Page Not Found !</h3>
+                <h3 class="text-uppercase text-center">Looks like you took a wrong turn</h3>
               </div>
             </div>
             <div class="card-content px-2">
               <fieldset class="row py-1">
                 <div class="input-group col-12">
-                  <input type="text" class="form-control border-grey border-lighten-1" placeholder="Search..."
-                  aria-describedby="button-addon2">
+                  <input type="text" class="form-control border-grey border-lighten-1" placeholder="Search..." aria-describedby="button-addon2">
                   <span class="input-group-append" id="button-addon2">
                     <button class="btn btn-lg btn-secondary border-grey border-lighten-1" type="button"><i class="la la-search"></i></button>
                   </span>
@@ -88,7 +86,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
               </fieldset>
               <div class="row py-2">
                 <div class="col-12">
-                  <a href="index.html" class="btn btn-primary btn-block btn-lg"><i class="la la-home"></i> Back to Home</a>
+                  <a href="<?php header('Location: ' . $_SERVER['HTTP_REFERER']); ?>" class="btn btn-primary btn-block btn-lg"><i class="la la-home"></i> Back </a>
                 </div>
               </div>
             </div>
@@ -113,28 +111,19 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
       </div>
     </div>
   </div>
-  <!-- ////////////////////////////////////////////////////////////////////////////-->
-  <footer class="footer navbar-fixed-bottom footer-dark navbar-border navbar-shadow">
-    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
-      <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
-        target="_blank">PIXINVENT </a>, All rights reserved. </span>
-      <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span>
-    </p>
-  </footer>
   <!-- BEGIN VENDOR JS-->
-  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="app-assets/vendors/js/forms/validation/jqBootstrapValidation.js"
-  type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
-  <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/js/core/app-menu.js" type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/js/core/app.js" type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
-  <script src="app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
+  <script src="<?php echo $path;?>/admin/app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

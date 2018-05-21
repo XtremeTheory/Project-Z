@@ -18,7 +18,10 @@ $verify_user = "UPDATE user_info SET signedin = '0', timestamp = '$timestamp' WH
 $result = $test_db->query($verify_user);
 
 if($result) {
-	logActivity("logOut",$uid);
+	$_SESSION['successLogout'] = TRUE;
+	setcookie("uniqid", "", time() - 36000);
+	$_SESSION['uid'] = "";
+	logActivity("2",$uid,"logout.php");
 	header('Location: '.$url);
 	mysqli_close($test_db);
 	exit();

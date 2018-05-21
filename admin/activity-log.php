@@ -3,8 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 require 'php/functions.php';
-captureIP('change-log.php');
-verifyAdmin("2"); ?>
+captureIP('activity-log.php');
+verifyAdmin("3","activity-log.php"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -14,7 +14,7 @@ verifyAdmin("2"); ?>
   <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
   <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
   <meta name="author" content="DRM Web Design">
-  <title>Change Log - Project Z</title>
+  <title>Activity Log - Project Z</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
@@ -23,7 +23,7 @@ verifyAdmin("2"); ?>
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="js/vendors/css/tables/datatable/datatables.min.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
@@ -36,27 +36,21 @@ verifyAdmin("2"); ?>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar"
-data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
-          <h3 class="content-header-title mb-0">Change Log</h3>
+          <h3 class="content-header-title mb-0">Activity Log</h3>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Change log</li>
+                <li class="breadcrumb-item"><a href="dashboard-main.php">Home</a></li>
+                <li class="breadcrumb-item active">Activity log</li>
               </ol>
             </div>
-          </div>
-        </div>
-        <div class="content-header-right text-md-right col-md-6 col-12">
-          <div class="btn-group">
-            <button class="btn btn-round btn-info" type="button"><i class="icon-cog3"></i> Settings</button>
           </div>
         </div>
       </div>
@@ -90,7 +84,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                           </tr>
                         </thead>
                         <tbody>
-                            <?php require 'php/clog.php'; ?>
+                            <?php require 'php/alog.php'; ?>
                         </tbody>
                       </table>
                   </div>
@@ -99,15 +93,34 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
             </div>
           </div>
         </section>
+        <div class="modal fade text-left" id="activityDetails" tabindex="-1" role="dialog" aria-labelledby="activityDetails" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="activityDetails"> Activity Details</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+                  <div class="activityDetailsBody"></div>
+                </div>
+                <div class="modal-footer">
+                  <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
-  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
@@ -116,6 +129,26 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
+  <script>
+  //MAIN STORE LIST PAGE - Details button clicked beside store requested.  Pulls up modal and populates information from database.
+    $(document).off('click', '.activityDetails').on('click', '.activityDetails', function () {
+      $('.get-aid').val($(this).attr('id'));
+      var data = new FormData();
+      data.append('aid', $(this).attr('id'));
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/layout-activitydetails.php',
+        data: data,
+        success: function(data) {
+          $('.activityDetailsBody').html(data);
+        }
+      });
+    });
+    //END
+    </script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

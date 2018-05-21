@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require 'php/functions.php';
 captureIP('dashboard-main.php');
-verifyAdmin("2"); ?>
+verifyAdmin("1","dashboard-main.php"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -855,6 +855,7 @@ verifyAdmin("2"); ?>
   <script src="js/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
   <script src="js/vendors/js/charts/morris.min.js" type="text/javascript"></script>
   <script src="js/vendors/js/timeline/horizontal-timeline.js" type="text/javascript"></script>
+  <script src="js/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
@@ -864,5 +865,8 @@ verifyAdmin("2"); ?>
   <!-- BEGIN PAGE LEVEL JS-->
   <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
+  <?php if(isset($_SESSION['wrongPage'])) { ?>
+    <script>swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");</script>
+  <?php unset($_SESSION['wrongPage']); } ?>
 </body>
 </html>
