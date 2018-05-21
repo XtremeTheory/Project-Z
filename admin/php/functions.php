@@ -1,7 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 require 'db.php';
 require 'definitions.php';
 require 'Mobile_Detect.php';
@@ -154,7 +151,8 @@ function verifyAdmin($rqstTier,$pageName) {
   		$_SESSION = array();
   		session_destroy();
   		mysqli_close($test_db);
-  		header("Location:".$path."admin/login.php?sessexpired=TRUE&location=" . urlencode($_SERVER['REQUEST_URI']));
+      $_SESSION['sessExpired'] = TRUE;
+  		header("Location:".$path."admin/login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
   		exit();
 		}
 
@@ -170,11 +168,13 @@ function verifyAdmin($rqstTier,$pageName) {
       exit();
     }
 	} else {
+    $uid = "0";
     logActivity("10",$uid,$pageName);
     $_SESSION['uid'] = "";
     $_SESSION['tempid'] = "";
     mysqli_close($test_db);
-    header("Location:".$path."admin/login.php?sessexpired=TRUE&location=" . urlencode($_SERVER['REQUEST_URI']));
+    $_SESSION['sessExpired'] = TRUE;
+    header("Location:".$path."admin/login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
     exit();
   }
 }

@@ -1,9 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 require 'php/functions.php';
-captureIP('login.php'); ?>
+captureIP('login.php' ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -212,6 +209,7 @@ captureIP('login.php'); ?>
 	          url: 'php/verify-login.php',
 	          data: data,
 	          success: function(data) {
+              console.log(data);
 	            if(data == "servfailure") {
 	              window.location.href = "https://www.bodtracker.com/error-500.php";
 	            }
@@ -240,8 +238,13 @@ captureIP('login.php'); ?>
       if(isset($_SESSION['wrongPage'])) { ?>
         swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");
       <?php unset($_SESSION['wrongPage']); }
-      if(isset($_GET['sessexpired'])) {
-        $_SESSION['uid'] = ""; ?>
+      if(isset($_SESSION['sessExpired'])) {
+        $_SESSION['uid'] = "";
+        unset($_SESSION['uid']);
+        $_SESSION['sessExpired'] = "";
+        unset($_SESSION['sessExpired']);
+        $_SESSION['tempid'] = "";
+        unset($_SESSION['tempid']); ?>
         swal("Uh Oh!", "You're session has expired.  Please login again.", "error");
       <?php } ?>
     </script>

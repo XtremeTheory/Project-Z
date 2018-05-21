@@ -10,7 +10,8 @@
   $error0 = "Custom error message, read details.";
   $error1 = "Unable to connect to MySQL database.";
   $error2 = "IP address was not logged into IP sessions.";
-  $error2 = "Email was not able to send.";
+  $error3 = "Email was not able to send.";
+  $error4 = "Visitor loaded non-existent page or image.";
 
   //Activity Codes
   $activity1 = "Logged into system.";

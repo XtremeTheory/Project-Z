@@ -6,7 +6,7 @@ require 'functions.php';
 $username = test_input($_POST['username']);
 $password = test_input($_POST['password']);
 $encrypted = encryptIt( $password );
-
+global $timestamp;
 $query = "SELECT * FROM user_info WHERE username = '$username'";
 $result = $test_db->query($query);
 $rowcount = mysqli_num_rows($result);
@@ -41,7 +41,7 @@ if($userinfo['signedin'] == 3) {
 }
 
 logActivity("1",$uid,"login.php");
-$query = "UPDATE user_info SET signedin = '1', timestamp = '$dateandtime' WHERE id = '$uid'";
+$query = "UPDATE user_info SET signedin = '1', timestamp = '$timestamp' WHERE id = '$uid'";
 $result = $test_db->query($query);
 
 if($result) {
