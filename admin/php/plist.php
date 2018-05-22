@@ -1,5 +1,4 @@
 <?php
-require 'db.php';
 $table = 'product_list';
 $primaryKey = 'id';
 $columns = array(

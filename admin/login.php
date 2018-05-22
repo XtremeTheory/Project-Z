@@ -1,6 +1,6 @@
 <?php
-require 'php/functions.php';
-captureIP('login.php' ?>
+captureIP('login.php'
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>

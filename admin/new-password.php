@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('recover-password.php');
 verifyAuth("1","new-password.php"); ?>
 <!DOCTYPE html>

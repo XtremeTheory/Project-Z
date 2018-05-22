@@ -1,6 +1,4 @@
 <?php
-session_start();
-require 'functions.php';
 global $path;
 global $timestamp;
 $url = "https://www.bodtracker.com/admin/login.php";

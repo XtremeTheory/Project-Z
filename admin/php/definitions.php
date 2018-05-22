@@ -1,5 +1,8 @@
 <?php
-  define ('SITE_ROOT', '/home/dilmil3/bodtracker.com/');
+if (!defined('SITE_ROOT')) {
+    define ('SITE_ROOT', '/home/dilmil3/bodtracker.com/');
+}
+
   global $path;
   $path = "https://www.bodtracker.com/";
 

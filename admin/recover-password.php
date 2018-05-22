@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('recover-password.php'); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">

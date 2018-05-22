@@ -1,5 +1,4 @@
 <?php
-require 'php/functions.php';
 $ipadd = getIP();
 $uOS = getOS();
 $ubrowser = getBrowser();
@@ -106,7 +105,7 @@ if(!$result) {
               </fieldset>
               <div class="row py-2">
                 <div class="col-12">
-                  <a href="<?php header('Location: ' . $_SERVER['HTTP_REFERER']); ?>" class="btn btn-primary btn-block btn-lg"><i class="la la-home"></i> Back </a>
+                  <a href="javascript:history.go(-1)" class="btn btn-primary btn-block btn-lg"><i class="la la-home"></i> Back </a>
                 </div>
               </div>
             </div>

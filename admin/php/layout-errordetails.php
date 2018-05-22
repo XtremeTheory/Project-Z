@@ -1,7 +1,4 @@
 <?php
-require 'db.php';
-require 'definitions.php';
-require 'functions.php';
 $eid = test_input($_POST['eid']);
 $query = "SELECT * FROM error_log WHERE id = '$eid'";
 $result = $test_db->query($query);

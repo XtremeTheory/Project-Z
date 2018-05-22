@@ -1,6 +1,4 @@
 <?php
-require 'db.php';
-require 'functions.php';
 $uid = test_input($_POST['uid']);
 $query = "SELECT * FROM user_info WHERE id = '$uid'";
 $result = $test_db->query($query);

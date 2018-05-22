@@ -1,6 +1,4 @@
 <?php
-require 'db.php';
-require 'functions.php';
 $sid = test_input($_POST['sid']);
 $query = "SELECT * FROM store_data WHERE id = '$sid'";
 $result = $test_db->query($query);

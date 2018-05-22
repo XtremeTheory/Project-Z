@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('user-list.php');
 verifyAdmin("2","user-list.php");
 $cuid = $_SESSION['cuid'];?>

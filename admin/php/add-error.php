@@ -1,10 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'db.php';
-require 'functions.php';
-
 $errFilename = test_input($_POST['errFilename']);
 $errMessage = test_input($_POST['errMessage']);
 $errLevel = test_input($_POST['errLevel']);

@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('error-log.php');
 verifyAdmin("3","error-log.php");
 $uid = $_SESSION['uid'];?>
@@ -24,10 +20,10 @@ $uid = $_SESSION['uid'];?>
   <script src="https://use.fontawesome.com/b7912a2e63.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/datatables.min.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/selects/select2.min.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
+  <link rel="stylesheet" type="text/css" href="js/vendors/css/tables/datatable/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/selects/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/icheck.css">
+  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/custom.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
@@ -200,13 +196,13 @@ $uid = $_SESSION['uid'];?>
   </div>
   <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
-  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
-  <script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-  <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-  <script src="app-assets/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>

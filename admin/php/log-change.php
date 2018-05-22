@@ -1,10 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'db.php';
-require 'functions.php';
-require 'definitions.php';
 $uid = test_input($_POST['uid']);
 $changeID = test_input($_POST['changeID']);
 date_default_timezone_set("America/New_York");

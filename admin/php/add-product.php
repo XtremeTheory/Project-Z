@@ -1,10 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'db.php';
-require 'functions.php';
-
 $pname = test_input($_POST['pname']);
 $brand = test_input($_POST['brand']);
 $upc = test_input($_POST['upc']);

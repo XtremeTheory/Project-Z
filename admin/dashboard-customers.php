@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('dashboard-customers.php');
 verifyAdmin("2","dashboard-customers.php"); ?>
 <!DOCTYPE html>

@@ -1,15 +1,10 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'mail/Exception.php';
 require 'mail/PHPMailer.php';
 require 'mail/SMTP.php';
-
-require 'functions.php';
 global $timestamp;
 
 if(isset($_SESSION['tempid']) && $_SESSION['tempid'] != "") {

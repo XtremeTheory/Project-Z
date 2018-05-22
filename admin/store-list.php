@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('store-list.php');
 verifyAdmin("2","store-list.php");
 $uid = $_SESSION['uid'];?>

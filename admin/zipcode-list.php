@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('zipcode-list.php');
 verifyAdmin("2","zipcode-list.php"); ?>
 <!DOCTYPE html>

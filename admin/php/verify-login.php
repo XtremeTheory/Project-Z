@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'functions.php';
 $username = test_input($_POST['username']);
 $password = test_input($_POST['password']);
 $encrypted = encryptIt( $password );

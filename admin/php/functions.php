@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require 'db.php';
 require 'definitions.php';
 require 'Mobile_Detect.php';

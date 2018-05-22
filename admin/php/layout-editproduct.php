@@ -1,6 +1,4 @@
 <?php
-require 'db.php';
-require 'functions.php';
 $pid = test_input($_POST['pid']);
 $query = "SELECT * FROM product_list WHERE id = '$pid'";
 $result = $test_db->query($query);

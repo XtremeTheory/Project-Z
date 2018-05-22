@@ -1,8 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'php/functions.php';
 captureIP('activity-log.php');
 verifyAdmin("3","activity-log.php"); ?>
 <!DOCTYPE html>

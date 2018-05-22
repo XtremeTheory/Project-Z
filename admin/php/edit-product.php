@@ -1,9 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-require 'db.php';
-require 'functions.php';
 $uid = test_input($_POST['uid']);
 $pid = test_input($_POST['pid']);
 $pname = test_input($_POST['pname']);
