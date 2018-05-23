@@ -1,8 +1,8 @@
 <?php
   global $test_db;
-  $dbhost = "mysql.bodtracker.com";
-  $dbname = "bodtrack_main";
-  $dbuser = "bodtrack_admin";
+  $dbhost = "mysql.prodasher.com";
+  $dbname = "prodasher_main";
+  $dbuser = "prodasher01";
   $dbpass = "Drm3257!";
 
   $test_db = new mysqli();

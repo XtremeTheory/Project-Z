@@ -325,7 +325,7 @@ function captureIP($pagename) {
 		$user_browser = getBrowser();
 		$session_count = 1;
 		$inputSession = "INSERT INTO ip_sessions (ipadd, dateandtime, uos, ubrowser, devicetype, ulocation, uisp, sess_count, curpage, uid, devid)
-		VALUES ('$ipadd', '$dateandtime', '$user_os', '$user_browser', '$devicetype', '$user_location', '$user_isp', '$session_count', '$pagename', '$uid', '$devID')";
+		VALUES ('$ipadd', '$timestamp', '$user_os', '$user_browser', '$devicetype', '$user_location', '$user_isp', '$session_count', '$pagename', '$uid', '$devID')";
 		$result = $test_db->query($inputSession);
 
     if(!$result) {

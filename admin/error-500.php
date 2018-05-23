@@ -108,10 +108,10 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
     </div>
   </div>
   <!-- BEGIN VENDOR JS-->
-  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="app-assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
+  <script src="js/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>

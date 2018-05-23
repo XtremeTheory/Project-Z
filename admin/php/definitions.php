@@ -1,10 +1,10 @@
 <?php
 if (!defined('SITE_ROOT')) {
-    define ('SITE_ROOT', '/home/dilmil3/bodtracker.com/');
+    define ('SITE_ROOT', '/home/dilmil3/prodasher/');
 }
 
   global $path;
-  $path = "https://www.bodtracker.com/";
+  $path = "https://www.prodasher.com/";
 
   //Website Definitions
   $currentoffer = "Get $10.00 off on groceries. Use code '10off'";
