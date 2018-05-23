@@ -1,13 +1,10 @@
 <?php
 if (!defined('SITE_ROOT')) {
-    define ('SITE_ROOT', '/home/dilmil3/prodasher/');
+    define ('SITE_ROOT', '/home/dilmil3/admin.prodasher/');
 }
 
   global $path;
-  $path = "https://www.prodasher.com/";
-
-  //Website Definitions
-  $currentoffer = "Get $10.00 off on groceries. Use code '10off'";
+  $path = "https://admin.prodasher.com/";
 
   //Error Log Codes
   $error0 = "Custom error message, read details.";
