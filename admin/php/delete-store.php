@@ -1,10 +1,11 @@
 <?php
 $sid = test_input($_POST['sid']);
-$uid = 1;
+$uid = $_SESSION['uid'];
 
 	$query = "DELETE FROM store_data WHERE id = '$sid'";
 	$result = $test_db->query($query);
-	if($result){
+
+	if($result) {
     echo "complete";
     mysqli_close($test_db);
     exit();

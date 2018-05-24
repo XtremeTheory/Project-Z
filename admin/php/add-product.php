@@ -8,11 +8,10 @@ $measure = test_input($_POST['measure']);
 $msize = test_input($_POST['msize']);
 $approval = 0;
 $uid = test_input($_POST['uid']);
-date_default_timezone_set("America/New_York");
-$dateandtime = date("m-d-Y H:i:s");
+global $timestamp;
 
 $query = "INSERT INTO product_list (pname, brand, upc, dept, description, measure, msize, dateandtime, approval)
-VALUES('$pname', '$brand', '$upc', '$dept', '$description', '$measure', '$msize', '$dateandtime', '$approval')";
+VALUES('$pname', '$brand', '$upc', '$dept', '$description', '$measure', '$msize', '$timestamp', '$approval')";
 $result = $test_db->query($query);
 
 if($result) {

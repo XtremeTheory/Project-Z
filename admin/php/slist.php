@@ -1,4 +1,5 @@
 <?php
+$uid = $_SESSION['uid'];
 $table = 'store_data';
 $primaryKey = 'id';
 $columns = array(
@@ -17,6 +18,15 @@ $columns = array(
       require 'db.php';
       $query = "SELECT * FROM city_list WHERE id = '$d'";
     	$result = $test_db->query($query);
+
+      if(!$result) {
+        $sqlError = mysqli_error($test_db);
+        logError("1","slist.php",$uid,$sqlError);
+        header("Location:".$path."error-500.php");
+        mysqli_close($test_db);
+        exit();
+      }
+
       $info = $result->fetch_assoc();
       $cityinfo = ucfirst(strtolower($info['city'])) . ", " . $info['state'] . " " . $info['zipcode'];
       return $cityinfo;
@@ -29,10 +39,10 @@ $columns = array(
 );
 
 $sql_details = array(
-    'user' => 'bodtrack_admin',
+    'user' => 'prodasher01',
     'pass' => 'Drm3257!',
-    'db'   => 'bodtrack_main',
-    'host' => 'mysql.bodtracker.com'
+    'db'   => 'prodasher_main',
+    'host' => 'mysql.prodasher.com'
 );
 
 require( 'ssp.class.php' );

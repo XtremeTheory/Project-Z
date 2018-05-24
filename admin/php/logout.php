@@ -1,7 +1,7 @@
 <?php
 global $path;
 global $timestamp;
-$url = "https://www.bodtracker.com/admin/login.php";
+$url = "https://admin.prodasher.com/login.php";
 
 if(isset($_SESSION['uid']) && $_SESSION['uid'] != "") {
 	$uid = $_SESSION['uid'];
@@ -33,7 +33,7 @@ if($result) {
 } else {
 	$sqlError = mysqli_error($test_db);
 	logError("1","logout.php",$uid,$sqlError);
-	header("Location:".$path."admin/error-500.php");
+	header("Location:".$path."error-500.php");
 	mysqli_close($test_db);
 	exit();
 }

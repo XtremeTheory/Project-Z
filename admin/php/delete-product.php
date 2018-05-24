@@ -1,8 +1,10 @@
 <?php
 $pid = test_input($_POST['pid']);
+$uid = $_SESSION['uid'];
 
 	$query = "DELETE FROM product_list WHERE id = '$pid'";
 	$result = $test_db->query($query);
+	
 	if($result) {
     echo "complete";
     mysqli_close($test_db);

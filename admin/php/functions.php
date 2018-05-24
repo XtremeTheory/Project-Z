@@ -27,7 +27,7 @@ function logActivity($aid,$uid,$pageName) {
       //Failed to connect to database.
       $sqlError = mysqli_error($test_db);
       logError("1","functions.php",$uid,$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
   }
@@ -68,7 +68,7 @@ function verifyAuth($curStep,$pageName) {
       $_SESSION['uid'] = "";
       $_SESSION['tempid'] = "";
       $_SESSION['wrongPage'] = TRUE;
-      header("Location:".$path."admin/login.php");
+      header("Location:".$path."login.php");
       mysqli_close($test_db);
       exit();
     }
@@ -80,7 +80,7 @@ function verifyAuth($curStep,$pageName) {
       //Failed to connect to database.
       $sqlError = mysqli_error($test_db);
       logError("1","functions.php","0",$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
     }
@@ -91,7 +91,7 @@ function verifyAuth($curStep,$pageName) {
     if($status != "3") {
       logActivity("5",$uid,$pageName);
       $_SESSION['wrongPage'] = TRUE;
-      header("Location:".$path."admin/login.php");
+      header("Location:".$path."login.php");
       mysqli_close($test_db);
       exit();
     }
@@ -113,7 +113,7 @@ function verifyAdmin($rqstTier,$pageName) {
       //Failed to connect to database.
       $sqlError = mysqli_error($test_db);
       logError("1","log-activity.php","0",$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
     }
@@ -125,7 +125,7 @@ function verifyAdmin($rqstTier,$pageName) {
     if($userTier < $rqstTier) {
       logActivity("5",$uid,$pageName);
       $_SESSION['wrongPage'] = TRUE;
-      header("Location:".$path."admin/dashboard-main.php");
+      header("Location:".$path."dashboard-main.php");
       mysqli_close($test_db);
       exit();
     }
@@ -145,7 +145,7 @@ function verifyAdmin($rqstTier,$pageName) {
       if(!$result) {
         $sqlError = mysqli_error($test_db);
         logError("1","functions.php",$uid,$sqlError);
-        header("Location:".$path."admin/error-500.php");
+        header("Location:".$path."error-500.php");
         mysqli_close($test_db);
         exit();
       }
@@ -155,7 +155,7 @@ function verifyAdmin($rqstTier,$pageName) {
   		session_destroy();
   		mysqli_close($test_db);
       $_SESSION['sessExpired'] = TRUE;
-  		header("Location:".$path."admin/login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+  		header("Location:".$path."login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
   		exit();
 		}
 
@@ -166,7 +166,7 @@ function verifyAdmin($rqstTier,$pageName) {
       //Failed to connect to database.
       $sqlError = mysqli_error($test_db);
       logError("1","log-activity.php","0",$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
     }
@@ -177,7 +177,7 @@ function verifyAdmin($rqstTier,$pageName) {
     $_SESSION['tempid'] = "";
     mysqli_close($test_db);
     $_SESSION['sessExpired'] = TRUE;
-    header("Location:".$path."admin/login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+    header("Location:".$path."login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
     exit();
   }
 }
@@ -289,7 +289,7 @@ function captureIP($pagename) {
     if(!$result) {
       $sqlError = mysqli_error($test_db);
       logError("1","functions.php",$uid,$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
     }
@@ -331,7 +331,7 @@ function captureIP($pagename) {
     if(!$result) {
       $sqlError = mysqli_error($test_db);
       logError("1","functions.php",$uid,$sqlError);
-      header("Location:".$path."admin/error-500.php");
+      header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
     }

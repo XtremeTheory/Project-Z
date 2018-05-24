@@ -4,7 +4,8 @@ $uid1 = $_SESSION['uid'];
 
 	$query = "DELETE FROM user_info WHERE id = '$uid'";
 	$result = $test_db->query($query);
-	if($result){
+
+	if($result) {
     echo "complete";
     mysqli_close($test_db);
     exit();

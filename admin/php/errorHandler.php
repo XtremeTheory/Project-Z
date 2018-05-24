@@ -1,5 +1,5 @@
 <?php
-require '/home/dilmil3/admin.prodasher/admin/php/functions.php';
+require '/home/dilmil3/admin.prodasher/php/functions.php';
 
 function myErrorHandler($error_level, $error_message, $error_file, $error_line, $error_context) {
   $error = "Level: " . $error_level . " - Message: " . $error_message;
@@ -82,7 +82,7 @@ function repError($errorMsg, $errFile) {
   $result = $test_db->query($query);
 
   if($result) {
-    header("Location: https://admin.prodasher.com/admin/error-500.php");
+    header("Location: https://admin.prodasher.com/error-500.php");
     mysqli_close($test_db);
     exit();
   }

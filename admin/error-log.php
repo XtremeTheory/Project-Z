@@ -8,22 +8,19 @@ $uid = $_SESSION['uid'];?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-  <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-  <meta name="author" content="DRM Web Design">
-  <title>Error Log - Project Z</title>
+  <meta name="description" content="Error Log">
+  <title>Error Log - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-  rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-  <script src="https://use.fontawesome.com/b7912a2e63.js"></script>
+  <link href="assets/css/google-font.css" rel="stylesheet">
+  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <script src="js/FontAwesome.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/tables/datatable/datatables.min.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/selects/select2.min.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/icheck.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/custom.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
@@ -196,13 +193,13 @@ $uid = $_SESSION['uid'];?>
   </div>
   <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
-  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="js/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
-  <script src="js/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-  <script src="js/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-  <script src="js/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+  <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+  <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+  <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
@@ -279,7 +276,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
         data: data,
         success: function(data) {
           if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/error-500.php";
+            window.location.href = "https://admin.prodasher.com/error-500.php";
           }
           if(data == "complete") {
             changeLogged = 1;
@@ -300,7 +297,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
           data: data,
           success: function(data) {
             if(data == "servfailure") {
-              window.location.href = "https://www.bodtracker.com/error-500.php";
+              window.location.href = "https://admin.prodasher.com/error-500.php";
             }
             if(data == "complete") {
               $('.multi-ordering').DataTable().ajax.reload();

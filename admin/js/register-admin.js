@@ -89,10 +89,10 @@ $(document).ready(function(){
 						success: function(data) {
 							console.log(data);
 							if(data == "servfailure") {
-								window.location.href = "https://www.prodasher.com/admin/error-500.php";
+								window.location.href = "https://admin.prodasher.com/error-500.php";
 							}
 							if(data == "complete") {
-								window.location.href = "https://www.prodasher.com/admin/dashboard-main.php";
+								window.location.href = "https://admin.prodasher.com/dashboard-main.php";
 							}
 							if(data == "userExist") {
 								swal("Uh Oh!", "Looks like this username already exist...", "error");

@@ -1,8 +1,7 @@
 <?php
 $uid = test_input($_POST['uid']);
 $changeID = test_input($_POST['changeID']);
-date_default_timezone_set("America/New_York");
-$dateandtime = date("m-d-Y H:i:s");
+global $timestamp;
 $changeDef = ${'log'.$changeID};
 
 if(isset($_POST['sid'])) {
@@ -35,7 +34,7 @@ if(isset($_POST['pid'])) {
   $activity = $brandinfo['bname'] . " " . $productinfo['pname'] . " - UPC: " . $productinfo['upc'] . " " . $changeDef;
 }
 
-$query = "INSERT INTO change_log (dateandtime, uid, activity) VALUES('$dateandtime', '$uid', '$activity')";
+$query = "INSERT INTO change_log (dateandtime, uid, activity) VALUES('$timestamp', '$uid', '$activity')";
 $result = $test_db->query($query);
 
 if($result) {

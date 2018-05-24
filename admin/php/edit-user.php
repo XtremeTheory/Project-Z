@@ -11,9 +11,19 @@ $email = test_input($_POST['email']);
 $username = test_input($_POST['username']);
 $usertype = test_input($_POST['usertype']);
 $approval = test_input($_POST['approval']);
+$cuid = $_SESSION['uid'];
 
 $query = "SELECT * FROM city_list WHERE zipcode = '$zipcode'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","edit-user.php",$cuid,$sqlError);
+  echo "servfailure";
+  mysqli_close($test_db);
+  exit();
+}
+
 $cityinfo = $result->fetch_assoc();
 $cid = $cityinfo['id'];
 
@@ -29,6 +39,7 @@ $query = "UPDATE user_info SET fname = '$fname', lname = '$lname', address = '$a
 $result = $test_db->query($query);
 $query = "UPDATE user_info SET phonenum = '$phonenum', email = '$email', username = '$username', usertype = '$usertype', live = '$approval' WHERE id = '$uid'";
 $result1 = $test_db->query($query);
+
 
 if($result && $result1) {
   echo "complete";

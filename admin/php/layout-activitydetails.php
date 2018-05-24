@@ -1,13 +1,32 @@
 <?php
 $aid = test_input($_POST['aid']);
+$cuid = $_SESSION['uid'];
 $query = "SELECT * FROM activity_log WHERE id = '$aid'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-activitydetails.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $activityinfo = $result->fetch_assoc();
 $uid = $activityinfo['uid'];
 $aid = $activityinfo['activityID'];
 $activityDef = ${'activity'.$activityinfo['activityID']};
 $query = "SELECT * FROM user_info WHERE id = '$uid'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-activitydetails.php",$cuid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $userinfo = $result->fetch_assoc(); ?>
   <b>Occured on:</b> <?php echo $activityinfo['timestamp']; ?><br>
   <b>Page Name:</b> <?php echo $activityinfo['pagename']; ?>

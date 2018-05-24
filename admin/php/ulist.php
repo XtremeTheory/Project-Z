@@ -14,10 +14,10 @@ $columns = array(
 );
 
 $sql_details = array(
-    'user' => 'bodtrack_admin',
+    'user' => 'prodasher01',
     'pass' => 'Drm3257!',
-    'db'   => 'bodtrack_main',
-    'host' => 'mysql.bodtracker.com'
+    'db'   => 'prodasher_main',
+    'host' => 'mysql.prodasher.com'
 );
 
 require( 'ssp.class.php' );

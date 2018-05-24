@@ -7,16 +7,12 @@ verifyAuth("1","new-password.php"); ?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-  <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-  <meta name="author" content="PIXINVENT">
-  <title>Change Password - Project Z</title>
+  <meta name="description" content="Set your new password for your account.">
+  <title>Set New Password - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-  rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-  rel="stylesheet">
+  <link href="assets/css/google-font.css" rel="stylesheet">
+  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <!-- END VENDOR CSS-->
@@ -120,12 +116,12 @@ verifyAuth("1","new-password.php"); ?>
     </div>
   </div>
   <!-- BEGIN VENDOR JS-->
-  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="js/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END MODERN JS-->
   <!-- BEGIN PAGE LEVEL JS-->
   <script>
@@ -149,10 +145,10 @@ verifyAuth("1","new-password.php"); ?>
         url: 'php/lock-account.php',
         success: function(data) {
           if(data == "servfailure") {
-            window.location.href = "https://www.bodtracker.com/admin/error-500.php";
+            window.location.href = "https://admin.prodasher.com/error-500.php";
           }
           if(data == "complete") {
-            window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
+            window.location.href = "https://admin.prodasher.com/error-locked.php";
           }
         }
       });
@@ -192,7 +188,7 @@ verifyAuth("1","new-password.php"); ?>
             success: function(data) {
               console.log(data);
               if(data == "servfailure") {
-                window.location.href = "https://www.bodtracker.com/admin/error-500.php";
+                window.location.href = "https://admin.prodasher.com/error-500.php";
               }
               if(data == "complete") {
                 passValid = 1;
@@ -210,7 +206,7 @@ verifyAuth("1","new-password.php"); ?>
             if(passValid == 1) {
               swal("Success!","Your password has successfully been changed!.","success")
               .then((value) => {
-                window.location.href = "https://www.bodtracker.com/admin/dashboard-main.php";
+                window.location.href = "https://admin.prodasher.com/dashboard-main.php";
               });
             }
 
@@ -233,10 +229,10 @@ verifyAuth("1","new-password.php"); ?>
                 url: 'php/lock-account.php',
                 success: function(data) {
                   if(data == "servfailure") {
-                    window.location.href = "https://www.bodtracker.com/admin/error-500.php";
+                    window.location.href = "https://admin.prodasher.com/error-500.php";
                   }
                   if(data == "complete") {
-                    window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
+                    window.location.href = "https://admin.prodasher.com/error-locked.php";
                   }
                 }
               });

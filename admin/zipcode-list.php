@@ -7,19 +7,16 @@ verifyAdmin("2","zipcode-list.php"); ?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-  <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-  <meta name="author" content="DRM Web Design">
-  <title>Zipcode List - Project Z</title>
+  <meta name="description" content="Zip Code List">
+  <title>Zip Code List - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-  rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-  rel="stylesheet">
+  <link href="assets/css/google-font.css" rel="stylesheet">
+  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <script src="js/FontAwesome.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
@@ -97,10 +94,10 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   </div>
   <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
-  <script src="app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+  <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>

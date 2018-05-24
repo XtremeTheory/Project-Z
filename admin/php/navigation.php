@@ -7,7 +7,7 @@
         <li class="nav-item">
           <a class="navbar-brand" href="index.html">
             <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
-            <h3 class="brand-text">Project Z</h3>
+            <h3 class="brand-text">Pro Dasher</h3>
           </a>
         </li>
         <li class="nav-item d-md-none">

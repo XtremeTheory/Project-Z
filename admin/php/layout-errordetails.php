@@ -1,7 +1,17 @@
 <?php
 $eid = test_input($_POST['eid']);
+$uid = $_SESSION['uid'];
 $query = "SELECT * FROM error_log WHERE id = '$eid'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-errordetails.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $errorinfo = $result->fetch_assoc();
 $errorDetails = ${'error'.$errorinfo['errorcode']}; ?>
 <b>Date and Time:</b> <?php echo $errorinfo['dateandtime']; ?><br>

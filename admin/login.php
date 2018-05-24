@@ -7,18 +7,16 @@ captureIP('login.php');
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-  <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-  <meta name="author" content="PIXINVENT">
-  <title>Login - Project Z</title>
+  <meta name="description" content="Login for admin.">
+  <title>Admin Login - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
-  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/google-font.css" rel="stylesheet">
+  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/icheck.css">
-  <link rel="stylesheet" type="text/css" href="js/vendors/css/forms/icheck/custom.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
+  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
   <!-- END VENDOR CSS-->
   <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
@@ -153,12 +151,12 @@ captureIP('login.php');
     </div>
   </div>
   <!-- BEGIN VENDOR JS-->
-  <script src="js/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
-  <script src="js/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
-  <script src="js/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-  <script src="js/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+  <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+  <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
@@ -211,10 +209,10 @@ captureIP('login.php');
 	          success: function(data) {
               console.log(data);
 	            if(data == "servfailure") {
-	              window.location.href = "https://www.bodtracker.com/error-500.php";
+	              window.location.href = "https://admin.prodasher.com/error-500.php";
 	            }
 	            if(data == "complete") {
-	              window.location.href = "https://www.bodtracker.com/admin/dashboard-main.php";
+	              window.location.href = "https://admin.prodasher.com/dashboard-main.php";
 	            }
 							if(data == "wrongUser") {
 	              swal("Uh Oh!", "Looks like this username doesn't exist...", "error");
@@ -223,10 +221,10 @@ captureIP('login.php');
 	              swal("Uh Oh!", "Looks like a wrong password was typed...", "error");
 	            }
               if(data == "changePass") {
-	              window.location.href = "https://www.bodtracker.com/admin/new-password.php";
+	              window.location.href = "https://admin.prodasher.com/new-password.php";
 	            }
               if(data == "accountLocked") {
-	              window.location.href = "https://www.bodtracker.com/admin/error-locked.php";
+	              window.location.href = "https://admin.prodasher.com/error-locked.php";
 	            }
 	          }
 	        });

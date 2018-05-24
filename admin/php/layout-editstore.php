@@ -1,11 +1,30 @@
 <?php
 $sid = test_input($_POST['sid']);
+$uid = $_SESSION['uid'];
 $query = "SELECT * FROM store_data WHERE id = '$sid'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-editstore.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $storeinfo = $result->fetch_assoc();
 $cid = $storeinfo['cid'];
 $query1 = "SELECT * FROM city_list WHERE id = '$cid'";
 $result1 = $test_db->query($query1);
+
+if(!$result1) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-editstore.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $cityinfo = $result1->fetch_assoc();
 ?>
   <fieldset class="form-group floating-label-form-group">

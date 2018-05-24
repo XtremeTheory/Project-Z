@@ -1,15 +1,34 @@
 <?php
 $query = "SELECT * FROM activity_log";
-$info = $test_db->query($query);
-$rowcount = mysqli_num_rows($info);
+$result = $test_db->query($query);
+$cuid = $_SESSION['uid'];
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","alog.php",$cuid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
+$rowcount = mysqli_num_rows($result);
 if($rowcount != 0) {
-  while($results = $info->fetch_array()) {
+  while($results = $result->fetch_array()) {
     $result_array[] = $results;
   }
   foreach ($result_array as $details) {
     $uid = $details['uid'];
     $query = "SELECT * FROM user_info WHERE id = '$uid'";
   	$result = $test_db->query($query);
+
+    if(!$result) {
+      $sqlError = mysqli_error($test_db);
+      logError("1","alog.php",$cuid,$sqlError);
+      header("Location:".$path."error-500.php");
+      mysqli_close($test_db);
+      exit();
+    }
+
     $info = $result->fetch_assoc();
     $uname = $info['fname'] . " " . $info['lname'];
     $tier = $info['tier'];

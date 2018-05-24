@@ -2,15 +2,14 @@
 $errFilename = test_input($_POST['errFilename']);
 $errMessage = test_input($_POST['errMessage']);
 $errLevel = test_input($_POST['errLevel']);
-$uid = 1;
-date_default_timezone_set("America/New_York");
-$dateandtime = date("m-d-Y H:i:s");
+$uid = $_SESSION['uid'];
+global $timestamp;
 $ipadd = getIP();
 $uOS = getOS();
 $ubrowser = getBrowser();
 
 $query = "INSERT INTO error_log (errorcode, filename, dateandtime, uid, errormessage, ipadd, uOS, ubrowser, level)
-VALUES('0', '$errFilename', '$dateandtime', '$uid', '$errMessage', '$ipadd', '$uOS', '$ubrowser', '$errLevel')";
+VALUES('0', '$errFilename', '$timestamp', '$uid', '$errMessage', '$ipadd', '$uOS', '$ubrowser', '$errLevel')";
 $result = $test_db->query($query);
 
 if($result) {

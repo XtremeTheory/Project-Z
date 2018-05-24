@@ -47,7 +47,7 @@ $(document).off('click', '#but-addProduct').on('click', '#but-addProduct', funct
       data: {sname: sname, address: address},
       success: function(data) {
         if(data == "servfailure") {
-          window.location.href = "https://www.bodtracker.com/error-500.php";
+          window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(data == "correct") {
           $('.multi-ordering').DataTable().ajax.reload();

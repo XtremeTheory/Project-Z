@@ -5,6 +5,15 @@ $encrypted = encryptIt( $password );
 global $timestamp;
 $query = "SELECT * FROM user_info WHERE username = '$username'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","verify-login.php","0",$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $rowcount = mysqli_num_rows($result);
 
 if($rowcount != 1) {

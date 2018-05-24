@@ -1,7 +1,17 @@
 <?php
 $pid = test_input($_POST['pid']);
+$uid = $_SESSION['uid'];
 $query = "SELECT * FROM product_list WHERE id = '$pid'";
 $result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-productdetails.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
 $productinfo = $result->fetch_assoc();
 ?>
   <b>Product Name:</b> <?php echo ucwords(strtolower($productinfo['brand'])); ?> - <?php echo ucwords(strtolower($productinfo['pname'])); ?><br>
