@@ -199,7 +199,12 @@ function test_input($data) {
 }
 
 function getOS() {
-    $user_agent     =   $_SERVER['HTTP_USER_AGENT'];
+  if(empty($_SERVER['HTTP_USER_AGENT'])) {
+    $user_agent = "Not Recognized";
+  } else {
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+  }
+
     $os_platform    =   "Unknown OS Platform";
     $os_array       =   array(
                             '/windows nt 10/i'     =>  'Windows 10',
@@ -224,7 +229,8 @@ function getOS() {
                             '/ipad/i'               =>  'iPad',
                             '/android/i'            =>  'Android',
                             '/blackberry/i'         =>  'BlackBerry',
-                            '/webos/i'              =>  'Mobile'
+                            '/webos/i'              =>  'Mobile',
+                            '/Not Recognized/i'     =>  'Not Recognized'
                         );
     foreach ($os_array as $regex => $value) {
         if (preg_match($regex, $user_agent)) {

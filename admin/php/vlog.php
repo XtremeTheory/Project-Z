@@ -1,27 +1,27 @@
 <?php
-$query = "SELECT * FROM ip_sessions";
-$result = $test_db->query($query);
+$table = 'ip_sessions';
+$primaryKey = 'id';
+$columns = array(
+    array( 'db' => 'ipadd', 'dt' => 0),
+    array( 'db' => 'dateandtime', 'dt' => 1),
+    array( 'db' => 'curpage', 'dt' => 2),
+    array( 'db' => 'ulocation', 'dt' => 3),
+    array( 'db' => 'id', 'dt' => 4,
+        'formatter' => function( $d, $row ) {
+            return '<button type="button" class="btn btn-info btn-sm ipDetails" id="'.$d.'" data-toggle="modal" data-target="#ipDetails">Details</button>';
+        }
+    )
+);
 
-if(!$result) {
-  $sqlError = mysqli_error($test_db);
-  logError("1","layout-activitydetails.php",$uid,$sqlError);
-  header("Location:".$path."error-500.php");
-  mysqli_close($test_db);
-  exit();
-}
+$sql_details = array(
+    'user' => 'prodasher01',
+    'pass' => 'Drm3257!',
+    'db'   => 'prodasher_main',
+    'host' => 'mysql.prodasher.com'
+);
 
-$rowcount = mysqli_num_rows($result);
-if($rowcount != 0) {
-  while($results = $result->fetch_array()) {
-    $result_array[] = $results;
-  }
-  foreach ($result_array as $details) { ?>
-    <tr>
-      <td><?php echo $details['ipadd']; ?></td>
-      <td><?php echo $details['dateandtime']; ?></td>
-      <td><?php echo $details['curpage']; ?></td>
-      <td><?php echo $details['ulocation']; ?></td>
-      <td><a href="#">More Details</a></td>
-    </tr>
-<?php }
-} ?>
+require( 'ssp.class.php' );
+
+echo json_encode(
+    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+); ?>

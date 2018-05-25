@@ -11,8 +11,8 @@ verifyAdmin("3","visitor-log.php"); ?>
   <title>Visitor Log - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
@@ -77,10 +77,27 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
                           <th>Actions</th>
                           </tr>
                         </thead>
-                        <tbody>
-                            <?php require 'php/vlog.php'; ?>
-                        </tbody>
                       </table>
+                  </div>
+                </div>
+                <div class="modal fade text-left" id="ipDetails" tabindex="-1" role="dialog" aria-labelledby="ipDetails" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="ipDetails"> IP Details</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form>
+                        <div class="modal-body">
+                          <div class="ipDetailsBody"></div>
+                        </div>
+                        <div class="modal-footer">
+                          <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -90,7 +107,6 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
@@ -102,8 +118,42 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
-  <script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
+  <script>
+  //Populates table on main store-list page from database
+  $('.multi-ordering').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/vlog.php"
+  } );
+
+  //MAIN STORE LIST PAGE - Details button clicked beside store requested.  Pulls up modal and populates information from database.
+    $(document).off('click', '.ipDetails').on('click', '.ipDetails', function () {
+      $('.get-iid').val($(this).attr('id'));
+      var data = new FormData();
+      data.append('iid', $(this).attr('id'));
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/layout-ipdetails.php',
+        data: data,
+        success: function(data) {
+          $('.ipDetailsBody').html(data);
+        }
+      });
+    });
+    //END
+  </script>
 </body>
 </html>

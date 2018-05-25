@@ -1,6 +1,6 @@
 <?php
 captureIP('error-log.php');
-verifyAdmin("3","error-log.php");
+verifyAdmin("5","error-log.php");
 $uid = $_SESSION['uid'];?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -12,8 +12,8 @@ $uid = $_SESSION['uid'];?>
   <title>Error Log - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/line-awesome/css/line-awesome-font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
@@ -73,7 +73,7 @@ $uid = $_SESSION['uid'];?>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                <li class="breadcrumb-item"><a href="/">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Error Log
                 </li>
@@ -191,7 +191,6 @@ $uid = $_SESSION['uid'];?>
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
   <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
@@ -265,9 +264,8 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
   }).then((willDelete) => {
     if (willDelete) {
       var data = new FormData();
-      data.append('uid', $('.get-uid').val());
       data.append('changeID', "11");
-      data.append('eid', $('.get-eid').val());
+      data.append('pagename', "error-log.php");
       $.ajax({
         type: "POST",
         contentType: false,
@@ -276,7 +274,6 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
         url: 'php/log-change.php',
         data: data,
         success: function(data) {
-          console.log(data);
           if(data == "servfailure") {
             window.location.href = "https://admin.prodasher.com/error-500.php";
           }
