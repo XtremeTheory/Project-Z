@@ -24,4 +24,5 @@ if (!defined('SITE_ROOT')) {
   $activity8 = "Birthdate entered incorrectly 3 times, account has been locked.";
   $activity9 = "Account Locked email sent.";
   $activity10 = "Login session expired, logged out of system.";
+  $activity11 = "Deleted error from database.";
 ?>

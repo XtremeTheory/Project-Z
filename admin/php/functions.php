@@ -112,7 +112,7 @@ function verifyAdmin($rqstTier,$pageName) {
     if(!$result) {
       //Failed to connect to database.
       $sqlError = mysqli_error($test_db);
-      logError("1","log-activity.php","0",$sqlError);
+      logError("1","functions.php","0",$sqlError);
       header("Location:".$path."error-500.php");
       mysqli_close($test_db);
       exit();
@@ -175,9 +175,10 @@ function verifyAdmin($rqstTier,$pageName) {
     logActivity("10",$uid,$pageName);
     $_SESSION['uid'] = "";
     $_SESSION['tempid'] = "";
+    $plocation = $_SERVER['REQUEST_URI'];
     mysqli_close($test_db);
     $_SESSION['sessExpired'] = TRUE;
-    header("Location:".$path."login.php?location=" . urlencode($_SERVER['REQUEST_URI']));
+    header("Location:".$path."login.php?location=" . $plocation);
     exit();
   }
 }

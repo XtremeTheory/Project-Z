@@ -2,7 +2,7 @@
 $uid = test_input($_POST['uid']);
 $changeID = test_input($_POST['changeID']);
 global $timestamp;
-$changeDef = ${'log'.$changeID};
+$changeDef = ${'activity'.$changeID};
 
 if(isset($_POST['sid'])) {
   $sid = test_input($_POST['sid']);
@@ -14,6 +14,10 @@ if(isset($_POST['sid'])) {
   $result1 = $test_db->query($query1);
   $cityinfo = $result1->fetch_assoc();
   $activity = $storeinfo['sname'] . " " . $storeinfo['address'] . ", " . $cityinfo['zipcode'] . ": " . $changeDef;
+}
+if(isset($_POST['eid'])) {
+  $eid = test_input($_POST['eid']);
+  $activity = "Error ID # " . $eid . " " . $changeDef;
 }
 if(isset($_POST['cuid'])) {
   $cuid = test_input($_POST['cuid']);
@@ -34,7 +38,7 @@ if(isset($_POST['pid'])) {
   $activity = $brandinfo['bname'] . " " . $productinfo['pname'] . " - UPC: " . $productinfo['upc'] . " " . $changeDef;
 }
 
-$query = "INSERT INTO change_log (dateandtime, uid, activity) VALUES('$timestamp', '$uid', '$activity')";
+$query = "INSERT INTO activity_log (dateandtime, uid, activity) VALUES('$timestamp', '$uid', '$activity')";
 $result = $test_db->query($query);
 
 if($result) {

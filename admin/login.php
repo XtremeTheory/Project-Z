@@ -12,7 +12,7 @@ captureIP('login.php');
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="assets/line-awesome/css/line-awesome-font-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
@@ -207,12 +207,32 @@ captureIP('login.php');
 	          url: 'php/verify-login.php',
 	          data: data,
 	          success: function(data) {
-              console.log(data);
 	            if(data == "servfailure") {
 	              window.location.href = "https://admin.prodasher.com/error-500.php";
 	            }
 	            if(data == "complete") {
-	              window.location.href = "https://admin.prodasher.com/dashboard-main.php";
+                var getUrlParameter = function getUrlParameter(sParam) {
+                  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                  sURLVariables = sPageURL.split('&'),
+                  sParameterName,
+                  i;
+
+                  for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                      return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                  }
+                };
+
+                var plocation = getUrlParameter('location');
+
+                if(plocation != "") {
+                  window.location.href = "https://admin.prodasher.com" + plocation;
+                } else {
+                  window.location.href = "https://admin.prodasher.com/dashboard-main.php";
+                }
 	            }
 							if(data == "wrongUser") {
 	              swal("Uh Oh!", "Looks like this username doesn't exist...", "error");

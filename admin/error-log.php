@@ -13,7 +13,7 @@ $uid = $_SESSION['uid'];?>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="assets/line-awesome/css/line-awesome-font-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
@@ -255,6 +255,7 @@ $uid = $_SESSION['uid'];?>
 //MAIN STORE LIST PAGE - Delete button clicked beside store requested.  Pulls up confirmation that they want to delete the store. Logs into change log.
 $(document).off('click', '.deleteError').on('click', '.deleteError', function () {
   $('.get-eid').val($(this).attr('id'));
+  var changeLogged = 0;
   swal({
     title: "Are you sure?",
     text: "Once deleted, you will not be able to recover this information!",
@@ -265,7 +266,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
     if (willDelete) {
       var data = new FormData();
       data.append('uid', $('.get-uid').val());
-      data.append('changeID', "1");
+      data.append('changeID', "11");
       data.append('eid', $('.get-eid').val());
       $.ajax({
         type: "POST",
@@ -275,6 +276,7 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
         url: 'php/log-change.php',
         data: data,
         success: function(data) {
+          console.log(data);
           if(data == "servfailure") {
             window.location.href = "https://admin.prodasher.com/error-500.php";
           }
