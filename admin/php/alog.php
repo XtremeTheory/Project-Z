@@ -1,60 +1,64 @@
 <?php
-$query = "SELECT * FROM activity_log";
-$result = $test_db->query($query);
-$cuid = $_SESSION['uid'];
+$table = 'activity_log';
+$primaryKey = 'timestamp';
+$columns = array(
+    array( 'db' => 'timestamp', 'dt' => 0),
+    array( 'db' => 'pagename', 'dt' => 1),
+    array( 'db' => 'uid', 'dt' => 2, 'formatter' => function( $d, $row ) {
+      require 'db.php';
+      $query = "SELECT * FROM user_info WHERE id = '$d'";
+    	$result = $test_db->query($query);
 
-if(!$result) {
-  $sqlError = mysqli_error($test_db);
-  logError("1","alog.php",$cuid,$sqlError);
-  header("Location:".$path."error-500.php");
-  mysqli_close($test_db);
-  exit();
-}
+      if(!$result) {
+        $sqlError = mysqli_error($test_db);
+        logError("1","alog.php",$cuid,$sqlError);
+        header("Location:".$path."error-500.php");
+        mysqli_close($test_db);
+        exit();
+      }
 
-$rowcount = mysqli_num_rows($result);
-if($rowcount != 0) {
-  while($results = $result->fetch_array()) {
-    $result_array[] = $results;
-  }
-  foreach ($result_array as $details) {
-    $uid = $details['uid'];
-    $query = "SELECT * FROM user_info WHERE id = '$uid'";
-  	$result = $test_db->query($query);
+      $info = $result->fetch_assoc();
+      $tierLvl = $info['tier'];
 
-    if(!$result) {
-      $sqlError = mysqli_error($test_db);
-      logError("1","alog.php",$cuid,$sqlError);
-      header("Location:".$path."error-500.php");
-      mysqli_close($test_db);
-      exit();
-    }
+      if($tierLvl == 1) {
+        $tierLvl = 'Customer';
+      }
+      if($tierLvl == 2) {
+        $tierLvl = 'Shopper';
+      }
+      if($tierLvl == 3) {
+        $tierLvl = 'Admin';
+      }
+      if($tierLvl == 4) {
+        $tierLvl = 'Manager';
+      }
+      if($tierLvl == 5) {
+        $tierLvl = 'Director';
+      }
 
-    $info = $result->fetch_assoc();
-    $uname = $info['fname'] . " " . $info['lname'];
-    $tier = $info['tier'];
-    $activityDef = ${'activity'.$details['activityID']};
+      return $tierLvl . " : " . $info['fname'] . " " . $info['lname'];
+    }),
+    array( 'db' => 'activityID', 'dt' => 3, 'formatter' => function( $d, $row ) {
+      require 'definitions.php';
+      $activityDef = ${'activity'.$d};
+      return $activityDef;
+    }),
+    array( 'db' => 'id', 'dt' => 4,
+        'formatter' => function( $d, $row ) {
+            return '<button type="button" class="btn btn-info btn-sm activityDetails" id="'.$d.'" data-toggle="modal" data-target="#activityDetails">Details</button>';
+        }
+    )
+);
 
-    if($tier == 1) {
-      $ustatus = "Shopper";
-    }
+$sql_details = array(
+    'user' => 'prodasher01',
+    'pass' => 'Drm3257!',
+    'db'   => 'prodasher_main',
+    'host' => 'mysql.prodasher.com'
+);
 
-    if($tier == 2) {
-      $ustatus = "Admin";
-    }
+require( 'ssp.class.php' );
 
-    if($tier == 3) {
-      $ustatus = "Manager";
-    }
-
-    if($tier == 4) {
-      $ustatus = "Customer";
-    } ?>
-    <tr>
-      <td><?php echo $details['timestamp']; ?></td>
-      <td><?php echo $ustatus; ?></td>
-      <td><?php echo $uname; ?></td>
-      <td><?php echo $activityDef; ?></td>
-      <td><button type="button" class="btn btn-info btn-sm activityDetails" id="<?php echo $details['id']; ?>" data-toggle="modal" data-target="#activityDetails">Details</button></td>
-    </tr>
-<?php }
-} ?>
+echo json_encode(
+    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+); ?>

@@ -253,6 +253,9 @@ captureIP('login.php');
       <?php if(isset($_SESSION['successLogout'])) { ?>
         swal("Done!", "You have been logged out successfully.", "success");
       <?php unset($_SESSION['successLogout']); }
+      if(isset($_SESSION['newAccount'])) { ?>
+        swal("Success!", "Your account has been setup.", "success");
+      <?php unset($_SESSION['newAccount']); }
       if(isset($_SESSION['wrongPage'])) { ?>
         swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");
       <?php unset($_SESSION['wrongPage']); }

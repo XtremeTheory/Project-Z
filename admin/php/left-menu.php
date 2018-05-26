@@ -1,17 +1,16 @@
-<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-border"
-data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-border" data-scroll-to-active="true">
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-      <li class=" nav-item"><a href="#"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+      <li class=" navigation-header">
+        <span data-i18n="nav.category.admin">Admin</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Admin"></i>
+      </li>
+      <li class=" nav-item"><a href="#"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboards</span></a>
         <ul class="menu-content">
           <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-customers.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-customers.php" data-i18n="nav.lists.customers">Customers</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-main.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-main.php" data-i18n="nav.lists.main">Main</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-sales.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-sales.php" data-i18n="nav.lists.sales">Sales</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "dashboard-shoppers.php") { ?> class="active"<?php } ?>><a class="menu-item" href="dashboard-shoppers.php" data-i18n="nav.lists.shoppers">Shoppers</a></li>
         </ul>
-      </li>
-      <li class=" navigation-header">
-        <span data-i18n="nav.category.admin">Admin</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Admin"></i>
       </li>
       <li class=" nav-item"><a href="#"><i class="la la-navicon"></i><span class="menu-title" data-i18n="nav.lists.main">Lists</span></a>
         <ul class="menu-content">
@@ -25,33 +24,11 @@ data-scroll-to-active="true">
           <li<?php if(basename($_SERVER['PHP_SELF']) == "zipcode-list.php") { ?> class="active"<?php } ?>><a class="menu-item" href="zipcode-list.php" data-i18n="nav.lists.zipcodes">Zip Codes</a></li>
         </ul>
       </li>
-      <li class=" nav-item"><a href="#"><i class="la la-navicon"></i><span class="menu-title" data-i18n="nav.navbars.main">Navbars</span></a>
-        <ul class="menu-content">
-          <li><a class="menu-item" href="navbar-light.html" data-i18n="nav.navbars.nav_light">Navbar Light</a>
-          </li>
-          <li><a class="menu-item" href="navbar-dark.html" data-i18n="nav.navbars.nav_dark">Navbar Dark</a>
-          </li>
-          <li><a class="menu-item" href="navbar-semi-dark.html" data-i18n="nav.navbars.nav_semi">Navbar Semi Dark</a>
-          </li>
-          <li><a class="menu-item" href="navbar-brand-center.html" data-i18n="nav.navbars.nav_brand_center">Brand Center</a>
-          </li>
-          <li><a class="menu-item" href="navbar-fixed-top.html" data-i18n="nav.navbars.nav_fixed_top">Fixed Top</a>
-          </li>
-          <li><a class="menu-item" href="#" data-i18n="nav.navbars.nav_hide_on_scroll.main">Hide on Scroll</a>
-            <ul class="menu-content">
-              <li><a class="menu-item" href="navbar-hide-on-scroll-top.html" data-i18n="nav.navbars.nav_hide_on_scroll.nav_hide_on_scroll_top">Hide on Scroll Top</a>
-              </li>
-              <li><a class="menu-item" href="navbar-hide-on-scroll-bottom.html" data-i18n="nav.navbars.nav_hide_on_scroll.nav_hide_on_scroll_bottom">Hide on Scroll Bottom</a>
-              </li>
-            </ul>
-          </li>
-          <li><a class="menu-item" href="navbar-components.html" data-i18n="nav.navbars.nav_components">Navbar Components</a>
-          </li>
-          <li><a class="menu-item" href="navbar-styling.html" data-i18n="nav.navbars.nav_styling">Navbar Styling</a>
-          </li>
-        </ul>
+      <li class=" nav-item"><a href="system-settings.php"><i class="la la-gear"></i><span class="menu-title" data-i18n="">System Settings</span></a></li>
+      <li class=" navigation-header">
+        <span data-i18n="nav.category.general">General</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"data-placement="right" data-original-title="General"></i>
       </li>
-      <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span></a>
+      <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
         <ul class="menu-content">
           <li><a class="menu-item" href="vertical-nav-fixed.html" data-i18n="nav.vertical_nav.vertical_nav_fixed">Fixed Navigation</a>
           </li>
@@ -78,6 +55,20 @@ data-scroll-to-active="true">
           <li><a class="menu-item" href="vertical-nav-styling.html" data-i18n="nav.vertical_nav.vertical_nav_styling">Navigation Styling</a>
           </li>
           <li><a class="menu-item" href="vertical-nav-tags-pills.html" data-i18n="nav.vertical_nav.vertical_nav_tags_pills">Tags &amp; Pills</a>
+          </li>
+        </ul>
+      </li>
+      <li class=" nav-item"><a href="#"><i class="la la-download"></i><span class="menu-title" data-i18n="nav.footers.main">Footers</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="footer-light.html" data-i18n="nav.footers.footer_light">Footer Light</a>
+          </li>
+          <li><a class="menu-item" href="footer-dark.html" data-i18n="nav.footers.footer_dark">Footer Dark</a>
+          </li>
+          <li><a class="menu-item" href="footer-transparent.html" data-i18n="nav.footers.footer_transparent">Footer Transparent</a>
+          </li>
+          <li><a class="menu-item" href="footer-fixed.html" data-i18n="nav.footers.footer_fixed">Footer Fixed</a>
+          </li>
+          <li><a class="menu-item" href="footer-components.html" data-i18n="nav.footers.footer_components">Footer Components</a>
           </li>
         </ul>
       </li>
@@ -109,23 +100,31 @@ data-scroll-to-active="true">
           </li>
         </ul>
       </li>
-      <li class=" nav-item"><a href="#"><i class="la la-download"></i><span class="menu-title" data-i18n="nav.footers.main">Footers</span></a>
+      <li class=" nav-item"><a href="#"><i class="la la-navicon"></i><span class="menu-title" data-i18n="nav.navbars.main">Navbars</span></a>
         <ul class="menu-content">
-          <li><a class="menu-item" href="footer-light.html" data-i18n="nav.footers.footer_light">Footer Light</a>
+          <li><a class="menu-item" href="navbar-light.html" data-i18n="nav.navbars.nav_light">Navbar Light</a>
           </li>
-          <li><a class="menu-item" href="footer-dark.html" data-i18n="nav.footers.footer_dark">Footer Dark</a>
+          <li><a class="menu-item" href="navbar-dark.html" data-i18n="nav.navbars.nav_dark">Navbar Dark</a>
           </li>
-          <li><a class="menu-item" href="footer-transparent.html" data-i18n="nav.footers.footer_transparent">Footer Transparent</a>
+          <li><a class="menu-item" href="navbar-semi-dark.html" data-i18n="nav.navbars.nav_semi">Navbar Semi Dark</a>
           </li>
-          <li><a class="menu-item" href="footer-fixed.html" data-i18n="nav.footers.footer_fixed">Footer Fixed</a>
+          <li><a class="menu-item" href="navbar-brand-center.html" data-i18n="nav.navbars.nav_brand_center">Brand Center</a>
           </li>
-          <li><a class="menu-item" href="footer-components.html" data-i18n="nav.footers.footer_components">Footer Components</a>
+          <li><a class="menu-item" href="navbar-fixed-top.html" data-i18n="nav.navbars.nav_fixed_top">Fixed Top</a>
+          </li>
+          <li><a class="menu-item" href="#" data-i18n="nav.navbars.nav_hide_on_scroll.main">Hide on Scroll</a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="navbar-hide-on-scroll-top.html" data-i18n="nav.navbars.nav_hide_on_scroll.nav_hide_on_scroll_top">Hide on Scroll Top</a>
+              </li>
+              <li><a class="menu-item" href="navbar-hide-on-scroll-bottom.html" data-i18n="nav.navbars.nav_hide_on_scroll.nav_hide_on_scroll_bottom">Hide on Scroll Bottom</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="menu-item" href="navbar-components.html" data-i18n="nav.navbars.nav_components">Navbar Components</a>
+          </li>
+          <li><a class="menu-item" href="navbar-styling.html" data-i18n="nav.navbars.nav_styling">Navbar Styling</a>
           </li>
         </ul>
-      </li>
-      <li class=" navigation-header">
-        <span data-i18n="nav.category.general">General</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
-        data-placement="right" data-original-title="General"></i>
       </li>
       <li class=" nav-item"><a href="#"><i class="la la-paint-brush"></i><span class="menu-title" data-i18n="nav.color_palette.main">Color Palette</span></a>
         <ul class="menu-content">

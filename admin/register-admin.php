@@ -11,8 +11,8 @@ captureIP('register-admin.php');
   <title>Admin Registration - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
@@ -98,7 +98,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
                       <fieldset class="form-group position-relative has-icon-left">
                         <input type="text" id="birthday" class="form-control input-lg required" placeholder="Your Birthday" tabindex="3">
                         <div class="form-control-position">
-                          <i class="ft-user"></i>
+                          <i class="la la-birthday-cake"></i>
                         </div>
                         <div class="hb-birthday font-small-3"></div>
                       </fieldset>
@@ -114,7 +114,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
                         <div class="form-control-position">
                           <i class="ft-user"></i>
                         </div>
-                        <div class="hb-user font-small-3"></div>
+                        <div class="hb-username font-small-3"></div>
                       </fieldset>
                       <div class="row">
                         <div class="col-12 col-sm-6 col-md-6">
@@ -124,7 +124,7 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
                             <div class="form-control-position">
                               <i class="la la-key"></i>
                             </div>
-                            <div class="hb-pass font-small-3"></div>
+                            <div class="hb-password font-small-3"></div>
                           </fieldset>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6">
@@ -134,16 +134,16 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
                             <div class="form-control-position">
                               <i class="la la-key"></i>
                             </div>
-                            <div class="hb-vpass font-small-3"></div>
+                            <div class="hb-vpassword font-small-3"></div>
                           </fieldset>
                         </div>
                       </div>
                       <fieldset class="form-group position-relative has-icon-left">
                         <input type="text" id="actcode" class="form-control input-lg required" placeholder="Activation Code" tabindex="8">
                         <div class="form-control-position">
-                          <i class="ft-user"></i>
+                          <i class="la la-unlock"></i>
                         </div>
-                        <div class="hb-acode font-small-3"></div>
+                        <div class="hb-actcode font-small-3"></div>
                       </fieldset>
                       <div class="row mb-1">
                         <div class="col-4 col-sm-3 col-md-3">
@@ -153,10 +153,10 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
                           </fieldset>
                         </div>
                         <div class="col-8 col-sm-9 col-md-9">
-                          <p class="font-small-3">By clicking Register, you agree to the <a href="#" data-toggle="modal"
+                          <p class="font-small-3 agreeTerms">By clicking Register, you agree to the <a href="#" data-toggle="modal"
                             data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
                         </div>
-                        <div class="hb-terms font-small-3"></div>
+                        <div class="hb-agreeTerms font-small-3"></div>
                       </div>
                       <div class="row">
                         <div class="col-12 col-sm-6 col-md-6">

@@ -69,15 +69,12 @@ verifyAdmin("3","activity-log.php"); ?>
                         <thead>
                           <tr>
                           <th>Date</th>
-                          <th>User Role</th>
-                          <th>User's Name</th>
+                          <th>Page Name</th>
+                          <th>User Info</th>
                           <th>Activity</th>
                           <th> </th>
                           </tr>
                         </thead>
-                        <tbody>
-                            <?php require 'php/alog.php'; ?>
-                        </tbody>
                       </table>
                   </div>
                 </div>
@@ -112,16 +109,35 @@ verifyAdmin("3","activity-log.php"); ?>
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <!-- BEGIN VENDOR JS-->
   <!-- BEGIN PAGE VENDOR JS-->
+  <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+  <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+  <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <!-- END PAGE VENDOR JS-->
   <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
-  <script src="app-assets/js/scripts/tables/datatables/datatable-basic.js" type="text/javascript"></script>
   <script>
+  //Populates table on main store-list page from database
+  $('.multi-ordering').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/alog.php"
+  } );
+  //END
+
   //MAIN STORE LIST PAGE - Details button clicked beside store requested.  Pulls up modal and populates information from database.
     $(document).off('click', '.activityDetails').on('click', '.activityDetails', function () {
       $('.get-aid').val($(this).attr('id'));

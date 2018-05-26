@@ -25,4 +25,5 @@ if (!defined('SITE_ROOT')) {
   $activity9 = "Account Locked email sent.";
   $activity10 = "Login session expired, logged out of system.";
   $activity11 = "Deleted error from database.";
+  $activity12 = "Security codes have been updated.";
 ?>
