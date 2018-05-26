@@ -26,6 +26,10 @@
       </li>
       <li class=" nav-item"><a href="system-settings.php"><i class="la la-gear"></i><span class="menu-title" data-i18n="">System Settings</span></a></li>
       <li class=" navigation-header">
+        <span data-i18n="nav.category.applications">Applications</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Applications"></i>
+      </li>
+      <li class=" nav-item"><a href="email.php"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Email</span></a></li>
+      <li class=" navigation-header">
         <span data-i18n="nav.category.general">General</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"data-placement="right" data-original-title="General"></i>
       </li>
       <li class=" nav-item"><a href="#"><i class="la la-arrows-v"></i><span class="menu-title" data-i18n="nav.vertical_nav.main">Vertical Nav</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
@@ -243,8 +247,6 @@
       <li class=" navigation-header">
         <span data-i18n="nav.category.pages">Pages</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
         data-placement="right" data-original-title="Pages"></i>
-      </li>
-      <li class=" nav-item"><a href="email-application.html"><i class="la la-envelope"></i><span class="menu-title" data-i18n="">Email Application</span></a>
       </li>
       <li class=" nav-item"><a href="chat-application.html"><i class="la la-comments"></i><span class="menu-title" data-i18n="">Chat Application</span></a>
       </li>
