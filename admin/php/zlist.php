@@ -14,11 +14,15 @@ $columns = array(
     array( 'db' => 'zipcode', 'dt' => 1),
     array( 'db' => 'city', 'dt' => 2,
         'formatter' => function( $d, $row ) {
-            return ucfirst(strtolower($d));
+            return ucwords(strtolower($d));
         }
     ),
     array( 'db' => 'state', 'dt' => 3),
-    array( 'db' => 'county', 'dt' => 4),
+    array( 'db' => 'county', 'dt' => 4,
+        'formatter' => function( $d, $row ) {
+            return ucwords(strtolower($d));
+        }
+    ),
     array( 'db' => 'id', 'dt' => 5,
         'formatter' => function( $d, $row ) {
             return '<a href="#?id=' . $d . '">Map</a>';

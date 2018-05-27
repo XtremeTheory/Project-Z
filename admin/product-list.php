@@ -11,27 +11,21 @@ verifyAdmin("2","product-list.php"); ?>
   <title>Product List - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="vendors/js/easyauto/easy-autocomplete.min.css">
 <style>
   table.dataTable {
     border-collapse: collapse !important;
@@ -42,6 +36,14 @@ verifyAdmin("2","product-list.php"); ?>
     border-color: #19b9e7 !important;
     background-color: #BD362F !important;
     color: #FFFFFF !important;
+  }
+
+  .easy-autocomplete {
+    width: 100% !important;
+  }
+
+  .easy-autocomplete-container {
+    width: 100% !important;
   }
 
   .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -56,6 +58,66 @@ verifyAdmin("2","product-list.php"); ?>
   .is-invalid:-moz-placeholder { /* Firefox 18- */
     color: white !important;
   }
+
+  .ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+
+.ui-autocomplete > li > div {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.ui-state-hover,
+.ui-state-active,
+.ui-state-focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.modal{
+  overflow-y: auto !important;
+}
+
+	#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
+	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
+	canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
 </style>
   <!-- END Custom CSS-->
 </head>
@@ -72,12 +134,17 @@ verifyAdmin("2","product-list.php"); ?>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                <li class="breadcrumb-item"><a href="/">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Product List
                 </li>
               </ol>
             </div>
+          </div>
+        </div>
+        <div class="content-header-right text-md-right col-md-6 col-12">
+          <div class="btn-group">
+            <button class="btn btn-round btn-info" type="button" data-toggle="modal" data-target="#addProduct"><i class="icon-cog3"></i> Add Product</button>
           </div>
         </div>
       </div>
@@ -129,29 +196,44 @@ verifyAdmin("2","product-list.php"); ?>
               <form>
                 <div class="modal-body">
                   <fieldset class="form-group floating-label-form-group">
-                    <label for="sname">Brand</label>
-                    <input type="text" class="form-control required" id="sname" placeholder="Brand">
+                    <label for="brand">Brand</label>
+                    <p class="text-muted">If the brand shows in the list, please select it.</p>
+                      <input type='text' id='brand' class='form-control required'>
                   </fieldset>
-                  <br>
                   <fieldset class="form-group floating-label-form-group">
-                    <label for="address">Product Name</label>
-                    <input type="text" class="form-control required" id="address" placeholder="Product Name">
+                    <label for="pname">Product Name</label>
+                    <p class="text-muted">If the product shows in the list, please select it.</p>
+                    <input type='text' id='pname' class='form-control required' placeholder="Product Name">
                   </fieldset>
-                  <br>
-                  <div class="row">
-                    <div class="form-group col-sm-5">
-                      <label for="city">City</label>
-                      <input type="text" class="form-control required" id="city" placeholder="City">
-                    </div>
-                    <div class="form-group col-sm-3">
-                      <label for="state">State</label>
-                      <input type="text" class="form-control required" id="state" placeholder="State">
-                    </div>
-                    <div class="form-group col-sm-4">
-                      <label for="state">Zip Code</label>
-                      <input type="text" class="form-control required" id="zipcode" placeholder="Zip Code">
-                    </div>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="upc">UPC</label>
+                    <p class="text-muted">The UPC can not already exist to be added.</p>
+                    <div class="input-group">
+                    <input type="text" class="form-control required" id="upc" placeholder="UPC">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#livestream_scanner">
+                        <i class="fa fa-barcode"></i>
+                      </button>
+                    </span>
                   </div>
+                  </fieldset>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="department">Department</label>
+                    <select id="department" class='form-control required'>
+                      <option value=''>Select Below</option>
+                      <option value="Produce">Produce</option>
+                    </select>
+                  </fieldset>
+                  <div class='row'><div class='col-md-6'><label for="netwtqty">Net Wt #</label> <input type='text' id="netwtqty" class='form-control required'></div>
+                  <div class='col-md-6'><label for="netwtmsmt">Net Wt Size</label> <select id="netwtmsmt" class='form-control required'>
+                  <option value=''>Select Below</option>
+                  <option value='floz'>Fl. Oz(s)</option>
+                  <option value='gram'>Gram(s)</option>
+                  <option value='oz'>Ounce(s)</option>
+                  <option value='lb'>Pound(s)</option>
+                  </select></div></div>
+                  <div class='row'><div class='col-md-6'><label for="price">Price</label> <input type='text' id="price" class='form-control required'></div>
+                  <div class='col-md-6'><label for="aisle">Aisle</label> <input type='text' id="aisle" class='form-control required'></div></div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-success btn-lg" id="but-addProduct">Add</button>
@@ -159,6 +241,27 @@ verifyAdmin("2","product-list.php"); ?>
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal" id="livestream_scanner">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Barcode Scanner</h4>
+              </div>
+              <div class="modal-body" style="position: static">
+                <div id="interactive" class="viewport"></div>
+                <div class="error"></div>
+              </div>
+              <div class="modal-footer">
+                <label class="btn btn-default pull-left">
+                  <i class="fa fa-camera"></i> Use camera app
+                  <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
+                </label>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>
@@ -207,24 +310,147 @@ verifyAdmin("2","product-list.php"); ?>
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
   <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
+  <script src="vendors/js/easyauto/jquery.easy-autocomplete.min.js"></script>
+  <script src="js/maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/quagga.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	// Create the QuaggaJS config object for the live stream
+	var liveStreamConfig = {
+			inputStream: {
+				type : "LiveStream",
+				constraints: {
+					width: {min: 640},
+					height: {min: 480},
+					aspectRatio: {min: 1, max: 100},
+					facingMode: "environment" // or "user" for the front camera
+				}
+			},
+			locator: {
+				patchSize: "medium",
+				halfSample: true
+			},
+			numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
+			decoder: {
+				"readers":[
+					{"format":"ean_reader","config":{}}
+				]
+			},
+			locate: true
+		};
+	// The fallback to the file API requires a different inputStream option.
+	// The rest is the same
+	var fileConfig = $.extend(
+			{},
+			liveStreamConfig,
+			{
+				inputStream: {
+					size: 800
+				}
+			}
+		);
+	// Start the live stream scanner when the modal opens
+	$('#livestream_scanner').on('shown.bs.modal', function (e) {
+		Quagga.init(
+			liveStreamConfig,
+			function(err) {
+				if (err) {
+					$('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
+					Quagga.stop();
+					return;
+				}
+				Quagga.start();
+			}
+		);
+    });
+
+	// Make sure, QuaggaJS draws frames an lines around possible
+	// barcodes on the live stream
+	Quagga.onProcessed(function(result) {
+		var drawingCtx = Quagga.canvas.ctx.overlay,
+			drawingCanvas = Quagga.canvas.dom.overlay;
+
+		if (result) {
+			if (result.boxes) {
+				drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+				result.boxes.filter(function (box) {
+					return box !== result.box;
+				}).forEach(function (box) {
+					Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+				});
+			}
+
+			if (result.box) {
+				Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+			}
+
+			if (result.codeResult && result.codeResult.code) {
+				Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+			}
+		}
+	});
+
+	// Once a barcode had been read successfully, stop quagga and
+	// close the modal after a second to let the user notice where
+	// the barcode had actually been found.
+	Quagga.onDetected(function(result) {
+		if (result.codeResult.code){
+      var theUPC = result.codeResult.code.substring(1, 13);
+			$('#upc').val(theUPC);
+			Quagga.stop();
+			setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
+		}
+	});
+
+	// Stop quagga in any case, when the modal is closed
+    $('#livestream_scanner').on('hide.bs.modal', function(){
+    	if (Quagga){
+    		Quagga.stop();
+    	}
+    });
+
+	// Call Quagga.decodeSingle() for every file selected in the
+	// file input
+	$("#livestream_scanner input:file").on("change", function(e) {
+		if (e.target.files && e.target.files.length) {
+			Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {alert(result.codeResult.code);});
+		}
+	});
+});
+</script>
   <script>
   //Populates table on main Product-list page from database
+  jQuery('.modal').on('show.bs.modal', function (e) {
+    jQuery('body').css('overflow-y', 'hidden');
+  });
+
+  jQuery('.close').on('click', function (e) {
+    jQuery('body').css('overflow-y', 'scroll');
+  });
+
+  $.fn.setCursorPosition = function(pos) {
+  this.each(function(index, elem) {
+    if (elem.setSelectionRange) {
+      elem.setSelectionRange(pos, pos);
+    } else if (elem.createTextRange) {
+      var range = elem.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', pos);
+      range.moveStart('character', pos);
+      range.select();
+    }
+  });
+  return this;
+};
+
   $('.multi-ordering').dataTable( {
     columnDefs: [ {
         targets: [ 0 ],
@@ -241,6 +467,73 @@ verifyAdmin("2","product-list.php"); ?>
     "ajax": "php/plist.php"
   } );
   //END
+
+  var x = 0;
+  var boptions = {
+    url: function(phrase) {
+      return "php/search-brand.php?phrase=" + phrase;
+    },
+    getValue: "name",
+    minLength: 3,
+    requestDelay: 400,
+    placeholder: "Start typing...",
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return "<div data-item-id='" + item.id + "' ><h6>" + value + "</h6></div>";
+      }
+    },
+    list: {
+      onClickEvent: function() {
+        var data = $("#brand").getSelectedItemData().id;
+        x = data;
+        if(data == 0) {
+          $("#brand").val("");
+          return;
+        }
+      },
+      onHideListEvent: function() {
+        if(x == 0) {
+          $("#brand").val("");
+        }
+      }
+    }
+  };
+
+  jQuery("#brand").easyAutocomplete(boptions);
+
+  $('#upc').mask('000000000000');
+  $('#price').mask('0,000.00', {reverse: true});
+
+$(document).off('click', '#upc').on('click', '#upc', function () {
+  var upc = $('#upc').val();
+  if(upc == "____________") {
+    $('#upc').setCursorPosition(0);
+  }
+});
+
+  $(document).off('blur', '#upc').on('blur', '#upc', function () {
+    var data = new FormData();
+    data.append('upc', $('#upc').val());
+    $.ajax({
+      type: "POST",
+      contentType: false,
+      processData: false,
+      cache: false,
+      url: 'php/search-upc.php',
+      data: data,
+    }).done(function(result) {
+      if(result == "servfailure") {
+        window.location.href = "https://admin.prodasher.com/error-500.php";
+      }
+      if(result == "upcExist") {
+        swal("Uh Oh!", "This UPC already exist. Please search and edit product.", "error");
+        $('#upc').val("");
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR, textStatus, errorThrown);
+    });
+  });
 
   //ALL SUB PAGES - Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
   $(document).off('focus', 'input').on('focus', 'input', function () {
@@ -458,7 +751,5 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
   <script src="js/add-product.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

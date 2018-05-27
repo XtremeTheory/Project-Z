@@ -2,7 +2,10 @@
 $eid = test_input($_POST['eid']);
 $uid = $_SESSION['uid'];
 
-$query = "UPDATE email_messages SET unread = '0' WHERE id = '$eid' AND uid = '$uid'";
+$query = "UPDATE email_messages SET active = '0' WHERE active = '1' AND uid = '$uid'";
+$result = $test_db->query($query);
+
+$query = "UPDATE email_messages SET unread = '0', active = '1' WHERE id = '$eid'";
 $result = $test_db->query($query);
 
 if(!$result) {
@@ -13,7 +16,7 @@ if(!$result) {
   exit();
 }
 
-$query = "SELECT * FROM email_messages WHERE id = '$eid' AND uid = '$uid'";
+$query = "SELECT * FROM email_messages WHERE id = '$eid'";
 $result = $test_db->query($query);
 
 if(!$result) {
@@ -35,8 +38,8 @@ $emailinfo = $result->fetch_assoc(); ?>
         data-placement="top" data-original-title="Reply All"><i class="la la-reply-all"></i></button>
         <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
         data-placement="top" data-original-title="Report SPAM"><i class="ft-alert-octagon"></i></button>
-        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
-        data-placement="top" data-original-title="Delete"><i class="ft-trash-2"></i></button>
+        <button type="button" id="<?php echo $emailinfo['id'];?>" class="btn btn-sm btn-outline-secondary deleteEmail"
+          data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="ft-trash-2"></i></button>
       </div>
     </div>
     <div class="col-md-6 col-12 text-right">
@@ -67,16 +70,16 @@ $emailinfo = $result->fetch_assoc(); ?>
     </div>
   </div>
 </div>
-
 <div class="email-app-title card-body">
   <h3 class="list-group-item-heading"><?php echo $emailinfo['eSubject'];?></h3>
-  <p class="list-group-item-text">
-    <div class="row">
-      <div class="col-md-6">
-    Sent on <?php echo $emailinfo['theDate'] . " " . $emailinfo['theTime']; ?><br>
-    From <?php echo $emailinfo['senderName'] . " - " . $emailinfo['fromEmail'];?>
-      </div>
-      <div class="col-md-6">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <p class="list-group-item-text">
+        Sent on <b><?php echo $emailinfo['theDate'] . " " . $emailinfo['theTime']; ?></b><br>
+        From <b><?php echo $emailinfo['senderName'] . " - " . $emailinfo['fromEmail'];?></b>
+      </p>
+    </div>
+    <div class="col-md-6 col-12">
     <span class="primary float-right">
       <?php if($emailinfo['label'] == '1') { ?>
         <span class="badge badge-warning mr-1 theBadge">Follow Up</span>
@@ -91,7 +94,8 @@ $emailinfo = $result->fetch_assoc(); ?>
       <?php } ?></span>
     </div>
   </div>
-  </p>
+  <?php if($emailinfo['status'] == 4) {?><b class="danger">***This email will be deleted soon unless moved out of Trash.***</b><?php } ?>
+</div>
 
 <div class="media-list">
     <div class="card-content">

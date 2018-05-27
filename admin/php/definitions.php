@@ -26,4 +26,5 @@ if (!defined('SITE_ROOT')) {
   $activity10 = "Login session expired, logged out of system.";
   $activity11 = "Deleted error from database.";
   $activity12 = "Security codes have been updated.";
+  $activity13 = "Deleted company email.";
 ?>

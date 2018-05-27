@@ -1,4 +1,17 @@
-<!-- fixed-top-->
+<?php
+$uid = $_SESSION['uid'];
+$query = "SELECT * FROM user_info WHERE id = '$uid'";
+$result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","navigation.php",$uid,$sqlError);
+  echo "servfailure";
+  mysqli_close($test_db);
+  exit();
+}
+
+$userinfo = $result->fetch_assoc(); ?>
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center" data-nav="brand-center">
   <div class="navbar-wrapper">
     <div class="navbar-header">
@@ -157,7 +170,7 @@
           <li class="dropdown dropdown-user nav-item">
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <span class="mr-1">Hello,
-                <span class="user-name text-bold-700">John Doe</span>
+                <span class="user-name text-bold-700"><?php echo $userinfo['fname'] . " " . $userinfo['lname']; ?></span>
               </span>
               <span class="avatar avatar-online">
                 <img src="app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
@@ -166,7 +179,7 @@
               <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
               <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
               <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="php/logout.php"><i class="ft-power"></i> Logout</a>
             </div>
           </li>
           <li class="dropdown dropdown-notification nav-item">

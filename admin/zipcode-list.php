@@ -11,26 +11,17 @@ verifyAdmin("2","zipcode-list.php"); ?>
   <title>Zip Code List - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar"
-data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <div class="app-content content">
@@ -41,15 +32,10 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active">Zip Code List</li>
               </ol>
             </div>
-          </div>
-        </div>
-        <div class="content-header-right text-md-right col-md-6 col-12">
-          <div class="btn-group">
-            <button class="btn btn-round btn-info" type="button"><i class="icon-cog3"></i> Settings</button>
           </div>
         </div>
       </div>
@@ -92,19 +78,11 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
   <script>
   $('.multi-ordering').dataTable( {
     columnDefs: [ {
@@ -122,6 +100,5 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
     "ajax": "php/zlist.php"
   } );
   </script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

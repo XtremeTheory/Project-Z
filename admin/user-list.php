@@ -1,7 +1,7 @@
 <?php
 captureIP('user-list.php');
 verifyAdmin("2","user-list.php");
-$cuid = $_SESSION['cuid'];?>
+$cuid = $_SESSION['uid'];?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -12,26 +12,19 @@ $cuid = $_SESSION['cuid'];?>
   <title>User List - Pro Dasher</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-  <link href="assets/css/google-font.css" rel="stylesheet">
-  <link href="assets/css/line-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
+  <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
   <script src="js/FontAwesome.js"></script>
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <style>
   table.dataTable {
@@ -73,7 +66,7 @@ $cuid = $_SESSION['cuid'];?>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a>
+                <li class="breadcrumb-item"><a href="/">Home</a>
                 </li>
                 <li class="breadcrumb-item active">User List
                 </li>
@@ -163,22 +156,14 @@ $cuid = $_SESSION['cuid'];?>
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
   <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
   <script>
   //Populates table on main user-list page from database
   $('.multi-ordering').dataTable( {
@@ -420,7 +405,6 @@ $(document).off('click', '.deleteUser').on('click', '.deleteUser', function () {
   <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

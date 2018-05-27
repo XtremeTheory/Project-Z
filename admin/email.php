@@ -50,6 +50,7 @@ verifyAdmin("2","email.php"); ?>
             </div>
             <h6 class="text-muted text-bold-500 mt-1 mb-1">Labels</h6>
             <div class="list-group list-group-messages">
+              <a href="#" class="list-group-item list-group-item-action border-0 eLists" id="cortonaButton"><i class="ft-circle mr-1 info"></i> Cortona<span class="badge corCount badge-info badge-pill float-right"><div class="corCount"></div></span></a>
               <a href="#" class="list-group-item list-group-item-action border-0 eLists" id="followButton"><i class="ft-circle mr-1 warning"></i> Follow Up<span class="badge folCount badge-warning badge-pill float-right"><div class="fuCount"></div></span></a>
               <a href="#" class="list-group-item list-group-item-action border-0 eLists" id="urgentButton"><i class="ft-circle mr-1 danger"></i> Urgent<span class="badge urgCount badge-danger badge-pill float-right"><div class="urgentCount"></div></span> </a>
             </div>
@@ -88,60 +89,137 @@ verifyAdmin("2","email.php"); ?>
       </div>
     </div>
   </div>
+  <input type="hidden" class="eid">
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <script>
-  if($('#users-list').length > 0){
-      $('#users-list').perfectScrollbar({
-          theme:"dark"
+  var curWindow = "inbox";
+  function updateNums() {
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/email-counts.php?task=getAll',
+      }).done(function(result) {
+        if(result == "servfailure") {
+          window.location.href = "https://admin.prodasher.com/error-500.php";
+        }
+        var obj = jQuery.parseJSON(result);
+        var unreadCount = obj.unreadCount;
+        $('.unreadCount').text(unreadCount);
+        var starCount = obj.starCount;
+        $('.starCount').text(starCount);
+        var corCount = obj.corCount;
+        $('.corCount').text(corCount);
+        var fuCount = obj.fuCount;
+        $('.fuCount').text(fuCount);
+        var urgentCount = obj.urgentCount;
+        $('.urgentCount').text(urgentCount);
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR, textStatus, errorThrown);
       });
-  }
-  
-  $('.emailBody').html("");
+    }
 
-    $.ajax({
-      type: "POST",
-      contentType: false,
-      processData: false,
-      cache: false,
-      url: 'php/email-counts.php?task=getAll',
-    }).done(function(result) {
-      if(result == "servfailure") {
-        window.location.href = "https://admin.prodasher.com/error-500.php";
-      }
-      var obj = jQuery.parseJSON(result);
-      var unreadCount = obj.unreadCount;
-      $('.unreadCount').text(unreadCount);
-      var starCount = obj.starCount;
-      $('.starCount').text(starCount);
-      var fuCount = obj.fuCount;
-      $('.fuCount').text(fuCount);
-      var urgentCount = obj.urgentCount;
-      $('.urgentCount').text(urgentCount);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR, textStatus, errorThrown);
-    });
+    function updateLists(list) {
+      var data = new FormData();
+      data.append('task', list);
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/list-emails.php',
+        data: data,
+      }).done(function(result) {
+        if(result == "servfailure") {
+          window.location.href = "https://admin.prodasher.com/error-500.php";
+        }
 
+        $('.emailList').html(result);
+      }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR, textStatus, errorThrown);
+      });
+    }
 
-    var data = new FormData();
-    data.append('task', 'inbox');
-    $.ajax({
-      type: "POST",
-      contentType: false,
-      processData: false,
-      cache: false,
-      url: 'php/list-emails.php',
-      data: data,
-    }).done(function(result) {
-      if(result == "servfailure") {
-        window.location.href = "https://admin.prodasher.com/error-500.php";
-      }
+    updateNums();
+    updateLists("inbox");
 
-      $('.emailList').html(result);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR, textStatus, errorThrown);
+    if(curWindow == "inbox") {
+      setInterval(function() {updateLists(curWindow);}, 2500);
+    }
+
+    if($('#users-list').length > 0){
+      $('#users-list').perfectScrollbar({
+        theme:"dark"
+      });
+    }
+
+    $('.emailBody').html("");
+
+    $(document).off('click', '.deleteEmail').on('click', '.deleteEmail', function () {
+      $('.eid').val($(this).attr('id'));
+      var changeLogged = 0;
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, it will be moved to the trash can!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          var data = new FormData();
+          data.append('changeID', "13");
+          data.append('pagename', "email.php");
+          $.ajax({
+            type: "POST",
+            contentType: false,
+            processData: false,
+            cache: false,
+            url: 'php/log-change.php',
+            data: data,
+            success: function(data) {
+              if(data == "servfailure") {
+                window.location.href = "https://admin.prodasher.com/error-500.php";
+              }
+              if(data == "complete") {
+                changeLogged = 1;
+              }
+            }
+          }).done(continueDelete);
+
+          function continueDelete() {
+          if(changeLogged == 1) {
+            var data = new FormData();
+            data.append('eid', $('.eid').val());
+            $.ajax({
+              type: "POST",
+              contentType: false,
+              processData: false,
+              cache: false,
+              url: 'php/delete-email.php',
+              data: data,
+              success: function(data) {
+                if(data == "servfailure") {
+                  window.location.href = "https://admin.prodasher.com/error-500.php";
+                }
+                if(data == "complete") {
+                  updateLists(curWindow);
+                  swal("Whoosh! The email was thrown in the trash!", {
+                    icon: "success",
+                  });
+                }
+              }
+            });
+          }
+        }
+        } else {
+          swal("The email stayed where it is!");
+        }
+      });
     });
 
     $(document).off('click', '.emailButton').on('click', '.emailButton', function () {
@@ -165,6 +243,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
 
+        updateNums();
         $('.emailBody').html(result);
       }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR, textStatus, errorThrown);
@@ -187,6 +266,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(result == "complete") {
+          updateNums();
           $(".markUnread").remove();
           $(".checkIcon").remove();
           $(".checkMark").addClass('text-bold-600');
@@ -212,6 +292,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(result == "complete") {
+          updateNums();
           $(".markFollow").remove();
           $(".theBadge").removeClass('badge-danger');
           $(".theBadge").removeClass('badge-info');
@@ -240,6 +321,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(result == "complete") {
+          updateNums();
           $(".markUrgent").remove();
           $(".theBadge").removeClass('badge-warning');
           $(".theBadge").removeClass('badge-info');
@@ -268,6 +350,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(result == "complete") {
+          updateNums();
           $(".starred").removeClass('blue-grey lighten-3');
           $(".starred").addClass('warning');
           $(".addStar").addClass('removeStar');
@@ -296,6 +379,7 @@ verifyAdmin("2","email.php"); ?>
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
         if(result == "complete") {
+          updateNums();
           $(".starred").removeClass('warning');
           $(".starred").addClass('blue-grey lighten-3');
           $(".removeStar").addClass('addStar');
@@ -309,177 +393,76 @@ verifyAdmin("2","email.php"); ?>
     });
 
     $(document).off('click', '#inboxButton').on('click', '#inboxButton', function () {
-      var data = new FormData();
-      data.append('task', 'inbox');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#inboxButton').addClass('active');
-        $('#inboxButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "inbox";
+      updateLists("inbox");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#inboxButton').addClass('active');
+      $('#inboxButton').removeClass('list-group-item-action');
+      $('.emailList').html(result);
     });
 
     $(document).off('click', '#sentButton').on('click', '#sentButton', function () {
-      var data = new FormData();
-      data.append('task', 'sent');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#sentButton').addClass('active');
-        $('#sentButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "sent";
+      updateLists("sent");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#sentButton').addClass('active');
+      $('#sentButton').removeClass('list-group-item-action');
     });
 
     $(document).off('click', '#draftButton').on('click', '#draftButton', function () {
-      var data = new FormData();
-      data.append('task', 'draft');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#draftButton').addClass('active');
-        $('#draftButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "draft";
+      updateLists("draft");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#draftButton').addClass('active');
+      $('#draftButton').removeClass('list-group-item-action');
     });
 
     $(document).off('click', '#starButton').on('click', '#starButton', function () {
-      var data = new FormData();
-      data.append('task', 'star');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#starButton').addClass('active');
-        $('#starButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "star";
+      updateLists("star");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#starButton').addClass('active');
+      $('#starButton').removeClass('list-group-item-action');
     });
 
     $(document).off('click', '#trashButton').on('click', '#trashButton', function () {
-      var data = new FormData();
-      data.append('task', 'trash');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#trashButton').addClass('active');
-        $('#trashButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "trash";
+      updateLists("trash");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#trashButton').addClass('active');
+      $('#trashButton').removeClass('list-group-item-action');
     });
 
     $(document).off('click', '#followButton').on('click', '#followButton', function () {
-      var data = new FormData();
-      data.append('task', 'follow');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
-
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#followButton').addClass('active');
-        $('#followButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+      curWindow = "follow";
+      updateLists("follow");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#followButton').addClass('active');
+      $('#followButton').removeClass('list-group-item-action');
     });
 
     $(document).off('click', '#urgentButton').on('click', '#urgentButton', function () {
-      var data = new FormData();
-      data.append('task', 'urgent');
-      $.ajax({
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        url: 'php/list-emails.php',
-        data: data,
-      }).done(function(result) {
-        if(result == "servfailure") {
-          window.location.href = "https://admin.prodasher.com/error-500.php";
-        }
+      curWindow = "urgent";
+      updateLists("urgent");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#urgentButton').addClass('active');
+      $('#urgentButton').removeClass('list-group-item-action');
+    });
 
-        $('.active').addClass('list-group-item-action');
-        $('.active').removeClass('active');
-        $('#urgentButton').addClass('active');
-        $('#urgentButton').removeClass('list-group-item-action');
-        $('.emailList').html(result);
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR, textStatus, errorThrown);
-      });
+    $(document).off('click', '#cortonaButton').on('click', '#cortonaButton', function () {
+      curWindow = "cortona";
+      updateLists("cortona");
+      $('.active').addClass('list-group-item-action');
+      $('.active').removeClass('active');
+      $('#cortonaButton').addClass('active');
+      $('#cortonaButton').removeClass('list-group-item-action');
     });
   </script>
 </body>

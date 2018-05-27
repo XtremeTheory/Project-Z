@@ -27,6 +27,11 @@ if($task == "trash") {
   $result = $test_db->query($query);
 }
 
+if($task == "cortona") {
+  $query = "SELECT * FROM email_messages WHERE uid = '0' AND label = '3'";
+  $result = $test_db->query($query);
+}
+
 if($task == "follow") {
   $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND label = '1'";
   $result = $test_db->query($query);
@@ -86,7 +91,7 @@ while($row = mysqli_fetch_assoc($result)) {
   } else {
     $partMess = $eMessage;
   } ?>
-  <a href="#" class="media border-0 emailButton" id="<?php echo $row['id']; ?>">
+  <a href="#" class="media border-0 emailButton<?php if($row['active'] == "1") {?> bg-blue-grey bg-lighten-5 border-right-primary border-right-2<?php } ?>" id="<?php echo $row['id']; ?>">
     <div class="media-left pr-1">
       <span class="avatar avatar-md">
         <span class="media-object rounded-circle text-circle bg-info"><?php echo $firstInt; ?></span>
@@ -113,6 +118,9 @@ while($row = mysqli_fetch_assoc($result)) {
           <?php }
           if($row['label'] == '2') { ?>
             <span class="badge badge-danger mr-1 theBadge">Urgent</span>
+          <?php }
+          if($row['label'] == '3') { ?>
+            <span class="badge badge-info mr-1 theBadge">Cortona</span>
           <?php }
           if($row['starred'] == '1') { ?>
             <i class="font-medium-1 ft-star warning starred"></i>

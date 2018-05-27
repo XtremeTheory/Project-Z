@@ -319,7 +319,6 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
   <script src="js/add-error.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
 </body>
 </html>

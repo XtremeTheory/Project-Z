@@ -89,6 +89,23 @@ if(!$result) {
   mysqli_close($test_db);
   exit();
 }
+$eSubject = "New Admin Registered";
+$eMessage = "A new admin user has been created.  Please create their system email and configure to their account.  Below are the details:<br><br>";
+$eMessage .= "<b>UID:</b> " . $new_id . "<br>";
+$eMessage .= "<b>Name:</b> " . $fname . " " . $lname;
+$theDate = date("m/d/Y");
+$theTime = date("h:i:s A");
+$query = "INSERT INTO email_messages (uid, status, eSubject, senderName, fromEmail, eMessage, unread, starred, label, theDate, theTime, active)
+VALUES('0', '1', '$eSubject', 'Cortana', 'no-reply@prodasher.com', '$eMessage', '1', '0', '3', '$theDate', '$theTime', '0')";
+$result = $test_db->query($query);
+
+if(!$result) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","register-submit.php","0",$sqlError);
+  echo "servfailure";
+  mysqli_close($test_db);
+  exit();
+}
 
 $_SESSION['newAccount'] = TRUE;
 echo "complete"; ?>
