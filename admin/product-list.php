@@ -195,27 +195,40 @@ verifyAdmin("2","product-list.php"); ?>
               </div>
               <form>
                 <div class="modal-body">
-                  <fieldset class="form-group floating-label-form-group">
-                    <label for="brand">Brand</label>
-                    <p class="text-muted">If the brand shows in the list, please select it.</p>
-                      <input type='text' id='brand' class='form-control required'>
-                  </fieldset>
-                  <fieldset class="form-group floating-label-form-group">
-                    <label for="pname">Product Name</label>
-                    <p class="text-muted">If the product shows in the list, please select it.</p>
-                    <input type='text' id='pname' class='form-control required' placeholder="Product Name">
-                  </fieldset>
+                  <div class="step1" style="display:none;">
                   <fieldset class="form-group floating-label-form-group">
                     <label for="upc">UPC</label>
                     <p class="text-muted">The UPC can not already exist to be added.</p>
                     <div class="input-group">
                     <input type="text" class="form-control required" id="upc" placeholder="UPC">
+                    <input type="hidden" id="productID">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#livestream_scanner">
+                      <button class="btn btn-default" id="barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
                         <i class="fa fa-barcode"></i>
                       </button>
                     </span>
                   </div>
+                  </fieldset>
+                </div>
+                <div class="step2" style="display:none;">
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="store">Store</label>
+                    <p class="text-muted">If the store shows in the list, please select it.</p>
+                      <input type='text' id='store' class='form-control required'>
+                      <input type="hidden" id="storeID">
+                  </fieldset>
+                </div>
+                <div class="step3" style="display:none;">
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="brand">Brand</label>
+                    <p class="text-muted">If the brand shows in the list, please select it.</p>
+                      <input type='text' id='brand' class='form-control required'>
+                      <input type="hidden" id="barID">
+                  </fieldset>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="pname">Product Name</label>
+                    <p class="text-muted">If the product shows in the list, please select it.</p>
+                    <input type='text' id='pname' class='form-control required' placeholder="Product Name">
                   </fieldset>
                   <fieldset class="form-group floating-label-form-group">
                     <label for="department">Department</label>
@@ -224,19 +237,33 @@ verifyAdmin("2","product-list.php"); ?>
                       <option value="Produce">Produce</option>
                     </select>
                   </fieldset>
-                  <div class='row'><div class='col-md-6'><label for="netwtqty">Net Wt #</label> <input type='text' id="netwtqty" class='form-control required'></div>
-                  <div class='col-md-6'><label for="netwtmsmt">Net Wt Size</label> <select id="netwtmsmt" class='form-control required'>
+                  <div class='row'><div class='col-md-6'>
+                    <label for="netwtqty">Net Wt #</label>
+                    <input type='text' id="netwtqty" class='form-control required'>
+                  </div>
+                  <div class='col-md-6'>
+                    <label for="netwtmsmt">Net Wt Size</label>
+                    <select id="netwtmsmt" class='form-control required'>
                   <option value=''>Select Below</option>
                   <option value='floz'>Fl. Oz(s)</option>
                   <option value='gram'>Gram(s)</option>
                   <option value='oz'>Ounce(s)</option>
                   <option value='lb'>Pound(s)</option>
                   </select></div></div>
-                  <div class='row'><div class='col-md-6'><label for="price">Price</label> <input type='text' id="price" class='form-control required'></div>
-                  <div class='col-md-6'><label for="aisle">Aisle</label> <input type='text' id="aisle" class='form-control required'></div></div>
+                  <div class='row'><div class='col-md-6'>
+                    <label for="price">Price</label>
+                    <input type='text' id="price" class='form-control required'>
+                  </div>
+                  <div class='col-md-6'>
+                    <label for="aisle">Aisle</label>
+                    <input type='text' id="aisle" class='form-control required'>
+                  </div></div>
                 </div>
+              </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success btn-lg" id="but-addProduct">Add</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-checkUPC">Check UPC</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-checkStore">Check Store</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-addProduct">Add</button>
                   <button type="button" id="but-loading" style="display:none;" class="btn btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
@@ -491,6 +518,7 @@ $(function() {
           $("#brand").val("");
           return;
         }
+        $('#barID').val(x);
       },
       onHideListEvent: function() {
         if(x == 0) {
@@ -502,6 +530,42 @@ $(function() {
 
   jQuery("#brand").easyAutocomplete(boptions);
 
+  var y = 0;
+  var soptions = {
+    url: function(phrase) {
+      return "php/search-store.php?phrase=" + phrase;
+    },
+    getValue: "name",
+    minLength: 3,
+    requestDelay: 400,
+    placeholder: "Start typing...",
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return "<div data-item-id='" + item.id + "' ><h6>" + item.name
+        + " - " + item.address + "</h6></div>";
+      }
+    },
+    list: {
+      onClickEvent: function() {
+        var data = $("#store").getSelectedItemData().id;
+        y = data;
+        if(data == 0) {
+          $("#store").val("");
+          return;
+        }
+        $('#storeID').val(y);
+      },
+      onHideListEvent: function() {
+        if(y == 0) {
+          $("#store").val("");
+        }
+      }
+    }
+  };
+
+  jQuery("#store").easyAutocomplete(soptions);
+
   $('#upc').mask('000000000000');
   $('#price').mask('0,000.00', {reverse: true});
 
@@ -512,7 +576,15 @@ $(document).off('click', '#upc').on('click', '#upc', function () {
   }
 });
 
-  $(document).off('blur', '#upc').on('blur', '#upc', function () {
+$('#addProduct').on('shown.bs.modal', function (e) {
+  $('#but-addProduct').hide();
+  $(".step1").show();
+  $(".step2").hide();
+  $(".step3").hide();
+  $('#but-checkUPC').show();
+});
+
+  $(document).off('click', '#but-checkUPC').on('click', '#but-checkUPC', function () {
     var data = new FormData();
     data.append('upc', $('#upc').val());
     $.ajax({
@@ -523,12 +595,50 @@ $(document).off('click', '#upc').on('click', '#upc', function () {
       url: 'php/search-upc.php',
       data: data,
     }).done(function(result) {
-      if(result == "servfailure") {
+      var obj = jQuery.parseJSON(result);
+      var nextStep = obj.nextStep;
+      if(nextStep == "servfailure") {
         window.location.href = "https://admin.prodasher.com/error-500.php";
       }
-      if(result == "upcExist") {
-        swal("Uh Oh!", "This UPC already exist. Please search and edit product.", "error");
-        $('#upc').val("");
+      if(nextStep == "upcExist") {
+        swal("Heads Up!", "This UPC exists, lets check the store's inventory...", "info");
+        $('#productID').val(obj.pid);
+        $('.step2').show();
+        $('#upc').attr('disabled','disabled');
+        $('#barcode').attr('disabled','disabled');
+        $('#but-checkUPC').hide();
+        $('#but-checkStore').show();
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR, textStatus, errorThrown);
+    });
+  });
+
+  $(document).off('click', '#but-checkStore').on('click', '#but-checkStore', function () {
+    var data = new FormData();
+    data.append('storeID', $('#storeID').val());
+    data.append('productID', $('#productID').val());
+    $.ajax({
+      type: "POST",
+      contentType: false,
+      processData: false,
+      cache: false,
+      url: 'php/search-storeinv.php',
+      data: data,
+    }).done(function(result) {
+      var obj = jQuery.parseJSON(result);
+      var nextStep = obj.nextStep;
+      if(nextStep == "servfailure") {
+        window.location.href = "https://admin.prodasher.com/error-500.php";
+      }
+      if(nextStep == "itemExist") {
+        swal("Uh Oh!", "This product is already in the store's inventory. Please search and edit.", "warning");
+        $('.step2').hide();
+        $('.step1').show();
+        $('#but-checkUPC').show();
+        $("#upc").removeAttr('disabled');
+        $("#barcode").removeAttr('disabled');
+        $('#but-checkStore').hide();
       }
     }).fail(function(jqXHR, textStatus, errorThrown) {
       console.log(jqXHR, textStatus, errorThrown);

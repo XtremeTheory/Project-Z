@@ -9,7 +9,7 @@ $(function() {
 document.getElementById("but-loading").style.display = "none";
 document.getElementById("but-addProduct").style.display = "block";
 
-$('input[type="text"]').on('focus', function() {
+$('input[type="text"], #department, #netwtmsmt').on('focus', function() {
   $(this).removeClass('is-invalid');
 });
 
@@ -40,12 +40,21 @@ $(document).off('click', '#but-addProduct').on('click', '#but-addProduct', funct
   if(isFormValid) {
     var pname = $('#pname').val();
     var upc = $('#upc').val();
+    var barID = $('#barID').val();
+    var storeID = $('#storeID').val();
+    var department = $('#department').val();
+    var netwtqty = $('#netwtqty').val();
+    var netwtmsmt = $('#netwtmsmt').val();
+    var price = $('#price').val();
+    var aisle = $('#aisle').val();
     $.ajax({
       type: "POST",
       cache: false,
       url: 'php/add-product.php',
-      data: {sname: sname, address: address},
+      data: {pname: pname, upc: upc, barID: barID, storeID: storeID, department: department, netwtqty: netwtqty,
+      netwtmsmt: netwtmsmt, price: price, aisle: aisle},
       success: function(data) {
+        console.log(data);
         if(data == "servfailure") {
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
