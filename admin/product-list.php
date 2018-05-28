@@ -111,7 +111,7 @@ verifyAdmin("2","product-list.php"); ?>
   width: 1px;
 }
 
-.modal{
+.modal {
   overflow-y: auto !important;
 }
 
@@ -124,7 +124,6 @@ verifyAdmin("2","product-list.php"); ?>
 <body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
-  <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
   <input type="hidden" value="0" class="get-pid">
   <div class="app-content content">
     <div class="content-wrapper">
@@ -149,11 +148,84 @@ verifyAdmin("2","product-list.php"); ?>
         </div>
       </div>
       <div class="content-body">
-        <section id="multi-column">
+        <section id="product-approval">
           <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
+                  <h4 class="card-title">Products - Need Approved</h4>
+                  <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                      <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                      <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                      <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body card-dashboard">
+                    <p class="card-text">Products here need to be approved before going live.</p>
+                      <table class='table table-striped table-bordered product-approval'>
+                        <thead>
+                          <tr>
+                          <th>Brand</th>
+                          <th>Product Name</th>
+                          <th>UPC</th>
+                          <th>Department</th>
+                          <th>Actions</th>
+                          </tr>
+                        </thead>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="inventory-approval">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Store Inventory - Needs Approved</h4>
+                  <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                      <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                      <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                      <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body card-dashboard">
+                    <p class="card-text">Products here need approved before going live.</p>
+                      <table class='table table-striped table-bordered inventory-approval'>
+                        <thead>
+                          <tr>
+                          <th>Product</th>
+                          <th>Store</th>
+                          <th>User</th>
+                          <th>Date Added</th>
+                          <th>Actions</th>
+                          </tr>
+                        </thead>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="master-plist">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Master Product List</h4>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -167,7 +239,7 @@ verifyAdmin("2","product-list.php"); ?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Every product is listed here.</p>
-                      <table class='table table-striped table-bordered multi-ordering'>
+                      <table class='table table-striped table-bordered master-plist'>
                         <thead>
                           <tr>
                           <th>Brand</th>
@@ -175,6 +247,42 @@ verifyAdmin("2","product-list.php"); ?>
                           <th>UPC</th>
                           <th>Department</th>
                           <th>Actions</th>
+                          </tr>
+                        </thead>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="master-ilist">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Master Inventory List</h4>
+                  <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                      <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                      <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                      <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body card-dashboard">
+                    <p class="card-text">Every product is listed here.</p>
+                      <table class='table table-striped table-bordered master-ilist'>
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Store</th>
+                            <th>User</th>
+                            <th>Date Added</th>
+                            <th>Actions</th>
                           </tr>
                         </thead>
                       </table>
@@ -195,10 +303,35 @@ verifyAdmin("2","product-list.php"); ?>
               </div>
               <form>
                 <div class="modal-body">
+                  <div class="step1" style="display:none;">
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="upc">UPC</label>
+                    <p class="text-muted">The UPC can not already exist to be added.</p>
+                    <div class="input-group">
+                    <input type="text" class="form-control required" id="upc" placeholder="UPC">
+                    <input type="hidden" id="productID">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" id="barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
+                        <i class="fa fa-barcode"></i>
+                      </button>
+                    </span>
+                  </div>
+                  </fieldset>
+                </div>
+                <div class="step2" style="display:none;">
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="store">Store</label>
+                    <p class="text-muted">If the store shows in the list, please select it.</p>
+                      <input type='text' id='store' class='form-control required1 required2'>
+                      <input type="hidden" id="storeID">
+                  </fieldset>
+                </div>
+                <div class="step3" style="display:none;">
                   <fieldset class="form-group floating-label-form-group">
                     <label for="brand">Brand</label>
                     <p class="text-muted">If the brand shows in the list, please select it.</p>
                       <input type='text' id='brand' class='form-control required'>
+                      <input type="hidden" id="brandID">
                   </fieldset>
                   <fieldset class="form-group floating-label-form-group">
                     <label for="pname">Product Name</label>
@@ -206,37 +339,53 @@ verifyAdmin("2","product-list.php"); ?>
                     <input type='text' id='pname' class='form-control required' placeholder="Product Name">
                   </fieldset>
                   <fieldset class="form-group floating-label-form-group">
-                    <label for="upc">UPC</label>
-                    <p class="text-muted">The UPC can not already exist to be added.</p>
-                    <div class="input-group">
-                    <input type="text" class="form-control required" id="upc" placeholder="UPC">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#livestream_scanner">
-                        <i class="fa fa-barcode"></i>
-                      </button>
-                    </span>
-                  </div>
-                  </fieldset>
-                  <fieldset class="form-group floating-label-form-group">
                     <label for="department">Department</label>
                     <select id="department" class='form-control required'>
                       <option value=''>Select Below</option>
+                      <option value="Baby-Food">Baby - Food</option>
+                      <option value="Dairy">Dairy</option>
+                      <option value="Frozen-Meat">Frozen - Beef</option>
+                      <option value="Frozen-Seafood">Frozen - Seafood</option>
+                      <option value="Meat">Meat - Beef</option>
+                      <option value="Meat">Meat - Seafood</option>
                       <option value="Produce">Produce</option>
                     </select>
                   </fieldset>
-                  <div class='row'><div class='col-md-6'><label for="netwtqty">Net Wt #</label> <input type='text' id="netwtqty" class='form-control required'></div>
-                  <div class='col-md-6'><label for="netwtmsmt">Net Wt Size</label> <select id="netwtmsmt" class='form-control required'>
+                  <div class='row'><div class='col-md-6'>
+                    <label for="netwtqty">Net Wt #</label>
+                    <input type='text' id="netwtqty" class='form-control required'>
+                  </div>
+                  <div class='col-md-6'>
+                    <label for="netwtmsmt">Net Wt Size</label>
+                    <select id="netwtmsmt" class='form-control required'>
                   <option value=''>Select Below</option>
                   <option value='floz'>Fl. Oz(s)</option>
                   <option value='gram'>Gram(s)</option>
                   <option value='oz'>Ounce(s)</option>
                   <option value='lb'>Pound(s)</option>
                   </select></div></div>
-                  <div class='row'><div class='col-md-6'><label for="price">Price</label> <input type='text' id="price" class='form-control required'></div>
-                  <div class='col-md-6'><label for="aisle">Aisle</label> <input type='text' id="aisle" class='form-control required'></div></div>
                 </div>
+                <div class="step4" style="display:none;">
+                  <div class='row'><div class='col-md-6'>
+                    <label for="price">Price</label>
+                    <input type='text' id="price" class='form-control required2'>
+                  </div>
+                  <div class='col-md-6'>
+                    <label for="aisle">Aisle</label>
+                    <input type='text' id="aisle" class='form-control required2'>
+                  </div></div><br>
+                  <fieldset class="form-group floating-label-form-group">
+                    <label for="notes">Notes</label>
+                    <p class="text-muted">Any special notes about the location?</p>
+                    <textarea id='notes' class='form-control required2' placeholder="Special Notes"></textarea>
+                  </fieldset>
+                </div>
+              </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success btn-lg" id="but-addProduct">Add</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-checkUPC">Check UPC</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-checkStore">Check Store</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-addProduct">Add Product</button>
+                  <button type="button" class="btn btn-success btn-lg" style="display:none;" id="but-addInventory">Add Inventory</button>
                   <button type="button" id="but-loading" style="display:none;" class="btn btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
@@ -451,7 +600,7 @@ $(function() {
   return this;
 };
 
-  $('.multi-ordering').dataTable( {
+  $('.master-plist').dataTable( {
     columnDefs: [ {
         targets: [ 0 ],
         orderData: [ 0, 1 ]
@@ -464,7 +613,55 @@ $(function() {
     } ],
     "processing": true,
     "serverSide": true,
-    "ajax": "php/plist.php"
+    "ajax": "php/masterplist.php"
+  } );
+
+  $('.master-ilist').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/masterilist.php"
+  } );
+
+  $('.inventory-approval').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/invapplist.php"
+  } );
+
+  $('.product-approval').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/proapplist.php"
   } );
   //END
 
@@ -491,6 +688,7 @@ $(function() {
           $("#brand").val("");
           return;
         }
+        $('#brandID').val(x);
       },
       onHideListEvent: function() {
         if(x == 0) {
@@ -502,6 +700,42 @@ $(function() {
 
   jQuery("#brand").easyAutocomplete(boptions);
 
+  var y = 0;
+  var soptions = {
+    url: function(phrase) {
+      return "php/search-store.php?phrase=" + phrase;
+    },
+    getValue: "name",
+    minLength: 3,
+    requestDelay: 400,
+    placeholder: "Start typing...",
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return "<div data-item-id='" + item.id + "' ><h6>" + item.name
+        + " - " + item.address + "</h6></div>";
+      }
+    },
+    list: {
+      onClickEvent: function() {
+        var data = $("#store").getSelectedItemData().id;
+        y = data;
+        if(data == 0) {
+          $("#store").val("");
+          return;
+        }
+        $('#storeID').val(y);
+      },
+      onHideListEvent: function() {
+        if(y == 0) {
+          $("#store").val("");
+        }
+      }
+    }
+  };
+
+  jQuery("#store").easyAutocomplete(soptions);
+
   $('#upc').mask('000000000000');
   $('#price').mask('0,000.00', {reverse: true});
 
@@ -512,7 +746,17 @@ $(document).off('click', '#upc').on('click', '#upc', function () {
   }
 });
 
-  $(document).off('blur', '#upc').on('blur', '#upc', function () {
+$('#addProduct').on('shown.bs.modal', function (e) {
+  $('#but-addProduct').hide();
+  $('#but-checkStore').hide();
+  $(".step1").show();
+  $(".step2").hide();
+  $(".step3").hide();
+  $(".step4").hide();
+  $('#but-checkUPC').show();
+});
+
+  $(document).off('click', '#but-checkUPC').on('click', '#but-checkUPC', function () {
     var data = new FormData();
     data.append('upc', $('#upc').val());
     $.ajax({
@@ -523,12 +767,68 @@ $(document).off('click', '#upc').on('click', '#upc', function () {
       url: 'php/search-upc.php',
       data: data,
     }).done(function(result) {
-      if(result == "servfailure") {
+      var obj = jQuery.parseJSON(result);
+      var nextStep = obj.nextStep;
+      if(nextStep == "servfailure") {
         window.location.href = "https://admin.prodasher.com/error-500.php";
       }
-      if(result == "upcExist") {
-        swal("Uh Oh!", "This UPC already exist. Please search and edit product.", "error");
-        $('#upc').val("");
+      if(nextStep == "upcExist") {
+        swal("Heads Up!", "This UPC exists, lets check the store's inventory...", "info");
+        $('#productID').val(obj.pid);
+        $('.step2').show();
+        $('#upc').attr('disabled','disabled');
+        $('#barcode').attr('disabled','disabled');
+        $('#but-checkUPC').hide();
+        $('#but-checkStore').show();
+      }
+      if(nextStep == "noExist") {
+        swal("Heads Up!", "This UPC does not exist.  Please add product.", "info");
+        $('#productID').val(obj.pid);
+        $('.step3').show();
+        $('#upc').attr('disabled','disabled');
+        $('#barcode').attr('disabled','disabled');
+        $('#but-checkUPC').hide();
+        $('#but-addProduct').show();
+      }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR, textStatus, errorThrown);
+    });
+  });
+
+  $(document).off('click', '#but-checkStore').on('click', '#but-checkStore', function () {
+    var data = new FormData();
+    data.append('storeID', $('#storeID').val());
+    data.append('productID', $('#productID').val());
+    $.ajax({
+      type: "POST",
+      contentType: false,
+      processData: false,
+      cache: false,
+      url: 'php/search-storeinv.php',
+      data: data,
+    }).done(function(result) {
+      var obj = jQuery.parseJSON(result);
+      var nextStep = obj.nextStep;
+      if(nextStep == "servfailure") {
+        window.location.href = "https://admin.prodasher.com/error-500.php";
+      }
+      if(nextStep == "itemExist") {
+        swal("Uh Oh!", "This product is already in the store's inventory. Please search and edit.", "warning");
+        $('.step2').hide();
+        $('.step1').show();
+        $('#but-checkUPC').show();
+        $("#upc").removeAttr('disabled');
+        $("#barcode").removeAttr('disabled');
+        $('#but-checkStore').hide();
+      }
+      if(nextStep == "noExist") {
+        swal("Heads Up!", "This product is not in the store's inventory.  Please add product.", "info");
+        $('#productID').val(obj.pid);
+        $('#storeID').val(obj.sid);
+        $('.step4').show();
+        $('#store').attr('disabled','disabled');
+        $('#but-checkStore').hide();
+        $('#but-addInventory').show();
       }
     }).fail(function(jqXHR, textStatus, errorThrown) {
       console.log(jqXHR, textStatus, errorThrown);
@@ -559,111 +859,6 @@ $(document).off('click', '#upc').on('click', '#upc', function () {
   });
   //END
 
-//EDIT Product SUB PAGE - Edit confirmation button clicked, error checks are processed and data entered into database if successful.  Changes are logged in Change Log.
-$(document).off('click', '#but-editProduct').on('click', '#but-editProduct', function () {
-  var isFormValid = 1;
-  var changeLogged = 0;
-  //Checks each field is not empty.
-  $(".editProduct").each(function() {
-    if ($.trim($(this).val()).length == 0) {
-      $(this).addClass("is-invalid");
-      isFormValid = 0;
-      swal("Uh Oh!", "Looks like some things are missing...", "error");
-    } else {
-      $(this).removeClass("is-invalid");
-    }
-  });
-
-  //Form is valid, continue progress.
-  if(isFormValid == 1) {
-    //Confirms with Product that they want to make the changes.
-    swal({
-      title: "Are you sure?",
-      text: "Please make sure all information is correct before proceeding.",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        //Logging change in Change Log
-        var data = new FormData();
-        data.append('uid', $('.get-uid').val());
-        data.append('changeID', "2");
-        data.append('pid', $('.get-pid').val());
-        $.ajax({
-          type: "POST",
-          contentType: false,
-          processData: false,
-          cache: false,
-          url: 'php/log-change.php',
-          data: data,
-          success: function(data) {
-            if(data == "servfailure") {
-              window.location.href = "https://admin.prodasher.com/error-500.php";
-            }
-            if(data == "complete") {
-              changeLogged = 1;
-            }
-          }
-        }).done(continueEdit);
-
-        function continueEdit() {
-        if(changeLogged == 1) {
-          var data = new FormData();
-          data.append('uid', $('.get-uid').val());
-          data.append('pid', $('.get-pid').val());
-          data.append('pname', $('.editProduct#pname').val());
-          data.append('approval', $('.approval.disabled').attr('id'));
-          $.ajax({
-            type: "POST",
-            contentType: false,
-            processData: false,
-            cache: false,
-            url: 'php/edit-product.php',
-            data: data,
-            success: function(data) {
-              if(data == "servfailure") {
-                window.location.href = "https://admin.prodasher.com/error-500.php";
-              }
-              //Edit successful, hide the window, refresh the table on main page, show success message.
-              if(data == "complete") {
-                $('#editProduct').modal('hide');
-                $('.multi-ordering').DataTable().ajax.reload();
-                swal("Success! The product's information has been updated!", {
-                  icon: "success",
-                });
-              }
-            }
-          });
-        }
-      }
-      } else {
-        swal("The product's information did not change!");
-      }
-    });
-  }
-});
-//END
-
-//MAIN Product LIST PAGE - Edit button clicked beside Product requested.  Pulls up modal and populates fields from database.
-  $(document).off('click', '.editProduct').on('click', '.editProduct', function () {
-    $('.get-pid').val($(this).attr('id'));
-    var data = new FormData();
-    data.append('pid', $(this).attr('id'));
-    $.ajax({
-      type: "POST",
-      contentType: false,
-      processData: false,
-      cache: false,
-      url: 'php/layout-editProduct.php',
-      data: data,
-      success: function(data) {
-        $('.editProductBody').html(data);
-      }
-    });
-  });
-  //END
-
   //MAIN Product LIST PAGE - Details button clicked beside Product requested.  Pulls up modal and populates information from database.
     $(document).off('click', '.productDetails').on('click', '.productDetails', function () {
       $('.get-pid').val($(this).attr('id'));
@@ -684,7 +879,7 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
     //END
 
 //MAIN product LIST PAGE - Delete button clicked beside product requested.  Pulls up confirmation that they want to delete the product. Logs into change log.
-$(document).off('click', '.deleteProduct').on('click', '.deleteProduct', function () {
+$(document).off('click', '.deleteInventory').on('click', '.deleteInventory', function () {
   $('.get-pid').val($(this).attr('id'));
   swal({
     title: "Are you sure?",
@@ -695,9 +890,8 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
   }).then((willDelete) => {
     if (willDelete) {
       var data = new FormData();
-      data.append('uid', $('.get-uid').val());
       data.append('changeID', "1");
-      data.append('pid', $('.get-pid').val());
+      data.append('pagename', "product-list.php");
       $.ajax({
         type: "POST",
         contentType: false,
@@ -724,14 +918,15 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
           contentType: false,
           processData: false,
           cache: false,
-          url: 'php/delete-product.php',
+          url: 'php/delete-product.php?task=deleteInv',
           data: data,
           success: function(data) {
             if(data == "servfailure") {
               window.location.href = "https://admin.prodasher.com/error-500.php";
             }
             if(data == "complete") {
-              $('.multi-ordering').DataTable().ajax.reload();
+              $('.master-ilist').DataTable().ajax.reload();
+              $('.inventory-approval').DataTable().ajax.reload();
               swal("Poof! the product has been deleted! No turning back now!", {
                 icon: "success",
               });
@@ -746,10 +941,72 @@ $(document).off('click', '.deleteProduct').on('click', '.deleteProduct', functio
   });
 });
 //END
+$(document).off('click', '.deleteProduct').on('click', '.deleteProduct', function () {
+  $('.get-pid').val($(this).attr('id'));
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this product!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      var data = new FormData();
+      data.append('changeID', "1");
+      data.append('pagename', "product-list.php");
+      $.ajax({
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        url: 'php/log-change.php',
+        data: data,
+        success: function(data) {
+          if(data == "servfailure") {
+            window.location.href = "https://admin.prodasher.com/error-500.php";
+          }
+          if(data == "complete") {
+            changeLogged = 1;
+          }
+        }
+      }).done(continueDelete);
+
+      function continueDelete() {
+      if(changeLogged == 1) {
+        var data = new FormData();
+        data.append('pid', $('.get-pid').val());
+        $.ajax({
+          type: "POST",
+          contentType: false,
+          processData: false,
+          cache: false,
+          url: 'php/delete-product.php?task=deletePro',
+          data: data,
+          success: function(data) {
+            if(data == "servfailure") {
+              window.location.href = "https://admin.prodasher.com/error-500.php";
+            }
+            if(data == "complete") {
+              $('.master-plist').DataTable().ajax.reload();
+              $('.product-approval').DataTable().ajax.reload();
+              swal("Poof! the product has been deleted! No turning back now!", {
+                icon: "success",
+              });
+            }
+          }
+        });
+      }
+    }
+    } else {
+      swal("The product's information is safe! Phew...");
+    }
+  });
+});
   </script>
   <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
   <script src="js/add-product.js" type="text/javascript"></script>
+  <script src="js/edit-product.js" type="text/javascript"></script>
 </body>
 </html>

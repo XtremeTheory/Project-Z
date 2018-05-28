@@ -12,13 +12,21 @@ if(!$result) {
   exit();
 }
 
+$outcome = array();
 $upc_rows = mysqli_num_rows($result);
+$info = $result->fetch_assoc();
 
-if ($upc_rows > 0) {
-	echo "upcExist";
+if ($upc_rows == 1) {
+  $outcome['nextStep'] = "upcExist";
+  $outcome['pid'] = $info['id'];
+  echo json_encode($outcome);
 	mysqli_close($test_db);
 	exit();
 }
 
-echo "continue";
-?>
+if ($upc_rows == 0) {
+  $outcome['nextStep'] = "noExist";
+  echo json_encode($outcome);
+	mysqli_close($test_db);
+	exit();
+} ?>

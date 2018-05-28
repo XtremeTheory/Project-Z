@@ -3,7 +3,7 @@ $ipadd = getIP();
 $uOS = getOS();
 $ubrowser = getBrowser();
 $fileName = $_SERVER['REQUEST_URI'];
-$errMessage = "Page or File not found.";
+$errMessage = "Page or File not found. Previous page: " . $_SERVER['HTTP_REFERER'];
 
 if(isset($_SESSION['uid']) && $_SESSION['uid'] != ""){
   $uid = $_SESSION['uid'];

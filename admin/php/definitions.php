@@ -6,6 +6,8 @@ if (!defined('SITE_ROOT')) {
   global $path;
   $path = "https://admin.prodasher.com/";
 
+  $addpro = "0.10";
+
   //Error Log Codes
   $error0 = "Custom error message, read details.";
   $error1 = "Unable to connect to MySQL database.";
