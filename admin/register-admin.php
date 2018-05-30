@@ -13,34 +13,24 @@ captureIP('register-admin.php');
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/login-register.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-overlay-menu 1-column  bg-cyan bg-lighten-2 menu-expanded fixed-navbar"
 data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
-  <!-- fixed-top-->
   <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center">
     <div class="navbar-wrapper">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
           <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
-            <a class="navbar-brand" href="index.html">
-              <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
+            <a class="navbar-brand" href="/">
+              <img class="brand-logo" alt="Pro Dasher Logo" src="app-assets/images/logo/logo.png">
               <h3 class="brand-text">Pro Dasher</h3>
             </a>
           </li>
@@ -52,7 +42,16 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
       <div class="navbar-container">
         <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
           <ul class="nav navbar-nav">
-            <li class="nav-item"><a class="nav-link mr-2 nav-link-label" onclick="window.history.go(-1); return false;"><i class="ficon ft-arrow-left"></i></a></li>
+            <li class="nav-item">
+              <a class="nav-link mr-2 nav-link-label" onclick="window.history.go(-1); return false;"><i class="ficon ft-arrow-left"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mr-2 nav-link-label" href="index.php"><i class="ficon ft-home"></i></a>
+            </li>
+            <li class="dropdown nav-item">
+              <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-help-circle"></i></a>
+            </li>
+          </ul>
           </ul>
         </div>
       </div>
@@ -176,21 +175,13 @@ data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
       </div>
     </div>
   </div>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
-  <script src="js/maskedinput/jquery.maskedinput.min.js" type="text/javascript"></script>
+  <script src="js/maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
   <script src="js/register-admin.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

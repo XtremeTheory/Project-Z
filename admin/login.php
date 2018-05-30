@@ -13,22 +13,15 @@ captureIP('login.php');
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
-  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/pages/login-register.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/app.min.css">
   <style>
+    @media only screen and (max-width: 600px) {
+      .navbar-brand {
+          margin-top: -35px;
+        }
+      }
+
   .is-invalid {
       border-color: #19b9e7 !important;
       background-color: #BD362F !important;
@@ -64,36 +57,34 @@ captureIP('login.php');
       z-index:-1;
     }
   </style>
-  <!-- END Custom CSS-->
 </head>
-<body class="vertical-layout vertical-overlay-menu 1-column menu-expanded fixed-navbar blank-page" data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
+<body class="vertical-layout vertical-overlay-menu 1-column menu-expanded fixed-navbar">
   <div class="bg"></div>
-  <!-- fixed-top-->
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center">
+  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center" data-nav="brand-center">
     <div class="navbar-wrapper">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-          <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
           <li class="nav-item">
-            <a class="navbar-brand" href="index.html">
-              <img class="brand-logo" alt="modern admin logo" src="app-assets/images/logo/logo.png">
-              <h3 class="brand-text">Project Z</h3>
+            <a class="navbar-brand" href="/">
+              <img class="brand-logo" alt="Pro Dasher Logo" src="app-assets/images/logo/logo.png">
+              <h3 class="brand-text">Pro Dasher</h3>
             </a>
-          </li>
-          <li class="nav-item d-md-none">
-            <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a>
           </li>
         </ul>
       </div>
       <div class="navbar-container">
-        <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
+        <div class="collapse navbar-collapse justify-content-end">
           <ul class="nav navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link mr-2 nav-link-label" onclick="window.history.go(-1); return false;"><i class="ficon ft-arrow-left"></i></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link mr-2 nav-link-label" href="index.php"><i class="ficon ft-home"></i></a>
             </li>
             <li class="dropdown nav-item">
               <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-help-circle"></i></a>
             </li>
+          </ul>
           </ul>
         </div>
       </div>
@@ -110,34 +101,28 @@ captureIP('login.php');
               <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
                 <div class="card-header border-0 pb-0">
                   <div class="card-title text-center">
-                    <img src="app-assets/images/logo/logo-dark.png" alt="branding logo">
+                      <h3 class="brand-text">Pro Dasher</h3>
                   </div>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
                     <form class="form-horizontal">
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="text" class="form-control input-lg required" id="username" placeholder="Your Username" tabindex="1">
+                        <input type="text" class="form-control input-lg required" id="username" placeholder="Your Username" tabindex="1" autocomplete="username">
                         <div class="form-control-position">
                           <i class="ft-user"></i>
                         </div>
                         <div class="help-block font-small-3"></div>
                       </fieldset>
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="password" class="form-control input-lg required" id="password" placeholder="Enter Password" tabindex="2">
+                        <input type="password" class="form-control input-lg required" id="password" placeholder="Enter Password" tabindex="2" autocomplete="password">
                         <div class="form-control-position">
                           <i class="la la-key"></i>
                         </div>
                         <div class="help-block font-small-3"></div>
                       </fieldset>
                       <div class="form-group row">
-                        <div class="col-md-6 col-12 text-center text-md-left">
-                          <fieldset>
-                            <input type="checkbox" id="remember-me" class="chk-remember">
-                            <label for="remember-me"> Remember Me</label>
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.php" class="card-link">Forgot Password?</a></div>
+                        <div class="col-md-12 col-12 text-center"><a href="recover-password.php" class="card-link">Forgot Password?</a></div>
                       </div>
                       <button type="button" id="loginSubmit" class="btn btn-danger btn-block btn-lg"><i class="ft-unlock"></i> Login</button>
                     </form>
@@ -150,28 +135,16 @@ captureIP('login.php');
       </div>
     </div>
   </div>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
-  <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
-  <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
-  <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
   <script>
-  if($('.chk-remember').length) {
-		$('.chk-remember').iCheck({
-			checkboxClass: 'icheckbox_square-blue',
-			radioClass: 'iradio_square-blue',
-		});
-	}
+  var bg = $(".bg");
+  function resizeBackground() {
+    bg.height($(window).height() + 60);
+  }
 
+  $(window).resize(resizeBackground);
+  resizeBackground();
 	//Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
 	$(document).off('focus', 'input').on('focus', 'input', function () {
 		$(this).removeClass('is-invalid');
@@ -269,6 +242,5 @@ captureIP('login.php');
         swal("Uh Oh!", "You're session has expired.  Please login again.", "error");
       <?php } ?>
     </script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

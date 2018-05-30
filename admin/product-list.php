@@ -24,107 +24,21 @@ verifyAdmin("2","product-list.php"); ?>
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="vendors/js/easyauto/easy-autocomplete.min.css">
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 <style>
-  table.dataTable {
-    border-collapse: collapse !important;
-    width: 100% !important;
-  }
-
-  .is-invalid {
-    border-color: #19b9e7 !important;
-    background-color: #BD362F !important;
-    color: #FFFFFF !important;
-  }
-
-  .easy-autocomplete {
-    width: 100% !important;
-  }
-
-  .easy-autocomplete-container {
-    width: 100% !important;
-  }
-
-  .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: white !important;
-  }
-  .is-invalid::-moz-placeholder { /* Firefox 19+ */
-    color: white !important;
-  }
-  .is-invalid:-ms-input-placeholder { /* IE 10+ */
-    color: white !important;
-  }
-  .is-invalid:-moz-placeholder { /* Firefox 18- */
-    color: white !important;
-  }
-
-  .ui-autocomplete {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
-  list-style: none;
-  font-size: 14px;
-  text-align: left;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
-}
-
-.ui-autocomplete > li > div {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
-  white-space: nowrap;
-}
-
-.ui-state-hover,
-.ui-state-active,
-.ui-state-focus {
-  text-decoration: none;
-  color: #262626;
-  background-color: #f5f5f5;
-  cursor: pointer;
-}
-
-.ui-helper-hidden-accessible {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.modal {
-  overflow-y: auto !important;
-}
-
 	#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
 	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
 	canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
 </style>
-  <!-- END Custom CSS-->
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <input type="hidden" value="0" class="get-pid">
+  <div id="warning-message">
+    Unfortunately you're trying to view this on a very narrow screen.  Turn your device to landscape to view better.
+  </div>
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-header row">
@@ -167,7 +81,7 @@ verifyAdmin("2","product-list.php"); ?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Products here need to be approved before going live.</p>
-                      <table class='table table-striped table-bordered product-approval'>
+                      <table class='table table-striped table-bordered product-approval nowrap' width="100%">
                         <thead>
                           <tr>
                           <th>Brand</th>
@@ -611,6 +525,7 @@ $(function() {
         targets: [ 4 ],
         orderData: [ 4, 0 ]
     } ],
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "ajax": "php/masterplist.php"
@@ -628,6 +543,7 @@ $(function() {
         orderData: [ 4, 0 ]
     } ],
     "processing": true,
+    "responsive": true,
     "serverSide": true,
     "ajax": "php/masterilist.php"
   } );
@@ -644,6 +560,7 @@ $(function() {
         orderData: [ 4, 0 ]
     } ],
     "processing": true,
+    "responsive": true,
     "serverSide": true,
     "ajax": "php/invapplist.php"
   } );
@@ -660,6 +577,7 @@ $(function() {
         orderData: [ 4, 0 ]
     } ],
     "processing": true,
+    "responsive": true,
     "serverSide": true,
     "ajax": "php/proapplist.php"
   } );

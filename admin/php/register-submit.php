@@ -78,12 +78,12 @@ if(!$result) {
   exit();
 }
 
-$new_id = $test_db->insert_id;
-$query = "UPDATE user_info SET signedin = '0', tier = '1', acctAttempts = '3' WHERE id = '$new_id'";
+$uid = $test_db->insert_id;
+$query = "UPDATE user_info SET signedin = '0', tier = '1', acctAttempts = '3' WHERE id = '$uid'";
 $result = $test_db->query($query);
 
 if($result) {
-  $query = "INSERT INTO user_earnings (uid, pending_addpro, pending_editpro, total_addpro, pending_editpro, pending_addinv, pending_editinv, total_addinv, pending_editinv, payout)
+  $query = "INSERT INTO user_earnings (uid, pending_addpro, pending_editpro, total_addpro, total_editpro, pending_addinv, pending_editinv, total_addinv, total_editinv, payout)
   VALUES('$uid', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00')";
   $result = $test_db->query($query);
 }
@@ -98,7 +98,7 @@ if(!$result) {
 
 $eSubject = "New Admin Registered";
 $eMessage = "A new admin user has been created.  Please create their system email and configure to their account.  Below are the details:<br><br>";
-$eMessage .= "<b>UID:</b> " . $new_id . "<br>";
+$eMessage .= "<b>UID:</b> " . $uid . "<br>";
 $eMessage .= "<b>Name:</b> " . $fname . " " . $lname;
 $theDate = date("m/d/Y");
 $theTime = date("h:i:s A");
