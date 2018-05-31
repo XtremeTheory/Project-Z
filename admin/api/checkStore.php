@@ -1,16 +1,16 @@
 <?php
-$upc = test_input($_POST['upc']);
+$sname = test_input($_POST['store']);
 $token = $_POST['token'];
 global $timestamp;
 $apiresult = array();
 $errors = array();
-$prod = array();
+$store = array();
 $query = "SELECT * FROM security_steps WHERE apiKEY = '$token'";
 $result = $test_db->query($query);
 
 if(!$result) {
   $sqlError = mysqli_error($test_db);
-  logError("1","getProduct.php","0",$sqlError);
+  logError("1","checkStore.php","0",$sqlError);
   $errors["errorStatus"] = "true";
   $errors["errorMessage"] = "Issues with the server. It has been reported.";
   $apiresult["error"] = $errors;
@@ -30,12 +30,12 @@ if($rowcount != 1) {
   exit();
 }
 
-$query = "SELECT * FROM product_list WHERE upc = '$upc'";
+$query = "SELECT * FROM store_data WHERE sname = '$sname'";
 $result = $test_db->query($query);
 
 if(!$result) {
   $sqlError = mysqli_error($test_db);
-  logError("1","getProduct.php","0",$sqlError);
+  logError("1","getStore.php","0",$sqlError);
   $errors["errorStatus"] = "true";
   $errors["errorMessage"] = "Issues with the server. It has been reported.";
   $apiresult["error"] = $errors;
@@ -48,7 +48,7 @@ $rowcount = mysqli_num_rows($result);
 
 if($rowcount != 1) {
   $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Product does not exist.";
+  $errors["errorMessage"] = "Store is not in the system.";
   $apiresult["error"] = $errors;
   echo json_encode($apiresult);
   mysqli_close($test_db);
