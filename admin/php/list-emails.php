@@ -3,48 +3,48 @@ $uid = $_SESSION['uid'];
 $task = test_input($_POST['task']);
 
 if($task == "inbox") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '1'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '1' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "sent") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '2'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '2' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "draft") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '3'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '3' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "star") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND starred = '1'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND starred = '1' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "trash") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '4'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND status = '4' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "cortona") {
-  $query = "SELECT * FROM email_messages WHERE uid = '0' AND label = '3'";
+  $query = "SELECT * FROM email_messages WHERE uid = '0' AND label = '3' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "follow") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND label = '1'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND label = '1' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if($task == "urgent") {
-  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND label = '2'";
+  $query = "SELECT * FROM email_messages WHERE uid = '$uid' AND label = '2' ORDER BY id DESC";
   $result = $test_db->query($query);
 }
 
 if(!$result) {
   $sqlError = mysqli_error($test_db);
-  logError("1","email-system.php",$uid,$sqlError);
+  logError("1","list-emails.php",$uid,$sqlError);
   echo "servfailure";
   mysqli_close($test_db);
   exit();
@@ -66,6 +66,8 @@ while($row = mysqli_fetch_assoc($result)) {
 
   if($theDate == $todayDate) {
     $dateandtime = $theTime;
+  } else {
+    $dateandtime = $theDate;
   }
 
   if($senderName != "") {

@@ -13,21 +13,33 @@ verifyAdmin("2","email.php"); ?>
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/email-application.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- END Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="vendors/js/easyauto/easy-autocomplete.min.css">
+  <style>
+  .is-invalid {
+    border-color: #19b9e7 !important;
+    background-color: #BD362F !important;
+    color: #FFFFFF !important;
+  }
+
+  .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white !important;
+  }
+  .is-invalid::-moz-placeholder { /* Firefox 19+ */
+    color: white !important;
+  }
+  .is-invalid:-ms-input-placeholder { /* IE 10+ */
+    color: white !important;
+  }
+  .is-invalid:-moz-placeholder { /* Firefox 18- */
+    color: white !important;
+  }
+  </style>
 </head>
 <body class="vertical-layout vertical-overlay-menu content-left-sidebar email-application menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="content-left-sidebar">
   <?php require 'php/navigation.php';
@@ -38,7 +50,7 @@ verifyAdmin("2","email.php"); ?>
         <div class="sidebar-content email-app-sidebar d-flex">
           <div class="email-app-menu col-md-5 card d-none d-lg-block">
             <div class="form-group form-group-compose text-center">
-              <button type="button" class="btn btn-danger btn-block my-1"><i class="ft-mail"></i> Compose</button>
+              <button type="button" class="btn btn-danger btn-block my-1" data-toggle="modal" data-target="#composeEmail"><i class="ft-mail"></i> Compose</button>
             </div>
             <h6 class="text-muted text-bold-500 mb-1">Messages</h6>
             <div class="list-group list-group-messages">
@@ -88,6 +100,54 @@ verifyAdmin("2","email.php"); ?>
         </div>
       </div>
     </div>
+    <div class="modal fade text-left" id="composeEmail" tabindex="-1" role="dialog" aria-labelledby="composeEmail" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title"> Compose Email</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form>
+            <div class="modal-body">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input id="toEmail" type="email" class="form-control required" placeholder="Email To">
+                      <input type="hidden" id="userID">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="subject">Subject</label>
+                      <input id="subject" type="text" class="form-control required" placeholder="Subject">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="form_message">Message</label>
+                      <textarea id="message" class="form-control required" placeholder="Email Message" rows="4"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-outline-secondary btn-lg btn-success" id="sendEmail" value="Send">
+              <button type="button" id="but-loading" style="display:none;" class="btn btn-info btn-lg" disabled="disabled"><i class="fa fa-spinner fa-spin"></i></button>
+              <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
   <input type="hidden" class="eid">
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
@@ -95,6 +155,7 @@ verifyAdmin("2","email.php"); ?>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="vendors/js/easyauto/jquery.easy-autocomplete.min.js"></script>
   <script>
   var curWindow = "inbox";
   function updateNums() {
@@ -159,6 +220,105 @@ verifyAdmin("2","email.php"); ?>
     }
 
     $('.emailBody').html("");
+
+    var x = 0;
+    var options = {
+      url: function(phrase) {
+        return "php/search-user.php?phrase=" + phrase;
+      },
+      getValue: "name",
+      minLength: 3,
+      requestDelay: 400,
+      placeholder: "Start typing...",
+      template: {
+        type: "custom",
+        method: function(value, item) {
+          return "<div data-item-id='" + item.id + "' ><h6>" + item.name + "</h6></div>";
+        }
+      },
+      list: {
+        onClickEvent: function() {
+          var data = $("#toEmail").getSelectedItemData().id;
+          x = data;
+          if(data == 0) {
+            $("#userID").val("0");
+            return;
+          }
+          $('#userID').val(x);
+        },
+        onHideListEvent: function() {
+          if(x == 0) {
+            $("#userID").val("0");
+          }
+        }
+      }
+    };
+
+    $('#toEmail').change(function() {
+      var str = ('#toEmail').val();
+      if (str.toLowerCase().indexOf("name:") >= 0) {
+        jQuery("#toEmail").easyAutocomplete(options);
+      }
+    });
+
+    $('#toEmail, #subject, #message').on('focus', function() {
+      $(this).removeClass('is-invalid');
+    });
+
+    $(document).off('click', '#sendEmail').on('click', '#sendEmail', function () {
+      var isFormValid = true;
+
+      document.getElementById("sendEmail").style.display = "none";
+      document.getElementById("but-loading").style.display = "block";
+      $(".required").each(function() {
+        if ($.trim($(this).val()).length == 0) {
+          $(this).addClass("is-invalid");
+          isFormValid = false;
+          swal("Uh Oh!", "Looks like some things are missing...", "error");
+        } else {
+          $(this).removeClass("is-invalid");
+        }
+      });
+
+      if(isFormValid) {
+        var data = new FormData();
+        if($('#userID').val() > 0) {
+          data.append('uid', $('#userID').val());
+          data.append('email', "0");
+        } else {
+          data.append('email', $('#toEmail').val());
+          data.append('uid', "0");
+        }
+        data.append('subject', $('#subject').val());
+        data.append('message', $('#message').val());
+        $.ajax({
+          type: "POST",
+          contentType: false,
+          processData: false,
+          cache: false,
+          url: 'php/send-email.php',
+          data: data,
+          success: function(data) {
+            console.log(data);
+            if(data == "") {
+              window.location.href = "https://admin.prodasher.com/error-500.php";
+            }
+            if(data == "servfailure") {
+              window.location.href = "https://admin.prodasher.com/error-500.php";
+            }
+            if(data == "correct") {
+              swal("Success!", "The email has been sent!", "success");
+              document.getElementById("sendEmail").style.display = "block";
+              document.getElementById("but-loading").style.display = "none";
+              $('#addError').modal('hide');
+            }
+          }
+        });
+      } else {
+        document.getElementById("sendEmail").style.display = "block";
+        document.getElementById("but-loading").style.display = "none";
+      }
+    });
 
     $(document).off('click', '.deleteEmail').on('click', '.deleteEmail', function () {
       $('.eid').val($(this).attr('id'));
