@@ -13,28 +13,20 @@ verifyAdmin("2","dashboard-shoppers.php"); ?>
   <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
   <link href="assets/css/google-font.css" rel="stylesheet">
   <link href="assets/css/line-awesome.min.css" rel="stylesheet">
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/weather-icons/climacons.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/meteocons/style.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/morris.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/chartist.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/chartist-plugin-tooltip.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard-ecommerce.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <!-- END Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';

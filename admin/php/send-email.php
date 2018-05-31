@@ -1,10 +1,22 @@
 <?php
 $uid = test_input($_POST['uid']);
-
-//if uid = 0, send to email address instead
-
 $cuid = $_SESSION['uid'];
-$email = test_input($_POST['email']);
+
+if($uid == 0) {
+  $email = test_input($_POST['email']);
+  echo "comingSoon";
+  mysqli_close($test_db);
+  exit();
+}
+
+if($uid == "") {
+  echo "uidError";
+  $errorMsg = "The UID was not set when trying to send email.";
+  logError("5","send-email.php",$cuid,$errorMsg);
+  mysqli_close($test_db);
+  exit();
+}
+
 $subject = test_input($_POST['subject']);
 $message = test_input($_POST['message']);
 $todayDate = date("m/d/Y");
@@ -25,7 +37,7 @@ $fullname = $info['fname'] . " " . $info['lname'];
 $fromEmail = $info['email'];
 
 $query = "INSERT INTO email_messages (uid, status, eSubject, senderName, fromEmail, eMessage, unread, starred, label, theDate, theTime, active)
-VALUES('$uid', '1', '$subject', '$fullname', '$fromEmail', '$eMessage', '1', '0', '0', '$todayDate', '$theTime', '0')";
+VALUES('$uid', '1', '$subject', '$fullname', '$fromEmail', '$message', '1', '0', '0', '$todayDate', '$theTime', '0')";
 $result = $test_db->query($query);
 
 if($result) {

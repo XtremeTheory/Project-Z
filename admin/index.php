@@ -1,6 +1,6 @@
 <?php
-captureIP('dashboard-main.php');
-verifyAdmin("1","dashboard-main.php"); ?>
+captureIP('index.php');
+verifyAdmin("1","index.php"); ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -21,11 +21,12 @@ verifyAdmin("1","dashboard-main.php"); ?>
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/chartist-plugin-tooltip.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/timeline.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard-ecommerce.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
@@ -828,17 +829,26 @@ verifyAdmin("1","dashboard-main.php"); ?>
       </div>
     </div>
   </div>
+  <?php require 'php/footer.php'; ?>
+  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
+  <!-- BEGIN VENDOR JS-->
+  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/charts/chartist.min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/raphael-min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/morris.min.js" type="text/javascript"></script>
   <script src="vendors/js/timeline/horizontal-timeline.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <!-- END PAGE VENDOR JS-->
+  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <!-- END MODERN JS-->
+  <!-- BEGIN PAGE LEVEL JS-->
   <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
+  <!-- END PAGE LEVEL JS-->
   <?php if(isset($_SESSION['wrongPage'])) { ?>
     <script>swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");</script>
   <?php unset($_SESSION['wrongPage']); } ?>

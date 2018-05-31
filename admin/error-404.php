@@ -40,20 +40,12 @@ if(!$result) {
   <link rel="shortcut icon" type="image/x-icon" href="<?php echo $path;?>app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700" rel="stylesheet">
   <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-  <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="<?php echo $path;?>app-assets/css/vendors.css">
-  <!-- END VENDOR CSS-->
-  <!-- BEGIN MODERN CSS-->
   <link rel="stylesheet" type="text/css" href="<?php echo $path;?>app-assets/css/app.css">
-  <!-- END MODERN CSS-->
-  <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="<?php echo $path;?>app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
   <link rel="stylesheet" type="text/css" href="<?php echo $path;?>app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="<?php echo $path;?>app-assets/css/pages/error.css">
-  <!-- END Page Level CSS-->
-  <!-- BEGIN Custom CSS-->
-  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>assets/css/style.css">
-  <!-- END Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="<?php echo $path;?>css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 1-column  bg-cyan bg-lighten-2 menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="1-column">
   <!-- fixed-top-->
@@ -131,19 +123,9 @@ if(!$result) {
       </div>
     </div>
   </div>
-  <!-- BEGIN VENDOR JS-->
   <script src="<?php echo $path;?>vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
-  <script src="<?php echo $path;?>vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="<?php echo $path;?>app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="<?php echo $path;?>app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="<?php echo $path;?>app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
-  <script src="<?php echo $path;?>app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

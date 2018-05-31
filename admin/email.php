@@ -20,26 +20,7 @@ verifyAdmin("2","email.php"); ?>
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/email-application.css">
   <link rel="stylesheet" type="text/css" href="vendors/js/easyauto/easy-autocomplete.min.css">
-  <style>
-  .is-invalid {
-    border-color: #19b9e7 !important;
-    background-color: #BD362F !important;
-    color: #FFFFFF !important;
-  }
-
-  .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: white !important;
-  }
-  .is-invalid::-moz-placeholder { /* Firefox 19+ */
-    color: white !important;
-  }
-  .is-invalid:-ms-input-placeholder { /* IE 10+ */
-    color: white !important;
-  }
-  .is-invalid:-moz-placeholder { /* Firefox 18- */
-    color: white !important;
-  }
-  </style>
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu content-left-sidebar email-application menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="content-left-sidebar">
   <?php require 'php/navigation.php';
@@ -116,7 +97,7 @@ verifyAdmin("2","email.php"); ?>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input id="toEmail" type="email" class="form-control required" placeholder="Email To">
+                      <input id="toEmail" type="text" class="form-control required" placeholder="Email To">
                       <input type="hidden" id="userID">
                     </div>
                   </div>
@@ -210,7 +191,7 @@ verifyAdmin("2","email.php"); ?>
     updateLists("inbox");
 
     if(curWindow == "inbox") {
-      setInterval(function() {updateLists(curWindow);}, 2500);
+      setInterval(function() {updateLists(curWindow); updateNums();}, 2500);
     }
 
     if($('#users-list').length > 0){
@@ -221,45 +202,38 @@ verifyAdmin("2","email.php"); ?>
 
     $('.emailBody').html("");
 
-    var x = 0;
-    var options = {
-      url: function(phrase) {
-        return "php/search-user.php?phrase=" + phrase;
-      },
-      getValue: "name",
-      minLength: 3,
-      requestDelay: 400,
-      placeholder: "Start typing...",
-      template: {
-        type: "custom",
-        method: function(value, item) {
-          return "<div data-item-id='" + item.id + "' ><h6>" + item.name + "</h6></div>";
-        }
-      },
-      list: {
-        onClickEvent: function() {
-          var data = $("#toEmail").getSelectedItemData().id;
-          x = data;
-          if(data == 0) {
-            $("#userID").val("0");
-            return;
-          }
-          $('#userID').val(x);
+      var x = 0;
+      var options = {
+        url: function(phrase) {
+          return "php/search-user.php?phrase=" + phrase;
         },
-        onHideListEvent: function() {
-          if(x == 0) {
-            $("#userID").val("0");
+        getValue: "name",
+        requestDelay: 400,
+        placeholder: "Start typing...",
+        template: {
+          type: "custom",
+          method: function(value, item) {
+            return "<div data-item-id='" + item.id + "' ><h6>" + item.name + "</h6></div>";
+          }
+        },
+        list: {
+          onClickEvent: function() {
+            var data = $("#toEmail").getSelectedItemData().id;
+            x = data;
+            if(data == 0) {
+              $("#userID").val("0");
+              return;
+            }
+            $('#userID').val(x);
+          },
+          onHideListEvent: function() {
+            if(x == 0) {
+              $("#userID").val("0");
+            }
           }
         }
-      }
-    };
-
-    $('#toEmail').change(function() {
-      var str = ('#toEmail').val();
-      if (str.toLowerCase().indexOf("name:") >= 0) {
-        jQuery("#toEmail").easyAutocomplete(options);
-      }
-    });
+      };
+      jQuery("#toEmail").easyAutocomplete(options);
 
     $('#toEmail, #subject, #message').on('focus', function() {
       $(this).removeClass('is-invalid');
@@ -306,11 +280,22 @@ verifyAdmin("2","email.php"); ?>
             if(data == "servfailure") {
               window.location.href = "https://admin.prodasher.com/error-500.php";
             }
-            if(data == "correct") {
+            if(data == "uidError") {
               swal("Success!", "The email has been sent!", "success");
               document.getElementById("sendEmail").style.display = "block";
               document.getElementById("but-loading").style.display = "none";
               $('#addError').modal('hide');
+            }
+            if(data == "comingSoon") {
+              swal("Feature Coming Soon!", "Sending emails outside the system is not supported yet.", "info");
+              document.getElementById("sendEmail").style.display = "block";
+              document.getElementById("but-loading").style.display = "none";
+            }
+            if(data == "correct") {
+              swal("Success!", "The email has been sent!", "success");
+              document.getElementById("sendEmail").style.display = "block";
+              document.getElementById("but-loading").style.display = "none";
+              $('#composeEmail').modal('hide');
             }
           }
         });

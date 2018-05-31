@@ -14,6 +14,13 @@ if(!$result) {
 
 $errorinfo = $result->fetch_assoc();
 $errorDetails = ${'error'.$errorinfo['errorcode']}; ?>
+<b>Error Status: </b><?php if($errorinfo['status'] == 0) { echo "Active"; } else { echo "Fixed"; } ?><br>
+<b>Tech Name: </b>
+<?php if($errorinfo['tid'] == 0) {
+  echo "No Tech Assigned";
+} else {
+  echo "Tech Assigned";
+} ?><br>
 <b>Date and Time:</b> <?php echo $errorinfo['dateandtime']; ?><br>
 <b>File Name:</b> <?php echo $errorinfo['filename']; ?><br>
 <b>General Error:</b> <?php echo $errorDetails; ?><br>

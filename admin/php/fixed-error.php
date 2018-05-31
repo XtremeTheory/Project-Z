@@ -1,16 +1,17 @@
 <?php
 $eid = test_input($_POST['eid']);
-$uid = $_SESSION['uid'];
+$tid = $_SESSION['uid'];
 
-	$query = "DELETE FROM error_log WHERE id = '$eid'";
-	$result = $test_db->query($query);
+$query = "UPDATE error_log SET status = '1', tid = '$tid' WHERE id = '$eid'";
+$result = $test_db->query($query);
 	if($result) {
+		logActivity("14",$tid,"delete-error.php");
     echo "complete";
     mysqli_close($test_db);
     exit();
 	} else {
     $sqlError = mysqli_error($test_db);
-    logError("1","delete-error.php",$uid,$sqlError);
+    logError("1","fixed-error.php",$tid,$sqlError);
     echo "servfailure";
     mysqli_close($test_db);
     exit();

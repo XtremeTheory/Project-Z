@@ -14,6 +14,7 @@ if (!defined('SITE_ROOT')) {
   $error2 = "IP address was not logged into IP sessions.";
   $error3 = "Email was not able to send.";
   $error4 = "Visitor loaded non-existent page or image.";
+  $error5 = "UID was not set.";
 
   //Activity Codes
   $activity1 = "Logged into system.";
@@ -29,4 +30,5 @@ if (!defined('SITE_ROOT')) {
   $activity11 = "Deleted error from database.";
   $activity12 = "Security codes have been updated.";
   $activity13 = "Deleted company email.";
+  $activity14 = "Fixed an error.";
 ?>

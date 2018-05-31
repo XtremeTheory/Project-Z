@@ -20,7 +20,7 @@ $columns = array(
     }),
     array( 'db' => 'id', 'dt' => 4,
         'formatter' => function( $d, $row ) {
-            return '<button type="button" class="btn btn-info btn-sm errorDetails" id="'.$d.'" data-toggle="modal" data-target="#errorDetails">Details</button> <button type="button" class="btn btn-success btn-sm fixedError" id="'.$d.'">Fixed</button>';
+            return '<button type="button" class="btn btn-info btn-sm errorDetails" id="'.$d.'" data-toggle="modal" data-target="#errorDetails">Details</button>';
         }
     )
 );
@@ -34,7 +34,7 @@ $sql_details = array(
 
 require( 'ssp.class.php' );
 
-$whereAll = "status = 0";
+$whereAll = "status = 1";
 echo json_encode(
     SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns, $whereAll )
 ); ?>

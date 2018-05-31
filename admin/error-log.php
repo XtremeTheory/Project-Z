@@ -25,32 +25,7 @@ $uid = $_SESSION['uid'];?>
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
-<style>
-  table.dataTable {
-    border-collapse: collapse !important;
-    width: 100% !important;
-  }
-
-  .is-invalid {
-    border-color: #19b9e7 !important;
-    background-color: #BD362F !important;
-    color: #FFFFFF !important;
-  }
-
-  .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: white !important;
-  }
-  .is-invalid::-moz-placeholder { /* Firefox 19+ */
-    color: white !important;
-  }
-  .is-invalid:-ms-input-placeholder { /* IE 10+ */
-    color: white !important;
-  }
-  .is-invalid:-moz-placeholder { /* Firefox 18- */
-    color: white !important;
-  }
-</style>
-  <!-- END Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
@@ -61,7 +36,6 @@ $uid = $_SESSION['uid'];?>
     <div class="content-wrapper">
       <div class="content-header row">
         <div class="content-header-left col-md-6 col-12 mb-2">
-          <h3 class="content-header-title mb-0">Error Log</h3>
           <div class="row breadcrumbs-top">
             <div class="breadcrumb-wrapper col-12">
               <ol class="breadcrumb">
@@ -85,6 +59,7 @@ $uid = $_SESSION['uid'];?>
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
+                  <h3 class="content-header-title mb-0">Active Error Log</h3>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -97,8 +72,45 @@ $uid = $_SESSION['uid'];?>
                 </div>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
-                    <p class="card-text">All errors throughout website are logged here.</p>
-                      <table class='table table-striped table-bordered multi-ordering'>
+                    <p class="card-text">All errors throughout the website are logged here. Fatal and custom errors are all logged here and waiting to be
+                    corrected.  Please read the details and mark each error that is fixed.  Errors are kept in the system with your ID attached marking fixed.</p>
+                      <table class='table table-striped table-bordered active-errors'>
+                        <thead>
+                          <tr>
+                          <th>Error Level</th>
+                          <th>Date and Time</th>
+                          <th>File Name</th>
+                          <th>Error Information</th>
+                          <th> </th>
+                          </tr>
+                        </thead>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="multi-column">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="content-header-title mb-0">Fixed Errors</h3>
+                  <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                      <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                      <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                      <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body card-dashboard">
+                    <p class="card-text">Fixed errors are listed here.
+                      <table class='table table-striped table-bordered fixed-errors'>
                         <thead>
                           <tr>
                           <th>Error Level</th>
@@ -183,24 +195,17 @@ $uid = $_SESSION['uid'];?>
       </div>
     </div>
   </div>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
   <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
   <script>
   //Populates table on main store-list page from database
-  $('.multi-ordering').dataTable( {
+  $('.active-errors').dataTable( {
     columnDefs: [ {
         targets: [ 0 ],
         orderData: [ 0, 1 ]
@@ -214,6 +219,22 @@ $uid = $_SESSION['uid'];?>
     "processing": true,
     "serverSide": true,
     "ajax": "php/elog.php"
+  } );
+
+  $('.fixed-errors').dataTable( {
+    columnDefs: [ {
+        targets: [ 0 ],
+        orderData: [ 0, 1 ]
+    }, {
+        targets: [ 1 ],
+        orderData: [ 1, 0 ]
+    }, {
+        targets: [ 4 ],
+        orderData: [ 4, 0 ]
+    } ],
+    "processing": true,
+    "serverSide": true,
+    "ajax": "php/fixedelog.php"
   } );
   //END
 
@@ -243,13 +264,13 @@ $uid = $_SESSION['uid'];?>
     });
     //END
 
-//MAIN STORE LIST PAGE - Delete button clicked beside store requested.  Pulls up confirmation that they want to delete the store. Logs into change log.
-$(document).off('click', '.deleteError').on('click', '.deleteError', function () {
+//MAIN STORE LIST PAGE - Fix button clicked beside store requested.  Pulls up confirmation that you fixed the error. Logs into activity log.
+$(document).off('click', '.fixedError').on('click', '.fixedError', function () {
   $('.get-eid').val($(this).attr('id'));
   var changeLogged = 0;
   swal({
     title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this information!",
+    text: "You're confirming that the error has been fixed.",
     icon: "warning",
     buttons: true,
     dangerMode: true,
@@ -273,9 +294,9 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
             changeLogged = 1;
           }
         }
-      }).done(continueDelete);
+      }).done(continueFix);
 
-      function continueDelete() {
+      function continueFix() {
       if(changeLogged == 1) {
         var data = new FormData();
         data.append('eid', $('.get-eid').val());
@@ -284,15 +305,16 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
           contentType: false,
           processData: false,
           cache: false,
-          url: 'php/delete-error.php',
+          url: 'php/fixed-error.php',
           data: data,
           success: function(data) {
             if(data == "servfailure") {
               window.location.href = "https://admin.prodasher.com/error-500.php";
             }
             if(data == "complete") {
-              $('.multi-ordering').DataTable().ajax.reload();
-              swal("Poof! The error has been deleted!", {
+              $('.active-errors').DataTable().ajax.reload();
+              $('.fixed-errors').DataTable().ajax.reload();
+              swal("Alright! The error has been marked fixed!", {
                 icon: "success",
               });
             }
@@ -311,6 +333,5 @@ $(document).off('click', '.deleteError').on('click', '.deleteError', function ()
   <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
   <script src="js/add-error.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>
