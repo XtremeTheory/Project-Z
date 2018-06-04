@@ -14,11 +14,11 @@ if(!$result) {
 
 $productinfo = $result->fetch_assoc();
 ?>
+  <center><img src="<?php echo $productinfo["image"]; ?>" width="150" height="150"></center><br>
   <b>Product Name:</b> <?php echo ucwords(strtolower($productinfo['brand'])); ?> - <?php echo ucwords(strtolower($productinfo['pname'])); ?><br>
-  <b>Product Size:</b> <?php echo $productinfo['msize']; ?> <?php echo $productinfo['measure']; ?><br>
+  <b>Product Size:</b> <?php echo $productinfo['msize']; ?> <?php echo $productinfo['mtype']; ?><br>
   <b>UPC:</b> <?php echo $productinfo['upc']; ?><br>
-  <b>Description:</b> <?php echo $productinfo['description']; ?><br>
-  <b>Department:</b> <?php echo ucwords(strtolower($productinfo['department'])); ?><br>
+  <b>Department:</b> <?php echo ucwords(strtolower($productinfo['dept'])); ?><br>
   <b>Date Added to Database:</b> <?php echo $productinfo['dateandtime']; ?><br>
   <b>Current Live Status:</b>
   <?php $d = $productinfo['live'];

@@ -15,6 +15,7 @@
       <li class=" nav-item"><a href="#"><i class="la la-navicon"></i><span class="menu-title" data-i18n="nav.lists.main">Lists</span></a>
         <ul class="menu-content">
           <li<?php if(basename($_SERVER['PHP_SELF']) == "activity-log.php") { ?> class="active"<?php } ?>><a class="menu-item" href="activity-log.php" data-i18n="nav.lists.changes">Activity</a></li>
+          <li<?php if(basename($_SERVER['PHP_SELF']) == "brand-list.php") { ?> class="active"<?php } ?>><a class="menu-item" href="brand-list.php" data-i18n="nav.lists.brands">Brands</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "district-list.php") { ?> class="active"<?php } ?>><a class="menu-item" href="district-list.php" data-i18n="nav.lists.districts">Districts</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "error-log.php") { ?> class="active"<?php } ?>><a class="menu-item" href="error-log.php" data-i18n="nav.lists.errors">Errors</a></li>
           <li<?php if(basename($_SERVER['PHP_SELF']) == "product-list.php") { ?> class="active"<?php } ?>><a class="menu-item" href="product-list.php" data-i18n="nav.lists.products">Products</a></li>

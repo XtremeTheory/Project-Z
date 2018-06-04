@@ -17,41 +17,10 @@ $uid = $_SESSION['uid'];?>
   <script src="js/FontAwesome.js"></script>
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
-  <link rel="stylesheet" type="text/css" href="vendors/css/forms/selects/select2.min.css">
-  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
-  <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<style>
-  table.dataTable {
-    border-collapse: collapse !important;
-    width: 100% !important;
-  }
-
-  .is-invalid {
-    border-color: #19b9e7 !important;
-    background-color: #BD362F !important;
-    color: #FFFFFF !important;
-  }
-
-  .is-invalid::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: white !important;
-  }
-  .is-invalid::-moz-placeholder { /* Firefox 19+ */
-    color: white !important;
-  }
-  .is-invalid:-ms-input-placeholder { /* IE 10+ */
-    color: white !important;
-  }
-  .is-invalid:-moz-placeholder { /* Firefox 18- */
-    color: white !important;
-  }
-</style>
-  <!-- END Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
   <?php require 'php/navigation.php';
@@ -86,6 +55,7 @@ $uid = $_SESSION['uid'];?>
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
+                  <h3>Master Store List</h3>
                   <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                   <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -99,10 +69,11 @@ $uid = $_SESSION['uid'];?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Every store is listed here.</p>
-                      <table class='table table-striped table-bordered multi-ordering'>
+                      <table class='table table-striped table-bordered hover order-column stores'>
                         <thead>
                           <tr>
-                          <th>Store Approved?</th>
+                          <th>Approval?</th>
+                          <th>Store Status</th>
                           <th>Store Name</th>
                           <th>Address</th>
                           <th>City Info</th>
@@ -207,31 +178,18 @@ $uid = $_SESSION['uid'];?>
     </div>
   </div>
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <script src="vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
   <script src="vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
-  <script src="vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <script src="js/add-store.js" type="text/javascript"></script>
   <script>
   //Populates table on main store-list page from database
-  $('.multi-ordering').dataTable( {
-    columnDefs: [ {
-        targets: [ 0 ],
-        orderData: [ 0, 1 ]
-    }, {
-        targets: [ 1 ],
-        orderData: [ 1, 0 ]
-    }, {
-        targets: [ 4 ],
-        orderData: [ 4, 0 ]
-    } ],
+  $('.stores').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": "php/slist.php"
   } );
-  //END
 
   //ALL SUB PAGES - Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
   $(document).off('focus', 'input').on('focus', 'input', function () {
@@ -444,12 +402,6 @@ $(document).off('click', '.deleteStore').on('click', '.deleteStore', function ()
     }
   });
 });
-//END
   </script>
-  <script src="app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
-  <script src="app-assets/js/scripts/forms/checkbox-radio.js" type="text/javascript"></script>
-  <script src="js/add-store.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
 </body>
 </html>

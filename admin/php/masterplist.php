@@ -39,7 +39,7 @@ $sql_details = array(
 );
 
 require( 'ssp.class.php' );
-
+$whereAll = "live = 1";
 echo json_encode(
-    SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns, $whereAll )
 ); ?>

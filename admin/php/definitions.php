@@ -17,8 +17,8 @@ if (!defined('SITE_ROOT')) {
   $error5 = "UID was not set.";
 
   //Activity Codes
-  $activity1 = "Logged into system.";
-  $activity2 = "Logged out of system.";
+  $activity1 = "Logged into website system.";
+  $activity2 = "Logged out of website system.";
   $activity3 = "Password has been requested to change.";
   $activity4 = "Password reset email sent.";
   $activity5 = "Went straight to page without authorization.";
@@ -31,4 +31,7 @@ if (!defined('SITE_ROOT')) {
   $activity12 = "Security codes have been updated.";
   $activity13 = "Deleted company email.";
   $activity14 = "Fixed an error.";
+  $activity15 = "Logged into Dasher application.";
+  $activity16 = "Logged out of Dasher application.";
+  $activity17 = "Edited brand information.";
 ?>

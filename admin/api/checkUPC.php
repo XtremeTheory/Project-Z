@@ -1,20 +1,25 @@
 <?php
-$upc = test_input($_POST['upc']);
+require('semantics/Semantics3.php');
+$key = 'SEM369B8B62337CE96214F69437CA9D220E2';
+$secret = 'OTM5MTFjZTBlNzM2ZWEzOTUxYzA1NzEwZmYzYmRjNmY';
+$requestor = new Semantics3_Products($key,$secret);
+
+$upc = $_POST['upc'];
 $token = $_POST['token'];
 global $timestamp;
-$apiresult = array();
-$errors = array();
-$prod = array();
+$a_json = array();
+$a_json_row = array();
 $query = "SELECT * FROM security_steps WHERE apiKEY = '$token'";
 $result = $test_db->query($query);
 
 if(!$result) {
   $sqlError = mysqli_error($test_db);
   logError("1","checkUPC.php","0",$sqlError);
-  $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Issues with the server. It has been reported.";
-  $apiresult["error"] = $errors;
-  echo json_encode($apiresult);
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "Issues with the server. It has been reported.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
   mysqli_close($test_db);
   exit();
 }
@@ -22,10 +27,11 @@ if(!$result) {
 $rowcount = mysqli_num_rows($result);
 
 if($rowcount != 1) {
-  $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Invalid API token key.";
-  $apiresult["error"] = $errors;
-  echo json_encode($apiresult);
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "Invalid API token key.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
   mysqli_close($test_db);
   exit();
 }
@@ -36,26 +42,44 @@ $result = $test_db->query($query);
 if(!$result) {
   $sqlError = mysqli_error($test_db);
   logError("1","checkUPC.php","0",$sqlError);
-  $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Issues with the server. It has been reported.";
-  $apiresult["error"] = $errors;
-  echo json_encode($apiresult);
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "Issues with the server. It has been reported.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
   mysqli_close($test_db);
   exit();
 }
 
 $rowcount = mysqli_num_rows($result);
 
-if($rowcount != 1) {
-  $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Product does not exist.";
-  $apiresult["error"] = $errors;
-  echo json_encode($apiresult);
+if($rowcount == 0) {
+  $requestor->products_field( "upc", $upc );
+  $requestor->products_field( "field", ["name","brand","images"] );
+  $results = $requestor->get_products();
+  $results = json_decode($results, true);
+  $a_json_row["errorStatus"] = "false";
+  $a_json_row["exist"] = "false";
+  $a_json_row["apicall"] = $results['results'];
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
   mysqli_close($test_db);
   exit();
 }
 
 $prodinfo = $result->fetch_assoc();
+
+if($prodinfo["live"] == 0) {
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "This product is already under review.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
+  mysqli_close($test_db);
+  exit();
+}
+
 $bid = $prodinfo['brand'];
 $query1 = "SELECT * FROM brands WHERE id = '$bid'";
 $result1 = $test_db->query($query1);
@@ -63,26 +87,28 @@ $result1 = $test_db->query($query1);
 if(!$result1) {
   $sqlError = mysqli_error($test_db);
   logError("1","checkUPC.php","0",$sqlError);
-  $errors["errorStatus"] = "true";
-  $errors["errorMessage"] = "Issues with the server. It has been reported.";
-  $apiresult["error"] = $errors;
-  echo json_encode($apiresult);
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "Issues with the server. It has been reported.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
   mysqli_close($test_db);
   exit();
 }
 
 $brandinfo = $result1->fetch_assoc();
 
-$prod["pname"] = $prodinfo['pname'];
-$prod["brand"] = $brandinfo['bname'];
-$prod["dept"] = $prodinfo['dept'];
-$prod["msize"] = $prodinfo['msize'];
-$prod["mtype"] = $prodinfo['measure'];
-$prod["exist"] = "true";
-$errors["errorStatus"] = "false";
-$apiresult["error"] = $errors;
-$apiresult["prod"] = $prod;
-echo json_encode($apiresult);
+$a_json_row["productID"] = $prodinfo['id'];
+$a_json_row["pname"] = $prodinfo['pname'];
+$a_json_row["brand"] = $brandinfo['bname'];
+$a_json_row["dept"] = $prodinfo['dept'];
+$a_json_row["msize"] = $prodinfo['msize'];
+$a_json_row["mtype"] = $prodinfo['mtype'];
+$a_json_row["exist"] = "true";
+$a_json_row["errorStatus"] = "false";
+array_push($a_json, $a_json_row);
+echo json_encode($a_json);
+flush();
 mysqli_close($test_db);
 exit();
 ?>

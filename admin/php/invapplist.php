@@ -17,7 +17,14 @@ $columns = array(
           exit();
         }
 
+        $rowcount = mysqli_num_rows($result);
+        if($rowcount == 0) {
+          $query = "SELECT * FROM product_review WHERE id = '$d'";
+          $result = $test_db->query($query);
+        }
+
         $prodinfo = $result->fetch_assoc();
+
         $bid = $prodinfo['brand'];
         $query1 = "SELECT * FROM brands WHERE id = '$bid'";
         $result1 = $test_db->query($query1);
@@ -90,7 +97,7 @@ $sql_details = array(
 );
 
 require( 'ssp.class.php' );
-$whereAll = "approval = 0";
+$whereAll = "live = 0";
 echo json_encode(
     SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns, $whereAll )
 ); ?>
