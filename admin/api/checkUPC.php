@@ -52,6 +52,17 @@ if(!$result) {
 }
 
 $rowcount = mysqli_num_rows($result);
+$prodinfo = $result->fetch_assoc();
+
+if($prodinfo["live"] == 0 && $rowcount == 1) {
+  $a_json_row["errorStatus"] = "true";
+  $a_json_row["errorMessage"] = "This product is already under review.";
+  array_push($a_json, $a_json_row);
+  echo json_encode($a_json);
+  flush();
+  mysqli_close($test_db);
+  exit();
+}
 
 if($rowcount == 0) {
   $requestor->products_field( "upc", $upc );
@@ -61,18 +72,6 @@ if($rowcount == 0) {
   $a_json_row["errorStatus"] = "false";
   $a_json_row["exist"] = "false";
   $a_json_row["apicall"] = $results['results'];
-  array_push($a_json, $a_json_row);
-  echo json_encode($a_json);
-  flush();
-  mysqli_close($test_db);
-  exit();
-}
-
-$prodinfo = $result->fetch_assoc();
-
-if($prodinfo["live"] == 0) {
-  $a_json_row["errorStatus"] = "true";
-  $a_json_row["errorMessage"] = "This product is already under review.";
   array_push($a_json, $a_json_row);
   echo json_encode($a_json);
   flush();

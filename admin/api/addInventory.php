@@ -37,7 +37,7 @@ if($rowcount != 1) {
   exit();
 }
 
-$query = "INSERT INTO inventory_review (pid, sid, uid, aisle, location, price, dateandtime, notes)
+$query = "INSERT INTO product_store_data (pid, sid, uid, aisle, location, price, dateandtime, notes)
 VALUES('$pid','$sid','$uid','$aisle','$location','$price','$timestamp','$notes')";
 $result = $test_db->query($query);
 

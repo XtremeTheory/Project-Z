@@ -105,7 +105,7 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
           data.append('dept', $('#department1').val());
           data.append('description', $('#description').val());
           data.append('msize', $('#netwtqty1').val());
-          data.append('measure', $('#netwtmsmt1').val());
+          data.append('mtype', $('#netwtmsmt1').val());
           data.append('approval', $('.approval.disabled').attr('id'));
           $.ajax({
             type: "POST",

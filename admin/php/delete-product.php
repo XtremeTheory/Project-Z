@@ -4,12 +4,12 @@ $uid = $_SESSION['uid'];
 $task = $_GET['task'];
 
 if($task == "deleteInv") {
-	$query = "DELETE FROM inventory_review WHERE id = '$pid'";
+	$query = "DELETE FROM product_store_data WHERE id = '$pid'";
 	$result = $test_db->query($query);
 }
 
 if($task == "deletePro") {
-	$query = "DELETE FROM product_review WHERE id = '$pid'";
+	$query = "DELETE FROM product_list WHERE id = '$pid'";
 	$result = $test_db->query($query);
 }
 

@@ -17,12 +17,6 @@ $columns = array(
           exit();
         }
 
-        $rowcount = mysqli_num_rows($result);
-        if($rowcount == 0) {
-          $query = "SELECT * FROM product_review WHERE id = '$d'";
-          $result = $test_db->query($query);
-        }
-
         $prodinfo = $result->fetch_assoc();
 
         $bid = $prodinfo['brand'];
