@@ -17,11 +17,11 @@ $uid = $_SESSION['uid'];?>
   <link rel="stylesheet" type="text/css" href="app-assets/css/vendors.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/tables/datatable/datatables.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu-modern fixed-navbar pace-done menu-expanded" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <input type="hidden" value="<?php echo $uid; ?>" class="get-uid">
@@ -180,9 +180,8 @@ $(document).off('click', '#but-editBrand').on('click', '#but-editBrand', functio
       if (willDelete) {
         //Logging change in Change Log
         var data = new FormData();
-        data.append('uid', $('.get-uid').val());
         data.append('changeID', "17");
-        data.append('bid', $('.get-bid').val());
+        data.append('pagename', "edit-brand.php");
         $.ajax({
           type: "POST",
           contentType: false,

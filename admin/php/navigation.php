@@ -12,15 +12,14 @@ if(!$result) {
 }
 
 $userinfo = $result->fetch_assoc(); ?>
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center" data-nav="brand-center">
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-border navbar-shadow">
   <div class="navbar-wrapper">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-md" href="#"><i class="ft-menu font-large-1"></i></a></li>
         <li class="nav-item">
           <a class="navbar-brand" href="/">
-            <img class="brand-logo" alt="Pro Dasher Logo" src="app-assets/images/logo/logo.png">
-            <h3 class="brand-text">Pro Dasher</h3>
+            <img alt="Pro Dasher Logo" src="app-assets/images/logo/logo.jpg" width="190" height="40">
           </a>
         </li>
         <li class="nav-item d-md-none">
@@ -31,7 +30,6 @@ $userinfo = $result->fetch_assoc(); ?>
     <div class="navbar-container content">
       <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="nav navbar-nav mr-auto float-left">
-          <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-md" href="#"><i class="ft-menu"></i></a></li>
           <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
           <li class="dropdown nav-item mega-dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Mega</a>
             <ul class="mega-dropdown-menu dropdown-menu row">

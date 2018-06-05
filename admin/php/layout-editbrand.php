@@ -15,5 +15,5 @@ if(!$result) {
 $brandinfo = $result->fetch_assoc(); ?>
   <fieldset class="form-group floating-label-form-group">
     <label for="sname">Brand Name</label>
-    <input type="text" class="form-control required editstore" id="bname" placeholder="Brand Name" value="<?php echo $brandinfo['bname']; ?>">
+    <input type="text" class="form-control required editbrand" id="bname" placeholder="Brand Name" value="<?php echo $brandinfo['bname']; ?>">
   </fieldset>

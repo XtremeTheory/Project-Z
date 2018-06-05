@@ -1,6 +1,17 @@
 <?php
 captureIP('index.php');
-verifyAdmin("1","index.php"); ?>
+verifyAdmin("1","index.php");
+$uid = $_SESSION['uid'];
+$query = "SELECT count(*) as total from product_list WHERE live = '1'";
+$result = $test_db->query($query);
+$info = $result->fetch_assoc();
+$numproducts = $info["total"];
+$numcurgoal = ($numproducts / $prodgoal) * 100;
+$query = "SELECT count(*) as total from product_list WHERE live = '0'";
+$result = $test_db->query($query);
+$info = $result->fetch_assoc();
+$numapprove = $info["total"];
+$approvegoal = ($numapprove / 100) * 100; ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
@@ -20,7 +31,7 @@ verifyAdmin("1","index.php"); ?>
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/chartist.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/charts/chartist-plugin-tooltip.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+ <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/fonts/simple-line-icons/style.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
@@ -28,7 +39,7 @@ verifyAdmin("1","index.php"); ?>
   <link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard-ecommerce.css">
   <link rel="stylesheet" type="text/css" href="css/global.css">
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu-modern fixed-navbar pace-done menu-expanded" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <div class="app-content content">
@@ -36,7 +47,6 @@ verifyAdmin("1","index.php"); ?>
       <div class="content-header row">
       </div>
       <div class="content-body">
-        <!-- eCommerce statistic -->
         <div class="row">
           <div class="col-xl-3 col-lg-6 col-12">
             <div class="card pull-up">
@@ -44,16 +54,15 @@ verifyAdmin("1","index.php"); ?>
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="info">850</h3>
-                      <h6>Products Sold</h6>
+                      <h3 class="info"><?php echo $numproducts; ?></h3>
+                      <h6>Products Live in Database</h6>
                     </div>
                     <div>
                       <i class="icon-basket-loaded info font-large-2 float-right"></i>
                     </div>
                   </div>
                   <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 80%"
-                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: <?php echo $numcurgoal; ?>%" aria-valuenow="<?php echo $numcurgoal; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -65,16 +74,36 @@ verifyAdmin("1","index.php"); ?>
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="warning">$748</h3>
-                      <h6>Net Profit</h6>
+                      <h3 class="danger"><?php echo $numapprove; ?></h3>
+                      <h6>Products Need Approved</h6>
                     </div>
                     <div>
-                      <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                      <i class="icon-basket-loaded danger font-large-2 float-right"></i>
                     </div>
                   </div>
                   <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-warning" role="progressbar" style="width: 65%"
-                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: <?php echo $approvegoal; ?>%" aria-valuenow="<?php echo $approvegoal; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card pull-up">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="media-body text-left">
+                      <h3 class="info">146</h3>
+                      <h6>New Shoppers</h6>
+                    </div>
+                    <div>
+                      <i class="icon-user-follow info font-large-2 float-right"></i>
+                    </div>
+                  </div>
+                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
+                    <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 75%"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -96,27 +125,6 @@ verifyAdmin("1","index.php"); ?>
                   <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
                     <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 75%"
                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6 col-12">
-            <div class="card pull-up">
-              <div class="card-content">
-                <div class="card-body">
-                  <div class="media d-flex">
-                    <div class="media-body text-left">
-                      <h3 class="danger">99.89 %</h3>
-                      <h6>Customer Satisfaction</h6>
-                    </div>
-                    <div>
-                      <i class="icon-heart danger font-large-2 float-right"></i>
-                    </div>
-                  </div>
-                  <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                    <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
-                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -817,7 +825,6 @@ verifyAdmin("1","index.php"); ?>
                           </li>
                         </ol>
                       </div>
-                      <!-- .events-content -->
                     </section>
                   </div>
                 </div>
@@ -825,30 +832,20 @@ verifyAdmin("1","index.php"); ?>
             </div>
           </div>
         </div>
-        <!--/ Basic Horizontal Timeline -->
       </div>
     </div>
   </div>
-  <?php require 'php/footer.php'; ?>
-  <!-- BEGIN VENDOR JS-->
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <!-- BEGIN VENDOR JS-->
-  <!-- BEGIN PAGE VENDOR JS-->
   <script src="vendors/js/charts/chartist.min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/raphael-min.js" type="text/javascript"></script>
   <script src="vendors/js/charts/morris.min.js" type="text/javascript"></script>
   <script src="vendors/js/timeline/horizontal-timeline.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <!-- END PAGE VENDOR JS-->
-  <!-- BEGIN MODERN JS-->
   <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
   <script src="app-assets/js/core/app.js" type="text/javascript"></script>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-  <!-- END MODERN JS-->
-  <!-- BEGIN PAGE LEVEL JS-->
   <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
-  <!-- END PAGE LEVEL JS-->
   <?php if(isset($_SESSION['wrongPage'])) { ?>
     <script>swal("Uh Oh!", "Doesn't look like you have access to that page.", "error");</script>
   <?php unset($_SESSION['wrongPage']); } ?>

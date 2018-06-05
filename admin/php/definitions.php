@@ -5,8 +5,8 @@ if (!defined('SITE_ROOT')) {
 
   global $path;
   $path = "https://admin.prodasher.com/";
-
   $addpro = "0.10";
+  $prodgoal = 100;
 
   //Error Log Codes
   $error0 = "Custom error message, read details.";
