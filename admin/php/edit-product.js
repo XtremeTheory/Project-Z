@@ -1,14 +1,6 @@
 $('#editProduct').on('shown.bs.modal', function (e) {
-  if($('#brandID1').val() == "") {
-    $('#brand1').val("");
-  }
-
-  if($('#categoryID1').val() == "") {
-    $('#category1').val("");
-  }
-
   $('#upc1').mask('000000000000');
-  $('input[type="text"], #category1, #netwtmsmt1').on('focus', function() {
+  $('input[type="text"], #description, #department1, #netwtmsmt1').on('focus', function() {
     $(this).removeClass('is-invalid');
   });
   var x = 0;
@@ -30,44 +22,10 @@ $('#editProduct').on('shown.bs.modal', function (e) {
         var data = $("#brand1").getSelectedItemData().id;
         x = data;
         $('#brandID1').val(x);
-      },
-      onHideListEvent: function() {
-        if(x == "0") {
-          $('#brand1').val("");
-        }
       }
     }
   };
   jQuery("#brand1").easyAutocomplete(boptions);
-
-  var y = "0";
-  var coptions = {
-    url: function(phrase) {
-      return "php/search-category.php?phrase=" + phrase;
-    },
-    getValue: "name",
-    requestDelay: 400,
-    placeholder: "Start typing...",
-    template: {
-      type: "custom",
-      method: function(value, item) {
-        return "<div data-item-id='" + item.id + "' ><h6>" + value + "</h6></div>";
-      }
-    },
-    list: {
-      onClickEvent: function() {
-        var data = $("#category1").getSelectedItemData().id;
-        y = data;
-        $('#categoryID1').val(y);
-      },
-      onHideListEvent: function() {
-        if(y == "0") {
-          $('#category1').val("");
-        }
-      }
-    }
-  };
-  jQuery("#category1").easyAutocomplete(coptions);
 });
 
 $(document).off('click', '.editProduct').on('click', '.editProduct', function () {
@@ -138,16 +96,12 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
           var data = new FormData();
           data.append('pid', $('.get-pid').val());
           data.append('pname', $('#pname1').val());
-          if($('#brandID1').val() == "") {
-            data.append('brand', $('#brand1').val());
-          } else {
-            data.append('brand', $('#brandID1').val());
-          }
+          data.append('brand', $('#brandID1').val());
           data.append('upc', $('#upc1').val());
-          data.append('imageURL', $('#image1').val());
-          data.append('cate', $('#category1').val());
+          data.append('dept', $('#department1').val());
+          data.append('description', $('#description').val());
           data.append('msize', $('#netwtqty1').val());
-          data.append('mtype', $('#netwtmsmt1').val());
+          data.append('measure', $('#netwtmsmt1').val());
           data.append('approval', $('.approval.disabled').attr('id'));
           $.ajax({
             type: "POST",
@@ -163,13 +117,7 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
               }
               //Edit successful, hide the window, refresh the table on main page, show success message.
               if(data == "complete") {
-                $('#upc').removeAttr("disabled");
-                $('#upc').val("");
-                $('#barcode').removeAttr("disabled");
-                $('#but-loading').hide();
-                $('#but-checkUPC').show();
                 $('#editProduct').modal('hide');
-                $('body').css('overflow-y','auto');
                 $('.master-plist').DataTable().ajax.reload();
                 $('.product-approval').DataTable().ajax.reload();
                 swal("Success! The product's information has been updated!", {

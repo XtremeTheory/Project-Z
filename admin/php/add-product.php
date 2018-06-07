@@ -2,7 +2,7 @@
 $pname = test_input($_POST['pname']);
 $brand = test_input($_POST['brandID']);
 $upc = test_input($_POST['upc']);
-$dept = test_input($_POST['department']);
+$cate = test_input($_POST['cate']);
 $description = "NA";
 $msize = test_input($_POST['netwtqty']);
 $measure = test_input($_POST['netwtmsmt']);
@@ -10,8 +10,8 @@ $approval = 0;
 $uid = $_SESSION['uid'];
 global $timestamp;
 
-$query = "INSERT INTO product_list (pname, brand, upc, dept, description, measure, msize, dateandtime, live)
-VALUES('$pname', '$brand', '$upc', '$dept', '$description', '$measure', '$msize', '$timestamp', '$approval')";
+$query = "INSERT INTO product_list (pname, brand, upc, cate, description, measure, msize, dateandtime, live)
+VALUES('$pname', '$brand', '$upc', '$cate', '$description', '$measure', '$msize', '$timestamp', '$approval')";
 $result = $test_db->query($query);
 
 if(!$result) {

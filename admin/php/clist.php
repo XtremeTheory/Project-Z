@@ -1,11 +1,11 @@
 <?php
-$table = 'brands';
+$table = 'categories';
 $primaryKey = 'id';
 $columns = array(
-    array( 'db' => 'bname', 'dt' => 0),
+    array( 'db' => 'cname', 'dt' => 0),
     array( 'db' => 'id', 'dt' => 1,
         'formatter' => function( $d, $row ) {
-            return '<button type="button" class="btn btn-warning btn-sm editBrand" id="'.$d.'" data-toggle="modal" data-target="#editBrand">Edit</button>';
+            return '<button type="button" class="btn btn-warning btn-sm editCategory" id="'.$d.'" data-toggle="modal" data-target="#editCategory">Edit</button>';
         }
     )
 );

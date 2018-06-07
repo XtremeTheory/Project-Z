@@ -2,7 +2,7 @@
 $sname = test_input($_POST['sname']);
 $address = test_input($_POST['address']);
 $zipcode = test_input($_POST['zipcode']);
-$query = "SELECT * FROM city_list WHERE zipcode = '$zipcode'";
+$query = "SELECT * FROM store_data WHERE address = '$address'";
 $result = $test_db->query($query);
 
 if(!$result) {
@@ -13,7 +13,26 @@ if(!$result) {
   exit();
 }
 
-$info = $result->fetch_assoc();
+$rowcount = mysqli_num_rows($result);
+
+if($rowcount == 1) {
+  echo "storeExist";
+  mysqli_close($test_db);
+  exit();
+}
+
+$query1 = "SELECT * FROM city_list WHERE zipcode = '$zipcode'";
+$result1 = $test_db->query($query1);
+
+if(!$result1) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","add-store.php",$uid,$sqlError);
+  echo "servfailure";
+  mysqli_close($test_db);
+  exit();
+}
+
+$info = $result1->fetch_assoc();
 $cid = $info['id'];
 $approval = 0;
 $uid = $_SESSION['uid'];

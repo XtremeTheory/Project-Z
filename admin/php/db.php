@@ -3,7 +3,7 @@
   $dbhost = "mysql.prodasher.com";
   $dbname = "prodasher_main";
   $dbuser = "prodasher01";
-  $dbpass = "Drm3257!";
+  $dbpass = "Dasher01!";
 
   $test_db = new mysqli();
   $test_db->connect($dbhost, $dbuser, $dbpass, $dbname);

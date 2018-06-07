@@ -1,16 +1,8 @@
-$(function() {
-  $(window).keydown(function(event) {
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-
-document.getElementById("but-loading").style.display = "none";
-document.getElementById("but-addStore").style.display = "block";
-
-$('input[type="text"]').on('focus', function() {
-  $(this).removeClass('is-invalid');
+$(window).keydown(function(event) {
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    return false;
+  }
 });
 
 function cap_Words(input) {
@@ -47,19 +39,34 @@ $(document).off('click', '#but-addStore').on('click', '#but-addStore', function 
       url: 'php/add-store.php',
       data: {sname: sname, address: address, zipcode: zipcode},
       success: function(data) {
+        console.log(data);
         if(data == "servfailure") {
           window.location.href = "https://admin.prodasher.com/error-500.php";
         }
+        if(data == "storeExist") {
+          swal("Error!", "This store is already in our database!", "error");
+          document.getElementById("but-addStore").style.display = "block";
+          document.getElementById("but-loading").style.display = "none";
+          $('#sname').val("");
+          $('#address').val("");
+          $('#city').val("");
+          $('#state').val("");
+          $('#zipcode').val("");
+        }
         if(data == "correct") {
-          $('.multi-ordering').DataTable().ajax.reload();
+          $('.stores').DataTable().ajax.reload();
           swal("Success!", "Another store has been added to the database, sweet!", "success");
+          document.getElementById("but-addStore").style.display = "block";
+          document.getElementById("but-loading").style.display = "none";
           $('#addStore').modal('hide');
         }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus); alert("Error: " + errorThrown);
       }
     });
   } else {
     document.getElementById("but-addStore").style.display = "block";
     document.getElementById("but-loading").style.display = "none";
   }
-});
 });

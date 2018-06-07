@@ -23,19 +23,12 @@ $columns = array(
   ),
     array( 'db' => 'pname', 'dt' => 1),
     array( 'db' => 'upc', 'dt' => 2),
-    array( 'db' => 'dept', 'dt' => 3),
+    array( 'db' => 'cate', 'dt' => 3),
     array( 'db' => 'id', 'dt' => 4,
         'formatter' => function( $d, $row ) {
             return '<button type="button" class="btn btn-info btn-sm productDetails" id="'.$d.'" data-toggle="modal" data-target="#productDetails">Details</button> <button type="button" class="btn btn-warning btn-sm editProduct" id="'.$d.'" data-toggle="modal" data-target="#editProduct">Edit</button>';
         }
     )
-);
-
-$sql_details = array(
-    'user' => 'prodasher01',
-    'pass' => 'Drm3257!',
-    'db'   => 'prodasher_main',
-    'host' => 'mysql.prodasher.com'
 );
 
 require( 'ssp.class.php' );

@@ -2,7 +2,7 @@
 $uid = test_input($_POST['uid']);
 $pname = test_input($_POST['pname']);
 $brand = test_input($_POST['brand']);
-$dept = test_input($_POST['dept']);
+$cate = test_input($_POST['cate']);
 $upc = test_input($_POST['upc']);
 $msize = test_input($_POST['msize']);
 $mtype = test_input($_POST['mtype']);
@@ -68,8 +68,8 @@ if($rowcount1 != 1) {
 
 $brandinfo = $result1->fetch_assoc();
 $bid = $brandinfo['id'];
-$query = "INSERT INTO product_list (pname, brand, upc, dept, msize, mtype, dateandtime, uid, image)
-VALUES('$pname','$bid','$upc','$dept','$msize','$mtype','$timestamp','$uid', '$image')";
+$query = "INSERT INTO product_list (pname, brand, upc, cate, msize, mtype, dateandtime, uid, image)
+VALUES('$pname','$bid','$upc','$cate','$msize','$mtype','$timestamp','$uid', '$image')";
 $result = $test_db->query($query);
 
 if(!$result) {

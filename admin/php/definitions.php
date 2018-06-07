@@ -3,6 +3,13 @@ if (!defined('SITE_ROOT')) {
     define ('SITE_ROOT', '/home/dilmil3/admin.prodasher/');
 }
 
+$sql_details = array(
+    'user' => 'prodasher01',
+    'pass' => 'Dasher01!',
+    'db'   => 'prodasher_main',
+    'host' => 'mysql.prodasher.com'
+);
+
   global $path;
   $path = "https://admin.prodasher.com/";
   $addpro = "0.10";
@@ -34,4 +41,5 @@ if (!defined('SITE_ROOT')) {
   $activity15 = "Logged into Dasher application.";
   $activity16 = "Logged out of Dasher application.";
   $activity17 = "Edited brand information.";
+  $activity18 = "Edited store information.";
 ?>

@@ -18,7 +18,7 @@ $productinfo = $result->fetch_assoc();
   <b>Product Name:</b> <?php echo ucwords(strtolower($productinfo['brand'])); ?> - <?php echo ucwords(strtolower($productinfo['pname'])); ?><br>
   <b>Product Size:</b> <?php echo $productinfo['msize']; ?> <?php echo $productinfo['mtype']; ?><br>
   <b>UPC:</b> <?php echo $productinfo['upc']; ?><br>
-  <b>Department:</b> <?php echo ucwords(strtolower($productinfo['dept'])); ?><br>
+  <b>Category:</b> <?php echo ucwords(strtolower($productinfo['cate'])); ?><br>
   <b>Date Added to Database:</b> <?php echo $productinfo['dateandtime']; ?><br>
   <b>Current Live Status:</b>
   <?php $d = $productinfo['live'];

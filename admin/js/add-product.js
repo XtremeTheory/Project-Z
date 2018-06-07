@@ -41,14 +41,14 @@ $(document).off('click', '#but-addProduct').on('click', '#but-addProduct', funct
     var pname = $('#pname').val();
     var upc = $('#upc').val();
     var brandID = $('#brandID').val();
-    var department = $('#department').val();
+    var cate = $('#category').val();
     var netwtqty = $('#netwtqty').val();
     var netwtmsmt = $('#netwtmsmt').val();
     $.ajax({
       type: "POST",
       cache: false,
       url: 'php/add-product.php',
-      data: {pname: pname, upc: upc, brandID: brandID, department: department, netwtqty: netwtqty, netwtmsmt: netwtmsmt},
+      data: {pname: pname, upc: upc, brandID: brandID, cate: cate, netwtqty: netwtqty, netwtmsmt: netwtmsmt},
       success: function(data) {
         console.log(data);
         if(data == "servfailure") {
@@ -58,9 +58,8 @@ $(document).off('click', '#but-addProduct').on('click', '#but-addProduct', funct
           $('#upc').removeAttr("disabled");
           $('#upc').val("");
           $('#pname').val("");
-          $('#department').val("");
+          $('#category').val("");
           $('#netwtmsmt').val("");
-          $("#department").removeAttr("selected");
           $("#netwtmsmt").removeAttr("selected");
           $('#netwtqty').val("");
           $('#barcode').removeAttr("disabled");

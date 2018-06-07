@@ -1,10 +1,11 @@
 <?php
 $uid = $_SESSION['uid'];
 $pid = test_input($_POST['pid']);
+$imageURL = $_POST['imageURL'];
 $pname = test_input($_POST['pname']);
 $brand = test_input($_POST['brand']);
 $upc = test_input($_POST['upc']);
-$dept = test_input($_POST['dept']);
+$cate = test_input($_POST['cate']);
 $mtype = test_input($_POST['mtype']);
 $msize = test_input($_POST['msize']);
 $approval = test_input($_POST['approval']);
@@ -35,9 +36,9 @@ if(!is_numeric($brand)) {
   $brand = $brandinfo['id'];
 }
 
-$query = "UPDATE product_list SET pname = '$pname', brand = '$brand', upc = '$upc', dept = '$dept' WHERE id = '$pid'";
+$query = "UPDATE product_list SET pname = '$pname', brand = '$brand', upc = '$upc', cate = '$cate' WHERE id = '$pid'";
 $result = $test_db->query($query);
-$query = "UPDATE product_list SET mtype = '$mtype', msize = '$msize', live = '$approval' WHERE id = '$pid'";
+$query = "UPDATE product_list SET mtype = '$mtype', msize = '$msize', live = '$approval', image = '$imageURL' WHERE id = '$pid'";
 $result1 = $test_db->query($query);
 
 if($result && $result1) {

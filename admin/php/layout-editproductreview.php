@@ -1,7 +1,7 @@
 <?php
 $pid = test_input($_POST['pid']);
 $uid = $_SESSION['uid'];
-$query = "SELECT * FROM product_list WHERE id = '$pid'";
+$query = "SELECT * FROM product_review WHERE id = '$pid'";
 $result = $test_db->query($query);
 
 if(!$result) {
@@ -29,20 +29,9 @@ $brandinfo = $result1->fetch_assoc();
 ?>
 <div class="row">
   <div class="form-group col-sm-12">
-    <center><img src="<?php echo $productinfo["image"]; ?>" width="150" height="150"></center>
-  </div>
-</div>
-<div class="row">
-  <div class="form-group col-sm-12">
-    <label for="brand">Image URL</label>
-    <input type="text" class="form-control editproduct" id="image1" placeholder="Image URL" value="<?php echo $productinfo['image']; ?>">
-  </div>
-</div>
-<div class="row">
-  <div class="form-group col-sm-12">
     <label for="brand">Brand</label>
     <input type="text" class="form-control editproduct" id="brand1" placeholder="Brand" value="<?php echo ucwords(strtolower($brandinfo['bname'])); ?>">
-    <input type="hidden" id="brandID1" value="<?php $productinfo["brand"]; ?>">
+    <input type="hidden" id="brandID1">
   </div>
 </div>
 <div class="row">
@@ -59,9 +48,23 @@ $brandinfo = $result1->fetch_assoc();
 </div>
 <div class="row">
   <div class="form-group col-sm-12">
-    <label for="dept">Category</label>
-    <input type="text" class="form-control editproduct" id="category1" placeholder="Category" value="<?php echo ucwords(strtolower($productinfo['cate'])); ?>">
-    <input type="hidden" id="categoryID1" value="<?php $productinfo["cate"]; ?>">
+    <label for="dept">Department</label>
+    <select id="department1" class='form-control editproduct'>
+      <option value=''>Select Below</option>
+      <option value="Baby-Food" <?php if($productinfo['dept'] == "Baby-Food") {?>selected<?php } ?>>Baby - Food</option>
+      <option value="Dairy" <?php if($productinfo['dept'] == "Dairy") {?>selected<?php } ?>>Dairy</option>
+      <option value="Frozen-Meat" <?php if($productinfo['dept'] == "Frozen-Meat") {?>selected<?php } ?>>Frozen - Beef</option>
+      <option value="Frozen-Seafood" <?php if($productinfo['dept'] == "Frozen-Seafood") {?>selected<?php } ?>>Frozen - Seafood</option>
+      <option value="Meat-Beef" <?php if($productinfo['dept'] == "Meat-Beef") {?>selected<?php } ?>>Meat - Beef</option>
+      <option value="Meat-Seafood" <?php if($productinfo['dept'] == "Meat-Seafood") {?>selected<?php } ?>>Meat - Seafood</option>
+      <option value="Produce" <?php if($productinfo['dept'] == "Produce") {?>selected<?php } ?>>Produce</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-sm-12">
+    <label for="description">Description</label>
+    <textarea class="form-control editproduct" id="description"><?php echo $productinfo['description']; ?></textarea>
   </div>
 </div>
 <div class='row'><div class='col-md-6'>
@@ -72,10 +75,10 @@ $brandinfo = $result1->fetch_assoc();
   <label for="netwtmsmt">Net Wt Size</label>
   <select id="netwtmsmt1" class='form-control editproduct'>
 <option value=''>Select Below</option>
-<option value='floz' <?php if($productinfo['mtype'] == "floz") {?>selected<?php } ?>>Fl. Oz(s)</option>
-<option value='gram' <?php if($productinfo['mtype'] == "gram") {?>selected<?php } ?>>Gram(s)</option>
-<option value='oz' <?php if($productinfo['mtype'] == "oz") {?>selected<?php } ?>>Ounce(s)</option>
-<option value='lb' <?php if($productinfo['mtype'] == "lb") {?>selected<?php } ?>>Pound(s)</option>
+<option value='floz' <?php if($productinfo['measure'] == "floz") {?>selected<?php } ?>>Fl. Oz(s)</option>
+<option value='gram' <?php if($productinfo['measure'] == "gram") {?>selected<?php } ?>>Gram(s)</option>
+<option value='oz' <?php if($productinfo['measure'] == "oz") {?>selected<?php } ?>>Ounce(s)</option>
+<option value='lb' <?php if($productinfo['measure'] == "lb") {?>selected<?php } ?>>Pound(s)</option>
 </select></div></div><br>
 <?php if($productinfo['live'] != 1) { ?>
 <div class="row">

@@ -1,9 +1,4 @@
 <?php
-require('semantics/Semantics3.php');
-$key = 'SEM369B8B62337CE96214F69437CA9D220E2';
-$secret = 'OTM5MTFjZTBlNzM2ZWEzOTUxYzA1NzEwZmYzYmRjNmY';
-$requestor = new Semantics3_Products($key,$secret);
-
 $upc = $_POST['upc'];
 $token = $_POST['token'];
 global $timestamp;
@@ -65,18 +60,30 @@ if($prodinfo["live"] == 0 && $rowcount == 1) {
 }
 
 if($rowcount == 0) {
-  $requestor->products_field( "upc", $upc );
-  $requestor->products_field( "field", ["name","brand","images"] );
-  $results = $requestor->get_products();
-  $results = json_decode($results, true);
-  $a_json_row["errorStatus"] = "false";
-  $a_json_row["exist"] = "false";
-  $a_json_row["apicall"] = $results['results'];
-  array_push($a_json, $a_json_row);
-  echo json_encode($a_json);
-  flush();
-  mysqli_close($test_db);
-  exit();
+  $context = stream_context_create(array(
+    'http' => array('ignore_errors' => true),
+  ));
+
+  $json = file_get_contents('https://api.upcitemdb.com/prod/trial/lookup?upc=' . $upc, false, $context);
+  if ($http_response_header[0] == 'HTTP/1.1 200 OK') {
+    $results = json_decode($json, true);
+    $a_json_row["errorStatus"] = "false";
+    $a_json_row["exist"] = "false";
+    $a_json_row["apicall"] = $results['items'];
+    array_push($a_json, $a_json_row);
+    echo json_encode($a_json);
+    flush();
+    mysqli_close($test_db);
+    exit();
+  } else {
+    $a_json_row["errorStatus"] = "false";
+    $a_json_row["exist"] = "noinfo";
+    array_push($a_json, $a_json_row);
+    echo json_encode($a_json);
+    flush();
+    mysqli_close($test_db);
+    exit();
+  }
 }
 
 $bid = $prodinfo['brand'];
@@ -100,7 +107,7 @@ $brandinfo = $result1->fetch_assoc();
 $a_json_row["productID"] = $prodinfo['id'];
 $a_json_row["pname"] = $prodinfo['pname'];
 $a_json_row["brand"] = $brandinfo['bname'];
-$a_json_row["dept"] = $prodinfo['dept'];
+$a_json_row["cate"] = $prodinfo['cate'];
 $a_json_row["msize"] = $prodinfo['msize'];
 $a_json_row["mtype"] = $prodinfo['mtype'];
 $a_json_row["exist"] = "true";

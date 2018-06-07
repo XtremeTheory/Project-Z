@@ -25,13 +25,6 @@ $columns = array(
     )
 );
 
-$sql_details = array(
-    'user' => 'prodasher01',
-    'pass' => 'Drm3257!',
-    'db'   => 'prodasher_main',
-    'host' => 'mysql.prodasher.com'
-);
-
 require( 'ssp.class.php' );
 
 $whereAll = "status = 0";
