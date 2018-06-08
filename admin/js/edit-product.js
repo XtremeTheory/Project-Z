@@ -145,7 +145,11 @@ $(document).off('click', '#but-editProduct').on('click', '#but-editProduct', fun
           }
           data.append('upc', $('#upc1').val());
           data.append('imageURL', $('#image1').val());
-          data.append('cate', $('#category1').val());
+          if($('#categoryID1').val() == "") {
+            data.append('cate', $('#category1').val());
+          } else {
+            data.append('cate', $('#categoryID1').val());
+          }
           data.append('msize', $('#netwtqty1').val());
           data.append('mtype', $('#netwtmsmt1').val());
           data.append('approval', $('.approval.disabled').attr('id'));

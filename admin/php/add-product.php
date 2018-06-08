@@ -10,8 +10,8 @@ $approval = 0;
 $uid = $_SESSION['uid'];
 global $timestamp;
 
-$query = "INSERT INTO product_list (pname, brand, upc, cate, description, measure, msize, dateandtime, live)
-VALUES('$pname', '$brand', '$upc', '$cate', '$description', '$measure', '$msize', '$timestamp', '$approval')";
+$query = "INSERT INTO product_list (pname, brand, upc, cate, measure, msize, dateandtime, live)
+VALUES('$pname', '$brand', '$upc', '$cate', '$measure', '$msize', '$timestamp', '$approval')";
 $result = $test_db->query($query);
 
 if(!$result) {

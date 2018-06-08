@@ -14,10 +14,13 @@ if($approval == "pending") {
   $approval = 0;
 } else if($approval == "approve") {
   $approval = 1;
-} else if($approval == "") {
+} else if($approval == "reject") {
+    $approval = 2;
+  }
+ else if($approval == "") {
   $approval = 1;
 } else {
-  $approval = 2;
+  $approval = 1;
 }
 
 if(!is_numeric($brand)) {
@@ -34,6 +37,22 @@ if(!is_numeric($brand)) {
 
   $brandinfo = $result->fetch_assoc();
   $brand = $brandinfo['id'];
+}
+
+if(!is_numeric($cate)) {
+  $query1 = "SELECT * FROM categories WHERE cname = '$cate'";
+  $result1 = $test_db->query($query1);
+
+  if(!$result1) {
+    $sqlError = mysqli_error($test_db);
+    logError("1","edit-product.php",$uid,$sqlError);
+    echo "servfailure";
+    mysqli_close($test_db);
+    exit();
+  }
+
+  $categoryinfo = $result1->fetch_assoc();
+  $cate = $categoryinfo['id'];
 }
 
 $query = "UPDATE product_list SET pname = '$pname', brand = '$brand', upc = '$upc', cate = '$cate' WHERE id = '$pid'";

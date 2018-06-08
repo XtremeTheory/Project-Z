@@ -20,19 +20,14 @@ verifyAdmin("2","product-list.php"); ?>
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/icheck.css">
   <link rel="stylesheet" type="text/css" href="vendors/css/forms/icheck/custom.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/app.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/core/colors/palette-gradient.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/animate/animate.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/checkboxes-radios.css">
   <link rel="stylesheet" type="text/css" href="vendors/js/easyauto/easy-autocomplete.min.css">
   <link rel="stylesheet" type="text/css" href="css/global.css">
-<style>
-	#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
-	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
-	canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
-</style>
 </head>
-<body class="vertical-layout vertical-overlay-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-overlay-menu" data-col="2-columns">
+<body class="vertical-layout vertical-menu-modern fixed-navbar pace-done menu-expanded" data-col="2-columns">
   <?php require 'php/navigation.php';
   require 'php/left-menu.php'; ?>
   <input type="hidden" value="0" class="get-pid">
@@ -87,7 +82,7 @@ verifyAdmin("2","product-list.php"); ?>
                           <th>Brand</th>
                           <th>Product Name</th>
                           <th>UPC</th>
-                          <th>Department</th>
+                          <th>Category</th>
                           <th>Actions</th>
                           </tr>
                         </thead>
@@ -117,7 +112,7 @@ verifyAdmin("2","product-list.php"); ?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Products here need approved before going live.</p>
-                      <table class='table table-striped table-bordered inventory-approval'>
+                      <table class='table table-striped table-bordered inventory-approval nowrap' width="100%">
                         <thead>
                           <tr>
                           <th>Product</th>
@@ -153,13 +148,13 @@ verifyAdmin("2","product-list.php"); ?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Every product is listed here.</p>
-                      <table class='table table-striped table-bordered master-plist'>
+                      <table class='table table-striped table-bordered master-plist nowrap' width="100%">
                         <thead>
                           <tr>
                           <th>Brand</th>
                           <th>Product Name</th>
                           <th>UPC</th>
-                          <th>Department</th>
+                          <th>Category</th>
                           <th>Actions</th>
                           </tr>
                         </thead>
@@ -189,7 +184,7 @@ verifyAdmin("2","product-list.php"); ?>
                 <div class="card-content collapse show">
                   <div class="card-body card-dashboard">
                     <p class="card-text">Every product is listed here.</p>
-                      <table class='table table-striped table-bordered master-ilist'>
+                      <table class='table table-striped table-bordered master-ilist nowrap' width="100%">
                         <thead>
                           <tr>
                             <th>Product</th>
@@ -224,11 +219,6 @@ verifyAdmin("2","product-list.php"); ?>
                     <div class="input-group">
                     <input type="text" class="form-control required" id="upc" placeholder="UPC">
                     <input type="hidden" id="productID">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" id="barcode" type="button" data-toggle="modal" data-target="#livestream_scanner">
-                        <i class="fa fa-barcode"></i>
-                      </button>
-                    </span>
                   </div>
                   </fieldset>
                 </div>
@@ -253,17 +243,9 @@ verifyAdmin("2","product-list.php"); ?>
                     <input type='text' id='pname' class='form-control required' placeholder="Product Name">
                   </fieldset>
                   <fieldset class="form-group floating-label-form-group">
-                    <label for="department">Department</label>
-                    <select id="department" class='form-control required'>
-                      <option value=''>Select Below</option>
-                      <option value="Baby-Food">Baby - Food</option>
-                      <option value="Dairy">Dairy</option>
-                      <option value="Frozen-Meat">Frozen - Beef</option>
-                      <option value="Frozen-Seafood">Frozen - Seafood</option>
-                      <option value="Meat">Meat - Beef</option>
-                      <option value="Meat">Meat - Seafood</option>
-                      <option value="Produce">Produce</option>
-                    </select>
+                    <label for="category">Category</label>
+                    <input type='text' id='category' class='form-control required'>
+                    <input type="hidden" id="categoryID">
                   </fieldset>
                   <div class='row'><div class='col-md-6'>
                     <label for="netwtqty">Net Wt #</label>
@@ -304,27 +286,6 @@ verifyAdmin("2","product-list.php"); ?>
                   <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-        <div class="modal" id="livestream_scanner">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Barcode Scanner</h4>
-              </div>
-              <div class="modal-body" style="position: static">
-                <div id="interactive" class="viewport"></div>
-                <div class="error"></div>
-              </div>
-              <div class="modal-footer">
-                <label class="btn btn-default pull-left">
-                  <i class="fa fa-camera"></i> Use camera app
-                  <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
-                </label>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-              </div>
             </div>
           </div>
         </div>
@@ -383,112 +344,6 @@ verifyAdmin("2","product-list.php"); ?>
   <script src="app-assets/js/scripts/customizer.js" type="text/javascript"></script>
   <script src="vendors/js/easyauto/jquery.easy-autocomplete.min.js"></script>
   <script src="js/maskedinput/jquery.maskedinput.js" type="text/javascript"></script>
-  <script type="text/javascript" src="js/quagga.min.js"></script>
-<script type="text/javascript">
-$(function() {
-	// Create the QuaggaJS config object for the live stream
-	var liveStreamConfig = {
-			inputStream: {
-				type : "LiveStream",
-				constraints: {
-					width: {min: 640},
-					height: {min: 480},
-					aspectRatio: {min: 1, max: 100},
-					facingMode: "environment" // or "user" for the front camera
-				}
-			},
-			locator: {
-				patchSize: "medium",
-				halfSample: true
-			},
-			numOfWorkers: (navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4),
-			decoder: {
-				"readers":[
-					{"format":"ean_reader","config":{}}
-				]
-			},
-			locate: true
-		};
-	// The fallback to the file API requires a different inputStream option.
-	// The rest is the same
-	var fileConfig = $.extend(
-			{},
-			liveStreamConfig,
-			{
-				inputStream: {
-					size: 800
-				}
-			}
-		);
-	// Start the live stream scanner when the modal opens
-	$('#livestream_scanner').on('shown.bs.modal', function (e) {
-		Quagga.init(
-			liveStreamConfig,
-			function(err) {
-				if (err) {
-					$('#livestream_scanner .modal-body .error').html('<div class="alert alert-danger"><strong><i class="fa fa-exclamation-triangle"></i> '+err.name+'</strong>: '+err.message+'</div>');
-					Quagga.stop();
-					return;
-				}
-				Quagga.start();
-			}
-		);
-    });
-
-	// Make sure, QuaggaJS draws frames an lines around possible
-	// barcodes on the live stream
-	Quagga.onProcessed(function(result) {
-		var drawingCtx = Quagga.canvas.ctx.overlay,
-			drawingCanvas = Quagga.canvas.dom.overlay;
-
-		if (result) {
-			if (result.boxes) {
-				drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-				result.boxes.filter(function (box) {
-					return box !== result.box;
-				}).forEach(function (box) {
-					Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-				});
-			}
-
-			if (result.box) {
-				Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-			}
-
-			if (result.codeResult && result.codeResult.code) {
-				Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-			}
-		}
-	});
-
-	// Once a barcode had been read successfully, stop quagga and
-	// close the modal after a second to let the user notice where
-	// the barcode had actually been found.
-	Quagga.onDetected(function(result) {
-		if (result.codeResult.code){
-      var theUPC = result.codeResult.code.substring(1, 13);
-			$('#upc').val(theUPC);
-			Quagga.stop();
-			setTimeout(function(){ $('#livestream_scanner').modal('hide'); }, 1000);
-		}
-	});
-
-	// Stop quagga in any case, when the modal is closed
-    $('#livestream_scanner').on('hide.bs.modal', function(){
-    	if (Quagga){
-    		Quagga.stop();
-    	}
-    });
-
-	// Call Quagga.decodeSingle() for every file selected in the
-	// file input
-	$("#livestream_scanner input:file").on("change", function(e) {
-		if (e.target.files && e.target.files.length) {
-			Quagga.decodeSingle($.extend({}, fileConfig, {src: URL.createObjectURL(e.target.files[0])}), function(result) {alert(result.codeResult.code);});
-		}
-	});
-});
-</script>
   <script>
   //Populates table on main Product-list page from database
   jQuery('.modal').on('show.bs.modal', function (e) {
@@ -617,6 +472,40 @@ $(function() {
   };
 
   jQuery("#brand").easyAutocomplete(boptions);
+
+  var z = 0;
+  var coptions = {
+    url: function(phrase) {
+      return "php/search-category.php?phrase=" + phrase;
+    },
+    getValue: "name",
+    requestDelay: 400,
+    placeholder: "Start typing...",
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return "<div data-item-id='" + item.id + "' ><h6>" + value + "</h6></div>";
+      }
+    },
+    list: {
+      onClickEvent: function() {
+        var data = $("#category").getSelectedItemData().id;
+        z = data;
+        if(data == 0) {
+          $("#category").val("");
+          return;
+        }
+        $('#categoryID').val(z);
+      },
+      onHideListEvent: function() {
+        if(z == 0) {
+          $("#category").val("");
+        }
+      }
+    }
+  };
+
+  jQuery("#category").easyAutocomplete(coptions);
 
   var y = 0;
   var soptions = {

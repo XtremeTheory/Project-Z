@@ -1,6 +1,7 @@
 <?php
 $uid = test_input($_POST['uid']);
 $pname = test_input($_POST['pname']);
+$pname = preg_replace("/(™|®|©|&trade;|&reg;|&copy;|&#8482;|&#174;|&#169;)/", "", $pname);
 $brand = test_input($_POST['brand']);
 $cate = test_input($_POST['cate']);
 $upc = test_input($_POST['upc']);

@@ -13,8 +13,17 @@ if(!$result) {
 }
 
 $productinfo = $result->fetch_assoc();
-$bid = $productinfo['brand'];
-$query1 = "SELECT * FROM brands WHERE id = '$bid'";
+$brandname = $productinfo['brand'];
+$category = $productinfo['cate'];
+
+if(is_numeric($brandname)) {
+  $query1 = "SELECT * FROM brands WHERE id = '$brandname'";
+  $result1 = $test_db->query($query1);
+} else {
+  $query1 = "SELECT * FROM brands WHERE bname = '$brandname'";
+  $result1 = $test_db->query($query1);
+}
+
 $result1 = $test_db->query($query1);
 
 if(!$result1) {
@@ -26,10 +35,38 @@ if(!$result1) {
 }
 
 $brandinfo = $result1->fetch_assoc();
-?>
+$bid = $brandinfo['id'];
+$brandname = $brandinfo['bname'];
+
+if(is_numeric($category)) {
+  $query2 = "SELECT * FROM categories WHERE id = '$category'";
+  $result2 = $test_db->query($query2);
+} else {
+  $query2 = "SELECT * FROM categories WHERE cname = '$category'";
+  $result2 = $test_db->query($query1);
+}
+
+$result2 = $test_db->query($query2);
+
+if(!$result2) {
+  $sqlError = mysqli_error($test_db);
+  logError("1","layout-editproduct.php",$uid,$sqlError);
+  header("Location:".$path."error-500.php");
+  mysqli_close($test_db);
+  exit();
+}
+
+$categoryinfo = $result2->fetch_assoc();
+$cid = $categoryinfo['id'];
+$categoryname = $categoryinfo['cname']; ?>
 <div class="row">
   <div class="form-group col-sm-12">
     <center><img src="<?php echo $productinfo["image"]; ?>" width="150" height="150"></center>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-sm-12">
+  <b>Product ID #: <?php echo $productinfo['id']; ?></b>
   </div>
 </div>
 <div class="row">
@@ -41,8 +78,8 @@ $brandinfo = $result1->fetch_assoc();
 <div class="row">
   <div class="form-group col-sm-12">
     <label for="brand">Brand</label>
-    <input type="text" class="form-control editproduct" id="brand1" placeholder="Brand" value="<?php echo ucwords(strtolower($brandinfo['bname'])); ?>">
-    <input type="hidden" id="brandID1" value="<?php $productinfo["brand"]; ?>">
+    <input type="text" class="form-control editproduct" id="brand1" placeholder="Brand" value="<?php echo ucwords(strtolower($brandname)); ?>">
+    <input type="hidden" id="brandID1" value="<?php echo $bid; ?>">
   </div>
 </div>
 <div class="row">
@@ -60,8 +97,8 @@ $brandinfo = $result1->fetch_assoc();
 <div class="row">
   <div class="form-group col-sm-12">
     <label for="dept">Category</label>
-    <input type="text" class="form-control editproduct" id="category1" placeholder="Category" value="<?php echo ucwords(strtolower($productinfo['cate'])); ?>">
-    <input type="hidden" id="categoryID1" value="<?php $productinfo["cate"]; ?>">
+    <input type="text" class="form-control editproduct" id="category1" placeholder="Category" value="<?php echo ucwords(strtolower($categoryname)); ?>">
+    <input type="hidden" id="categoryID1" value="<?php echo $cid; ?>">
   </div>
 </div>
 <div class='row'><div class='col-md-6'>
