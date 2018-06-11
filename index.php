@@ -9,8 +9,8 @@ captureIP('index.php');
 <meta name="author" content="DRM Web Design">
 <meta property="og:title" content="Pro Dasher" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://admin.prodasher.com/" />
-<meta property="og:image" content="https://admin.prodasher.com/assets/img/overview.jpg" />
+<meta property="og:url" content="https://www.prodasher.com/" />
+<meta property="og:image" content="https://www.prodasher.com/assets/img/overview.jpg" />
 <meta property="og:description" content="Pro Dasher is still under development.  Stay tuned!" />
 <!--[if IE]><link rel="shortcut icon" href="assets/img/icons/favicon.ico"><![endif]-->
 <link rel="icon" href="favicon.ico">
