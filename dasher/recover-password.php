@@ -1,7 +1,7 @@
 <?php
 captureIP('recover-password.php'); ?>
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,8 @@ captureIP('recover-password.php'); ?>
   <link rel="stylesheet" type="text/css" href="css/password.css">
 </head>
 <body class="vertical-layout vertical-overlay-menu 1-column menu-expanded fixed-navbar">
+  <div class="bgCover" id="theCover"></div>
+  <div class="sendCover" id="sendCover"></div>
   <div class="bg"></div>
   <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center">
     <div class="navbar-wrapper">
@@ -87,69 +89,10 @@ captureIP('recover-password.php'); ?>
     </div>
   </div>
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
-  <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
-  <script src="app-assets/js/core/app.js" type="text/javascript"></script>
+  <script src="app-assets/js/app-menu.min.js" type="text/javascript"></script>
+  <script src="app-assets/js/app.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-  <script>
-  //Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
-  $(document).off('focus', 'input').on('focus', 'input', function () {
-    $(this).removeClass('is-invalid');
-    $(this).attr('autocomplete', 'off');
-  });
-  //END
-
-  $(document).off('click', '#requestPassword').on('click', '#requestPassword', function () {
-    var isFormValid = 1;
-    var emailValid = 0;
-    //Checks each field is not empty.
-    $(".required").each(function() {
-      if ($.trim($(this).val()).length == 0) {
-        $(this).addClass("is-invalid");
-        isFormValid = 0;
-        swal("Uh Oh!", "Looks like some things are missing...", "error");
-      } else {
-        $(this).removeClass("is-invalid");
-      }
-    });
-
-    //Form is valid, continue progress.
-    if(isFormValid == 1) {
-      //Checks if email exists.
-          var data = new FormData();
-          data.append('email', $('#email').val());
-          $.ajax({
-            type: "POST",
-            contentType: false,
-            processData: false,
-            cache: false,
-            url: 'php/request-password.php',
-            data: data,
-            success: function(data) {
-              console.log(data);
-              if(data == "servfailure") {
-                window.location.href = "https://admin.prodasher.com/error-500.php";
-              }
-              if(data == "complete") {
-                emailValid = 1;
-              }
-              if(data == "wrongEmail") {
-                emailValid = 2;
-              }
-            }
-          }).done(continueRequest);
-
-          function continueRequest() {
-            if(emailValid == 1) {
-              $('#email').val('');
-              swal("Sent!", "Check your email!", "success");
-            }
-
-            if(emailValid == 2) {
-              swal("Uh Oh!", "Looks like this email doesn't exist...", "error");
-            }
-          }
-        }
-      });
-    </script>
+  <script src="js/global.js" type="text/javascript"></script>
+  <script src="js/request-password.js" type="text/javascript"></script>
 </body>
 </html>

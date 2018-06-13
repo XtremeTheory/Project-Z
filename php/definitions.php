@@ -13,6 +13,14 @@ $sql_details = array(
   $dasherpath = "https://dasher.prodasher.com/";
   $adminpath = "https://admin.prodasher.com/";
 
+  //----SQL Signed In codes ------
+  // Status 0 is not logged in.
+  // Status 1 is logged in.
+  // Status 2 is locked account.
+  // Status 3 is password reset.
+  // Status 4 is not verified.
+  // Status 5 is banned.
+
   //Error Log Codes
   $error0 = "Custom error message, read details.";
   $error1 = "Unable to connect to MySQL database.";

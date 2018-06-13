@@ -106,3 +106,42 @@ display: none;
 z-index: auto;
 color: #000000;
 }
+
+.bgCover {
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, 1 )
+              url('https://www.prodasher.com/images/loading.gif')
+              50% 50%
+              no-repeat;
+}
+
+.sendCover {
+display:    none;
+position:   fixed;
+z-index:    1000;
+top:        0;
+left:       0;
+height:     100%;
+width:      100%;
+background: rgba( 255, 255, 255, 1 )
+            url('https://www.prodasher.com/images/sending.gif')
+            50% 50%
+            no-repeat;
+}
+
+
+.navbar-brand {
+    margin-left: 35px;
+  }
+
+@media only screen and (max-width: 600px) {
+  .navbar-brand {
+      margin-top: -35px;
+      margin-left: -1px;
+    }
+  }

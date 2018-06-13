@@ -1,5 +1,5 @@
 .bg {
-  background:url(../assets/img/password.jpg) no-repeat center center;
+  background:url(https://www.prodasher.com/images/application.jpg) no-repeat center center;
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position:center center;
@@ -12,4 +12,21 @@
   left:0px;
   top:0px;
   z-index:-1;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.hint {
+  color: blue;
+  font-style: italic;
 }

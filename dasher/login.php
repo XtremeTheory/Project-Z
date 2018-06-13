@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +18,8 @@
 </head>
 <body class="vertical-layout vertical-overlay-menu 1-column menu-expanded fixed-navbar">
   <div class="bg"></div>
+  <div class="bgCover" id="theCover"></div>
+  <div class="sendCover" id="sendCover"></div>
   <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow navbar-brand-center" data-nav="brand-center">
     <div class="navbar-wrapper">
       <div class="navbar-header">
@@ -95,99 +97,9 @@
   </div>
   <script src="vendors/js/vendors.min.js" type="text/javascript"></script>
   <script src="vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
+  <script src="js/global.js" type="text/javascript"></script>
+  <script src="js/login.js" type="text/javascript"></script>
   <script>
-  var bg = $(".bg");
-  function resizeBackground() {
-    bg.height($(window).height() + 60);
-  }
-
-  $(window).resize(resizeBackground);
-  resizeBackground();
-	//Any input field that has red error box will be cleared once clicked on and autocomplete turned off.
-	$(document).off('focus', 'input').on('focus', 'input', function () {
-		$(this).removeClass('is-invalid');
-		$(this).attr('autocomplete', 'off');
-	});
-	//END
-
-	$(document).off('click', '#loginSubmit').on('click', '#loginSubmit', function () {
-	  var isFormValid = 1;
-		var loginValid = 0;
-	  //Checks each field is not empty.
-	  $(".required").each(function() {
-	    if ($.trim($(this).val()).length == 0) {
-	      $(this).addClass("is-invalid");
-	      isFormValid = 0;
-	      swal("Uh Oh!", "Looks like some things are missing...", "error");
-	    } else {
-	      $(this).removeClass("is-invalid");
-	    }
-	  });
-
-		//Form is valid, continue progress.
-	  if(isFormValid == 1) {
-	    //Checks username and password.
-	        var data = new FormData();
-	        data.append('username', $('#username').val());
-	        data.append('password', $('#password').val());
-	        $.ajax({
-	          type: "POST",
-	          contentType: false,
-	          processData: false,
-	          cache: false,
-	          url: 'php/verify-login.php',
-	          data: data,
-	          success: function(data) {
-	            if(data == "servfailure") {
-	              window.location.href = "https://www.prodasher.com/error-500.php";
-	            }
-	            if(data == "complete") {
-                var getUrlParameter = function getUrlParameter(sParam) {
-                  var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                  sURLVariables = sPageURL.split('&'),
-                  sParameterName,
-                  i;
-
-                  for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-
-                    if (sParameterName[0] === sParam) {
-                      return sParameterName[1] === undefined ? true : sParameterName[1];
-                    }
-                  }
-                };
-
-                var plocation = getUrlParameter('location');
-
-                if(plocation != "" && typeof plocation != 'undefined') {
-                  window.location.href = "https://dasher.prodasher.com" + plocation;
-                } else {
-                  window.location.href = "https://dasher.prodasher.com/";
-                }
-	            }
-							if(data == "wrongUser") {
-	              swal("Uh Oh!", "Looks like this username doesn't exist...", "error");
-	            }
-              if(data == "noDasher") {
-                swal({
-                  title: "<i>Uh Oh!</i>",
-                  html: "Doesn't look like you're a Dasher yet.<br>Report to Mission Control.",
-                  confirmButtonText: "Roger That",
-                });
-              }
-							if(data == "wrongPass") {
-	              swal("Uh Oh!", "Looks like a wrong password was typed...", "error");
-	            }
-              if(data == "changePass") {
-	              window.location.href = "https://www.prodasher.com/new-password.php";
-	            }
-              if(data == "accountLocked") {
-	              window.location.href = "https://dasher.prodasher.com/error-locked.php";
-	            }
-	          }
-	        });
-				}
-			});
       <?php if(isset($_SESSION['successLogout'])) { ?>
         swal("Done!", "You have been logged out successfully.", "success");
       <?php unset($_SESSION['successLogout']); }

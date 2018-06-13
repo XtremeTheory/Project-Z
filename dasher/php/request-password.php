@@ -53,7 +53,7 @@ try {
     $mail->Host = 'sub5.mail.dreamhost.com';              // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'no-reply@prodasher.com';          // SMTP username
-    $mail->Password = 'Drm3257!';                         // SMTP password
+    $mail->Password = 'Dasher01!';                         // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
@@ -73,7 +73,7 @@ try {
 } catch (Exception $e) {
   $errorMessage = $mail->ErrorInfo;
   logError("3","request-password.php",$uid,$errorMessage);
-  header("Location: https://admin.prodasher.com/error-500.php");
+  header("Location: https://www.prodasher.com/error-500.php");
   mysqli_close($test_db);
   exit();
 }
